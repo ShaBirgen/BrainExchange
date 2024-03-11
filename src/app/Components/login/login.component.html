@@ -1,0 +1,75 @@
+
+<section>
+  <div class="login">
+    <div class="account">
+      <h2>Hi, Welcome Back!</h2>
+    </div>
+    <form class="form" [formGroup]="loginForm">
+      <!-- EMAIL ADDRESS  -->
+      <div class="input-div">
+        <input
+          type="email"
+          formControlName="email"
+          data-cy="email-input"
+          placeholder="Enter your email"
+        />
+        <div
+          *ngIf="
+            loginForm.get('email')?.invalid &&
+            loginForm.get('email')?.touched &&
+            !loginForm.get('email')?.dirty
+          "
+          style="color: red"
+        >
+          Email is required
+        </div>
+        <div
+          *ngIf="
+            loginForm.get('email')?.invalid &&
+            loginForm.get('email')?.dirty &&
+            loginForm.get('email')?.hasError
+          "
+          style="color: red"
+        >
+          Please enter a valid email address.
+        </div>
+      </div>
+
+      <!-- PASSWORD -->
+      <div class="input-div">
+        <input
+          type="password"
+          formControlName="password"
+          data-cy="password-input"
+          placeholder="Enter your password"
+        />
+        <div
+          *ngIf="
+            loginForm.get('password')?.invalid &&
+            loginForm.get('password')?.touched &&
+            !loginForm.get('password')?.dirty
+          "
+          style="color: red"
+        >
+          Password is required
+        </div>
+        <div
+          *ngIf="
+            loginForm.get('password')?.invalid &&
+            loginForm.get('password')?.dirty &&
+            loginForm.get('password')?.touched
+          "
+          style="color: red"
+        >
+          Minimum characters is 8
+        </div>
+      </div>
+
+      <!-- SUBMIT -->
+      <button type="submit" class="submit" data-cy="logBtn">Login</button>
+      <p>
+        Dont have an account yet? <a href="" routerLink="/register">Signup </a>
+      </p>
+    </form>
+  </div>
+</section>
