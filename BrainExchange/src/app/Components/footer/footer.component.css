@@ -1,0 +1,45 @@
+.newsletter{
+    background-color: #f0f3f7;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    gap: 30px;
+    input{
+        padding: 20px;
+        width: 40vw;
+        border: none;
+        border-radius: 40px;
+    }
+    p{
+        font-size: 25px;
+        letter-spacing: 5px;
+    }
+}
+.links{
+    background-color: #007ffe42;
+}
+
+.word-links{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    li{
+        font-size: 20px;
+        list-style: none;
+        padding: 20px;
+    }
+}
+.media{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+
+}
+p{
+    font-size: 20px;
+    text-align: center;
+    padding: 20px;
+}

@@ -1,0 +1,30 @@
+nav{
+    display: flex;
+    justify-content: space-between;
+    background-color: #007ffe2d;
+    padding: 10px;
+}
+
+.img  > img{
+    width: 100px;
+}
+
+.account{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    padding-right: 20px;
+    li{
+        list-style: none;
+        font-size: 20px;
+    }
+}
+.both{
+    display: flex;
+    align-items: center;
+    img{
+        width: 30px;
+        height: 30px;
+    }
+}

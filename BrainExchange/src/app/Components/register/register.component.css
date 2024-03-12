@@ -1,0 +1,49 @@
+section {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  height: 100vh;
+}
+.account {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  font-style: italic;
+  font-size: 20px;
+  padding-top: 20px;
+}
+.register {
+  background-color: #f0f3f7;
+  border-radius: 10px;
+}
+form {
+  gap: 10px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.input-div {
+  padding: 15px;
+}
+.input-div > input {
+  padding: 10px;
+  width: 30vw;
+  border: 1px solid gray;
+  border-radius: 5px;
+}
+.submit {
+  padding: 10px;
+  width: 15vw;
+  background-color: blue;
+  color: white;
+  font-size: 15px;
+  border: none;
+  border-radius: 5px;
+}
+a {
+  text-decoration: none;
+}

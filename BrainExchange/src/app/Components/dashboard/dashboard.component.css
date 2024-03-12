@@ -1,0 +1,25 @@
+.main{
+    background-color:#F0F3F7 ;
+    height: 10vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.main > img{
+    width: 70px;
+    padding: 20px;
+}
+.buttons{
+    display: flex;
+    gap: 30px;
+    padding: 20px;
+}
+
+button{
+    background-color: blue;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+}
