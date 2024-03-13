@@ -4,20 +4,20 @@
     <div class="account">
       <h2>Hi, Welcome Back!</h2>
     </div>
-    <form class="form" [formGroup]="loginForm">
+    <form class="form" [formGroup]="loginForm"  (ngSubmit)="loginForm">
       <!-- EMAIL ADDRESS  -->
       <div class="input-div">
         <input
           type="email"
-          formControlName="email"
+          formControlName="Email"
           data-cy="email-input"
           placeholder="Enter your email"
         />
         <div
           *ngIf="
-            loginForm.get('email')?.invalid &&
-            loginForm.get('email')?.touched &&
-            !loginForm.get('email')?.dirty
+            loginForm.get('Email')?.invalid &&
+            loginForm.get('Email')?.touched &&
+            !loginForm.get('Email')?.dirty
           "
           style="color: red"
         >
@@ -25,9 +25,9 @@
         </div>
         <div
           *ngIf="
-            loginForm.get('email')?.invalid &&
-            loginForm.get('email')?.dirty &&
-            loginForm.get('email')?.hasError
+            loginForm.get('Email')?.invalid &&
+            loginForm.get('Email')?.dirty &&
+            loginForm.get('Email')?.hasError
           "
           style="color: red"
         >
@@ -39,15 +39,15 @@
       <div class="input-div">
         <input
           type="password"
-          formControlName="password"
+          formControlName="Password"
           data-cy="password-input"
           placeholder="Enter your password"
         />
         <div
           *ngIf="
-            loginForm.get('password')?.invalid &&
-            loginForm.get('password')?.touched &&
-            !loginForm.get('password')?.dirty
+            loginForm.get('Password')?.invalid &&
+            loginForm.get('Password')?.touched &&
+            !loginForm.get('Password')?.dirty
           "
           style="color: red"
         >
@@ -55,9 +55,9 @@
         </div>
         <div
           *ngIf="
-            loginForm.get('password')?.invalid &&
-            loginForm.get('password')?.dirty &&
-            loginForm.get('password')?.touched
+            loginForm.get('Password')?.invalid &&
+            loginForm.get('Password')?.dirty &&
+            loginForm.get('Password')?.touched
           "
           style="color: red"
         >

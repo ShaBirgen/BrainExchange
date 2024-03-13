@@ -5,7 +5,7 @@
       <h2>Create an account</h2>
       <p>Connect with specialists and users today.</p>
     </div>
-    <form class="form" [formGroup]="registerForm">
+    <form class="form" [formGroup]="registerForm" (ngSubmit)="register(registerForm.value)">
       <!-- USERNAME -->
       <div class="input-div">
         <input
@@ -29,15 +29,15 @@
       <div class="input-div">
         <input
           type="email"
-          formControlName="email"
+          formControlName="Email"
           data-cy="email-input"
           placeholder="Enter your Email"
         />
         <div
           *ngIf="
-            registerForm.get('email')?.invalid &&
-            registerForm.get('email')?.touched &&
-            !registerForm.get('email')?.dirty
+            registerForm.get('Email')?.invalid &&
+            registerForm.get('Email')?.touched &&
+            !registerForm.get('Email')?.dirty
           "
           style="color: red"
         >
@@ -45,9 +45,9 @@
         </div>
         <div
           *ngIf="
-            registerForm.get('email')?.invalid &&
-            registerForm.get('email')?.dirty &&
-            registerForm.get('email')?.hasError
+            registerForm.get('Email')?.invalid &&
+            registerForm.get('Email')?.dirty &&
+            registerForm.get('Email')?.hasError
           "
           style="color: red"
         >
@@ -59,14 +59,14 @@
       <div class="input-div">
         <input
           type="text"
-          formControlName="phone_number"
+          formControlName="Phone_number"
           data-cy="phone_number-input"
           placeholder="Enter your Phone number"
         />
         <div
           *ngIf="
-            registerForm.get('phone_number')?.invalid &&
-            registerForm.get('phone_number')?.touched
+            registerForm.get('Phone_number')?.invalid &&
+            registerForm.get('Phone_number')?.touched
           "
           style="color: red"
         >
@@ -78,15 +78,15 @@
       <div class="input-div">
         <input
           type="password"
-          formControlName="password"
+          formControlName="Password"
           data-cy="password-input"
           placeholder="Enter your Password"
         />
         <div
           *ngIf="
-            registerForm.get('password')?.invalid &&
-            registerForm.get('password')?.touched &&
-            !registerForm.get('password')?.dirty
+            registerForm.get('Password')?.invalid &&
+            registerForm.get('Password')?.touched &&
+            !registerForm.get('Password')?.dirty
           "
           style="color: red"
         >
@@ -94,9 +94,9 @@
         </div>
         <div
           *ngIf="
-            registerForm.get('password')?.invalid &&
-            registerForm.get('password')?.dirty &&
-            registerForm.get('password')?.touched
+            registerForm.get('Password')?.invalid &&
+            registerForm.get('Password')?.dirty &&
+            registerForm.get('Password')?.touched
           "
           style="color: red"
         >

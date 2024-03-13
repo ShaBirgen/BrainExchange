@@ -21,17 +21,38 @@ export class RegisterComponent {
   successMsg!: String;
   errorMsg!: String;
 
+  constructor(
+    private authservice: AuthService,
+    private fb: FormBuilder,
+    private router: Router
+  ) {
+    this.registerForm = this.fb.group({
+      Username: ['', [Validators.required]],
+      Email: ['', [Validators.required, Validators.email]],
+      Phone_number: ['', [Validators.required]],
+      Password: ['', [Validators.required, Validators.minLength(8)]],
+    });
+  }
 
-    constructor(
-      private authservice: AuthService,
-      private fb: FormBuilder,
-      private router: Router){
-        this.registerForm = this.fb.group({
-          Username: ['', [Validators.required]],
-          email: ['', [Validators.required, Validators.email]],
-          phone_number: ['', [Validators.required]],
-          password: ['', [Validators.required, Validators.minLength(8)]],
-        });
+  register(details: registerUser) {
+    console.log(details.Password);
+
+    this.authservice.registerUser(this.registerForm.value).subscribe((res) => {
+      console.log(res);
+      if (res.message) {
+        this.success = true;
+        this.successMsg = res.message;
+        setTimeout(() => {
+          this.success = false;
+          this.router.navigate(['login']);
+        }, 2000);
+      } else if (res.messageerror) {
+        this.error = true;
+        this.errorMsg = res.messageerror;
+        setTimeout(() => {
+          this.error = false;
+        }, 2000);
       }
- 
+    });
+  }
 }

@@ -5,12 +5,14 @@ import { DashboardComponent } from './Components/dashboard/dashboard.component';
 import { LandingComponent } from './Components/landing/landing.component';
 import { FooterComponent } from './Components/footer/footer.component';
 import { UsersDashboardComponent } from './Components/users-dashboard/users-dashboard.component';
+import { UserProfileComponent } from './Components/user-profile/user-profile.component';
 
 export const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'user', component: UsersDashboardComponent },
+  { path: 'user-profile', component: UserProfileComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'footer', component: FooterComponent },
 ];

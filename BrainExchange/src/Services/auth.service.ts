@@ -10,7 +10,7 @@ export class AuthService {
 
   loginUser(user_details: loginDetails) {
     return this.http.post<{ message: string; token: string; error: string }>(
-      'http://localhost:3110/users/login',
+      'http://localhost:3000/users/login',
       user_details
     );
   }
@@ -26,19 +26,13 @@ export class AuthService {
     }>('http://localhost:3110/users/checkdetails', {}, httpOptions);
   }
 
-  createCart(cart_details: any) {
-    return this.http.post<{ message: string; error: string }>(
-      'http://localhost:3110/cart',
 
-      cart_details
-    );
-  }
 
   registerUser(register_details: registerUser) {
     return this.http.post<{
       message: string;
       error: string;
       messageerror: string;
-    }>('http://localhost:3110/users', register_details);
+    }>('http://localhost:3000/users/register', register_details);
   }
 }

@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../Services/auth.service';
+import { loginDetails } from '../../../Interfaces/Userinterface';
 
 @Component({
   selector: 'app-login',
@@ -25,8 +26,30 @@ export class LoginComponent {
     private router: Router
   ) {
     this.loginForm = this.fb.group({
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(8)]],
+      Email: ['', [Validators.required, Validators.email]],
+      Password: ['', [Validators.required, Validators.minLength(8)]],
+    });
+  }
+
+  login(details: loginDetails) {
+    console.log(details.Password);
+
+    this.authservice.loginUser(this.loginForm.value).subscribe((res) => {
+      console.log(res);
+      if (res.message) {
+        this.success = true;
+        this.successMsg = res.message;
+        setTimeout(() => {
+          this.success = true;
+          this.router.navigate(['user']);
+        }, 2000);
+      } else if (res.message) {
+        this.error = true;
+        this.errorMsg = res.message;
+        setTimeout(() => {
+          this.error = false;
+        }, 2000);
+      }
     });
   }
 }
