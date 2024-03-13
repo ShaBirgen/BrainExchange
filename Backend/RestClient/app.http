@@ -19,3 +19,30 @@ Content-Type: application/json
     "Email": "sharoncherotich112@gmail.com",
     "Password": "123456789"
 }
+
+# GET ALL USERS
+###
+GET  http://localhost:3000/users/getAllUsers
+Content-Type: application/json
+
+#GET ONE USER
+###
+GET http://localhost:3000/users/getOneUser/020c1160-295c-485b-9170-84c630f97bae
+Content-Type: application/json
+
+##UPDATE USER
+###
+POST http://localhost:3000/users/updateUser/43856818-6097-418a-96c3-16a998c7c62d
+Content-Type: application/json
+
+{
+    "Username":"Sharon Cherotich",
+    "Email": "sharoncherotich1@gmail.com",
+    "Phone_number": "987654321"
+   
+}
+
+##DELETE USER
+###
+DELETE http://localhost:3000/users/deleteUser/43856818-6097-418a-96c3-16a998c7c62d
+Content-Type: application/json

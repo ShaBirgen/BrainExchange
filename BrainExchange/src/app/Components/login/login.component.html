@@ -1,10 +1,14 @@
-
+<app-dashboard> </app-dashboard>
 <section>
   <div class="login">
     <div class="account">
       <h2>Hi, Welcome Back!</h2>
     </div>
-    <form class="form" [formGroup]="loginForm"  (ngSubmit)="loginForm">
+      <div class="errors">
+    <div class="success" *ngIf="success">{{ successMsg }}</div>
+    <div class="error" *ngIf="error">{{ errorMsg }}</div>
+  </div>
+    <form class="form" [formGroup]="loginForm" (ngSubmit)="(login())">
       <!-- EMAIL ADDRESS  -->
       <div class="input-div">
         <input

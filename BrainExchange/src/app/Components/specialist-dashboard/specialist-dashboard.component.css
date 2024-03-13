@@ -1,0 +1,137 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f0f3f7;
+  padding: 10px;
+}
+
+.img > img {
+  width: 100px;
+}
+
+.account {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  padding-right: 20px;
+  li {
+    list-style: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+}
+.both {
+  display: flex;
+  align-items: center;
+  img {
+    width: 30px;
+    height: 30px;
+  }
+}
+section {
+  display: flex;
+  flex-direction: row;
+  background-color: #f0f3f7a9;
+  justify-content: center;
+  gap: 30px;
+  padding: 20px;
+  height: 78vh;  
+}
+.profile {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  height: 55vh;
+}
+.name {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 20px;
+
+  p {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+  }
+  img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+}
+.role {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  p {
+    font-size: 20px;
+  }
+}
+.star {
+  img {
+    width: 30px;
+  }
+}
+
+.profile > button {
+  padding: 10px;
+  width: 10vw;
+  margin-left: 50px;
+  background-color: blue;
+  color: white;
+  font-size: 15px;
+  border: none;
+  border-radius: 5px;
+}
+
+.orders {
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  border-radius: 10px;
+
+  select {
+    padding: 10px;
+    font-size: 15px;
+    border-radius: 5px;
+  }
+}
+
+.upgrade > h1 {
+  padding: 10px;
+  text-align: center;
+}
+h2{
+    text-align: center;
+}
+.all {
+  background-color: white;
+  padding: 10px;
+}
+.tips {
+  display: flex;
+}
+.noticed {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 20px;
+  padding: 10px;
+  height: 30vh;
+  width: 20vw;
+  gap: 20px;
+  border-radius: 10px;
+  
+
+
+  img{
+    width: 50px;
+  }
+}

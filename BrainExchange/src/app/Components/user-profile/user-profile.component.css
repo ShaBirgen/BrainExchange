@@ -3,6 +3,7 @@ nav {
   justify-content: space-between;
   background-color: #f0f3f7;
   padding: 10px;
+  cursor: pointer;
 }
 
 .img > img {
@@ -42,6 +43,7 @@ nav {
   gap: 10px;
   padding: 20px;
   border-radius: 20px;
+  height: 40vh;
 
   img {
     width: 80px;
@@ -101,7 +103,7 @@ nav {
   }
 }
 .gig-cards {
-  background-color: #007ffe42;
+  /* background-color: #007ffe42; */
   display: flex;
   gap: 20px;
   flex-wrap: wrap;
@@ -109,8 +111,10 @@ nav {
   border-radius: 10px;
 }
 .appoint {
-  background-color: white;
+  background-color: #dbdbdb;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
 
   img {
     width: 200px;
@@ -119,6 +123,14 @@ nav {
   }
   p {
     text-align: center;
+    padding: 5px;
+  }
+  button{
     padding: 10px;
+    border: none;
+    background-color: rgb(255, 174, 0);
+    color: white;
+    font-size: 15px;
+    border-radius: 5px;
   }
 }

@@ -81,9 +81,9 @@ export const resetPassword = async (req: Request, res: Response) => {
     let result = (
       await pool
         .request()
-        .input("email", Email)
-        .input("Password", hashedPwd)
-        .execute("resetPasswford")
+        .input("Email", Email)
+        .input("Password", Password)
+        .execute("resetPassword")
     ).rowsAffected;
 
     if (result[0] < 1) {
@@ -100,4 +100,9 @@ export const resetPassword = async (req: Request, res: Response) => {
       error: error,
     });
   }
+};
+
+export const logoutUser = (req: Request, res: Response) => {
+  res.clearCookie("token");
+  res.json({ message: "Logout successful" });
 };

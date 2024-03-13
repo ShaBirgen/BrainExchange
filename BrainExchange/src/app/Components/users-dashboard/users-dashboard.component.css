@@ -3,6 +3,7 @@ nav {
   justify-content: space-between;
   background-color: #f0f3f7;
   padding: 10px;
+  cursor: pointer;
 }
 
 .img > img {
@@ -88,6 +89,7 @@ nav {
 }
 .maincards {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 30px;
   padding-bottom: 20px;
 }

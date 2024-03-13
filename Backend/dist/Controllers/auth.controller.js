@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.resetPassword = exports.checkdetails = exports.loginUser = void 0;
+exports.logoutUser = exports.resetPassword = exports.checkdetails = exports.loginUser = void 0;
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const mssql_1 = __importDefault(require("mssql"));
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
@@ -80,9 +80,9 @@ const resetPassword = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         let hashedPwd = yield bcrypt_1.default.hash(Password, 5);
         let result = (yield pool
             .request()
-            .input("email", Email)
-            .input("Password", hashedPwd)
-            .execute("resetPasswford")).rowsAffected;
+            .input("Email", Email)
+            .input("Password", Password)
+            .execute("resetPassword")).rowsAffected;
         if (result[0] < 1) {
             return res.json({
                 message: "User not found",
@@ -101,3 +101,8 @@ const resetPassword = (req, res) => __awaiter(void 0, void 0, void 0, function* 
     }
 });
 exports.resetPassword = resetPassword;
+const logoutUser = (req, res) => {
+    res.clearCookie("token");
+    res.json({ message: "Logout successful" });
+};
+exports.logoutUser = logoutUser;

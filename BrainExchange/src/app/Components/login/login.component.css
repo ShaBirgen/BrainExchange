@@ -1,5 +1,5 @@
 section {
-  background-color: #cdd8e7;
+  /* background-color: #cdd8e7; */
   height: 100vh;
   display: flex;
   align-items: center;
@@ -48,4 +48,28 @@ form {
 }
 a {
   text-decoration: none;
+}
+.errors {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.success {
+  background-color: #29ab8683;
+  padding: 10px;
+  color: white;
+  z-index: 1;
+  position: fixed;
+  font-size: 20px;
+  width: 60vw;
+}
+.error {
+  background-color: #ed2939a1;
+  padding: 10px;
+  color: white;
+  font-size: 20px;
+  margin-bottom: 50px;
+  width: 60vw;
+  position: fixed;
 }

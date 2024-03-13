@@ -20,18 +20,20 @@
   justify-content: space-around;
   align-items: center;
   p {
-    font-size: 25px;
+    font-size: 40px;
     display: flex;
     justify-content: center;
     align-items: center;
     text-align: center;
-    line-height: 35px;
+    line-height: 60px;
+    font-weight: 600;
+    font-style: italic;
   }
   button {
     padding: 10px;
     color: white;
     background-color: blue;
-    width: 25vw;
+    width: 15vw;
     font-size: 20px;
     border: none;
     border-radius: 5px;
@@ -46,6 +48,7 @@
 }
 .cards {
   background-color: white;
+  cursor: pointer;
   img {
     width: 200px;
     height: 120px;
@@ -63,7 +66,8 @@
 }
 .maincards {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 30px;
   padding-bottom: 20px;
 }
 .project {

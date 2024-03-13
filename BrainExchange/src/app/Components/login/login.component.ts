@@ -4,11 +4,12 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../Services/auth.service';
 import { loginDetails } from '../../../Interfaces/Userinterface';
+import { DashboardComponent } from '../dashboard/dashboard.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink,DashboardComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
@@ -31,8 +32,7 @@ export class LoginComponent {
     });
   }
 
-  login(details: loginDetails) {
-    console.log(details.Password);
+  login() {
 
     this.authservice.loginUser(this.loginForm.value).subscribe((res) => {
       console.log(res);
@@ -43,9 +43,9 @@ export class LoginComponent {
           this.success = true;
           this.router.navigate(['user']);
         }, 2000);
-      } else if (res.message) {
+      } else if (res.error) {
         this.error = true;
-        this.errorMsg = res.message;
+        this.errorMsg = res.error;
         setTimeout(() => {
           this.error = false;
         }, 2000);
