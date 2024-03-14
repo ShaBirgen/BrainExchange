@@ -5,6 +5,7 @@ import mssql, { ConnectionPool } from "mssql";
 import cors from "cors";
 import userRouter from "./Routes/user.routes";
 import auth_Router from "./Routes/auth.routes";
+import categoryRouter from "./Routes/category.routes";
 const app = express();
 
 dotenv.config();
@@ -15,6 +16,7 @@ app.use(cors());
 // Routes
 app.use("/users", userRouter)
 app.use("/users", auth_Router)
+app.use("/category", categoryRouter)
 
 const PORT = process.env.PORT as string;
 

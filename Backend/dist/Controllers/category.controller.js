@@ -12,126 +12,116 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteUser = exports.updateUser = exports.getOneUser = exports.getAllUsers = exports.registerUser = void 0;
+exports.deleteCategory = exports.updateCategory = exports.getOneCategory = exports.getallCategories = exports.createCategory = void 0;
 const uuid_1 = require("uuid");
 const mssql_1 = __importDefault(require("mssql"));
 const sqlConfig_1 = require("../Config/sqlConfig");
-const bcrypt_1 = __importDefault(require("bcrypt"));
-const register_validators_1 = require("../Validators/register.validators");
-const registerUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const createCategory = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let id = (0, uuid_1.v4)();
         console.log(id);
-        const { Username, Email, Password, Phone_number } = req.body;
+        const { categoryname, image } = req.body;
         console.log(req.body);
-        let { error } = register_validators_1.registerUserSchema.validate(req.body);
-        if (error) {
-            return res.status(404).json({
-                error: error.details[0].message,
-            });
-        }
-        const hashed_pwd = yield bcrypt_1.default.hash(Password, 5);
         const pool = yield mssql_1.default.connect(sqlConfig_1.sqlConfig);
         const validatedresult = (yield pool
             .request()
-            .input("email", mssql_1.default.VarChar, Email)
-            .input("phone_number", mssql_1.default.VarChar, Phone_number)
-            .execute("ifUserExists")).recordset;
+            .input("categoryname", mssql_1.default.VarChar, categoryname)
+            .execute("IfCategoryExists")).recordset;
         console.log("Your result", validatedresult.length);
         if (validatedresult.length >= 1) {
             return res
                 .status(201)
-                .json({ messageerror: "This email or number is already in use" });
+                .json({ messageerror: "This Category Name already Exist" });
         }
         else {
             const result = (yield pool
                 .request()
-                .input("user_id", mssql_1.default.VarChar, id)
-                .input("username", mssql_1.default.VarChar, Username)
-                .input("email", mssql_1.default.VarChar, Email)
-                .input("phone_number", mssql_1.default.VarChar, Phone_number)
-                .input("password", mssql_1.default.VarChar, hashed_pwd)
-                .execute("registerUser")).rowsAffected;
+                .input("category_id", mssql_1.default.VarChar, id)
+                .input("categoryname", mssql_1.default.VarChar, categoryname)
+                .input("image", mssql_1.default.VarChar, image)
+                .execute("createCategory")).rowsAffected;
             console.log(result);
             return res.status(201).json({
-                message: "Account was created succesfully.",
+                message: `${categoryname} was added succesfully.`,
             });
         }
     }
     catch (err) {
         console.log(err);
-        // return res.sendStatus(500).json({ message: err });
+        return res.sendStatus(500).json({ message: err });
     }
 });
-exports.registerUser = registerUser;
-//get all users
-const getAllUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.createCategory = createCategory;
+//get all Categories
+const getallCategories = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const pool = yield mssql_1.default.connect(sqlConfig_1.sqlConfig);
-        let allusers = (yield pool.request().execute("getAllUsers")).recordset;
+        let allCategories = (yield pool.request().execute("getAllCategories")).recordset;
         return res.status(200).json({
-            users: allusers,
+            Categories: allCategories,
         });
     }
     catch (error) {
         return res.json({ error });
     }
 });
-exports.getAllUsers = getAllUsers;
-const getOneUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getallCategories = getallCategories;
+//get a Category
+const getOneCategory = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const id = req.params.id;
         const pool = yield mssql_1.default.connect(sqlConfig_1.sqlConfig);
-        let user = (yield pool.request().input("user_id", id).execute('getOneUser')).recordset;
+        let category = (yield pool.request().input("category_id", id).execute('getOneCategory')).recordset;
         return res.json({
-            user
+            category
         });
     }
     catch (error) {
         return res.json({ error });
     }
 });
-exports.getOneUser = getOneUser;
-const updateUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.getOneCategory = getOneCategory;
+//updateCategory
+const updateCategory = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const id = req.params.id;
-        const { Username, Email, Phone_number } = req.body;
+        const { categoryname, image } = req.body;
         console.log(req.body);
         const pool = yield mssql_1.default.connect(sqlConfig_1.sqlConfig);
         let result = (yield pool
             .request()
-            .input("user_id", id)
-            .input("Username", mssql_1.default.VarChar, Username)
-            .input("Email", mssql_1.default.VarChar, Email)
-            .input("Phone_number", mssql_1.default.VarChar, Phone_number)
-            .execute("updateUser")).rowsAffected;
+            .input("category_id", id)
+            .input("categoryname", mssql_1.default.VarChar, categoryname)
+            .input("image", mssql_1.default.VarChar, image)
+            .execute("updateCategory")).rowsAffected;
         console.log(result);
         return res.status(200).json({
-            message: "User updated successfully",
+            message: "Category updated successfully",
         });
     }
     catch (error) {
         return res.json({ error });
     }
 });
-exports.updateUser = updateUser;
-const deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.updateCategory = updateCategory;
+// deleteCategory
+const deleteCategory = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const id = req.params.id;
         const pool = yield mssql_1.default.connect(sqlConfig_1.sqlConfig);
         let result = (yield pool
             .request()
-            .input("user_id", mssql_1.default.VarChar, id)
-            .execute("deleteuser")).rowsAffected;
+            .input("category_id", mssql_1.default.VarChar, id)
+            .execute("deleteCategory")).rowsAffected;
         console.log(result[0]);
         if (result[0] == 0) {
             return res.status(201).json({
-                error: "User not found",
+                error: "Category not found",
             });
         }
         else {
             return res.status(200).json({
-                message: "Account deleted successfully",
+                message: "Category deleted successfully",
             });
         }
     }
@@ -139,4 +129,4 @@ const deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         return res.json({ error });
     }
 });
-exports.deleteUser = deleteUser;
+exports.deleteCategory = deleteCategory;

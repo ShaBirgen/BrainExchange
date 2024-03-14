@@ -1,0 +1,32 @@
+POST http://localhost:3000/category/createCategory
+Content-Type: application/json
+
+{
+    "categoryname": "Programming",
+    "image": "https://images.pexels.com/photos/1181677/pexels-photo-1181677.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+}
+
+# GET ALL CATEGORIES
+###
+GET http://localhost:3000/category/getAllCategories
+Content-Type: application/json
+
+#GET ONE CATEGORY
+###
+GET http://localhost:3000/category/getOnecategory/a018ce97-f4cf-425c-b0f1-60301c73b33e
+Content-Type: application/json
+
+#UPDATE CATEGORY
+###
+POST http://localhost:3000/category/updateCategory/2d4a96ed-fc56-49dc-9ca7-66dea0de6813
+Content-Type: application/json
+
+{
+    "categoryname": "Design2",
+    "image": "https://images.pexels.com/photos/326502/pexels-photo-326502.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
+}
+
+#DELETE CATEGORY
+###
+DELETE  http://localhost:3000/category/deleteCategory/a018ce97-f4cf-425c-b0f1-60301c73b33e
+Content-Type: application/json

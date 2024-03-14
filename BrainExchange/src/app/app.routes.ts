@@ -9,6 +9,7 @@ import { UserProfileComponent } from './Components/user-profile/user-profile.com
 import { AdminSidebarComponent } from './Components/Admin/admin-sidebar/admin-sidebar.component';
 import { SpecialistDashboardComponent } from './Components/specialist-dashboard/specialist-dashboard.component';
 import { WildcardComponent } from './Components/wildcard/wildcard.component';
+import { UpdateProfileComponent } from './Components/update-profile/update-profile.component';
 
 export const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -18,6 +19,7 @@ export const routes: Routes = [
   { path: 'user-profile', component: UserProfileComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'specialist', component: SpecialistDashboardComponent },
+  { path: 'update', component: UpdateProfileComponent },
   { path: 'admin-sidebar', component: AdminSidebarComponent },
   { path: 'footer', component: FooterComponent },
   { path: '**', component: WildcardComponent },

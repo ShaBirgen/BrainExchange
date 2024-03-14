@@ -4,11 +4,7 @@ import mssql, { pool } from "mssql";
 import { User } from "../Interfaces/UserInterface";
 import { sqlConfig } from "../Config/sqlConfig";
 import bcrypt from "bcrypt";
-// import Connection from "../DBHelper/dbhelper";
 import { registerUserSchema } from "../Validators/register.validators";
-import jwt from "jsonwebtoken";
-import { loginUserSchema } from "../Validators/login.validators";
-import { loginUser } from "./auth.controller";
 
 export const registerUser = async (req: Request, res: Response) => {
   try {

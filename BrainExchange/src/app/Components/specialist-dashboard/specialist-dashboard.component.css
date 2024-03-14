@@ -36,7 +36,6 @@ section {
   justify-content: center;
   gap: 30px;
   padding: 20px;
-  height: 78vh;  
 }
 .profile {
   background-color: white;
@@ -107,8 +106,8 @@ section {
   padding: 10px;
   text-align: center;
 }
-h2{
-    text-align: center;
+h2 {
+  text-align: center;
 }
 .all {
   background-color: white;
@@ -128,10 +127,27 @@ h2{
   width: 20vw;
   gap: 20px;
   border-radius: 10px;
-  
 
-
-  img{
+  img {
     width: 50px;
   }
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  padding: 10px;
+}
+th,
+td {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+  background-color: white;
+  font-size: 18px;
+  font-family: "Poppins", sans-serif;
+  font-weight: 300;
+  font-style: italic;
+}
+th {
+  background-color: white;
 }

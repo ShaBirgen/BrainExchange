@@ -31,6 +31,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const cors_1 = __importDefault(require("cors"));
 const user_routes_1 = __importDefault(require("./Routes/user.routes"));
 const auth_routes_1 = __importDefault(require("./Routes/auth.routes"));
+const category_routes_1 = __importDefault(require("./Routes/category.routes"));
 const app = (0, express_1.default)();
 dotenv_1.default.config();
 app.use((0, express_1.json)());
@@ -38,6 +39,7 @@ app.use((0, cors_1.default)());
 // Routes
 app.use("/users", user_routes_1.default);
 app.use("/users", auth_routes_1.default);
+app.use("/category", category_routes_1.default);
 const PORT = process.env.PORT;
 app.use((error, req, res, next) => {
     res.status(500).json({
