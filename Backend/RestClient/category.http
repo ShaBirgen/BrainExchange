@@ -18,11 +18,11 @@ Content-Type: application/json
 
 #UPDATE CATEGORY
 ###
-POST http://localhost:3000/category/updateCategory/2d4a96ed-fc56-49dc-9ca7-66dea0de6813
+PUT http://localhost:3000/category/updateCategory/34a81881-29d3-4b8a-b5f7-64fa871b425c
 Content-Type: application/json
 
 {
-    "categoryname": "Design2",
+    "categoryname": "Design3",
     "image": "https://images.pexels.com/photos/326502/pexels-photo-326502.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1"
 }
 
