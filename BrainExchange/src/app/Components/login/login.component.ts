@@ -1,6 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../Services/auth.service';
 import { loginDetails } from '../../../Interfaces/Userinterface';
@@ -9,7 +14,7 @@ import { DashboardComponent } from '../dashboard/dashboard.component';
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink,DashboardComponent],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, DashboardComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css',
 })
@@ -33,7 +38,6 @@ export class LoginComponent {
   }
 
   login() {
-
     this.authservice.loginUser(this.loginForm.value).subscribe((res) => {
       console.log(res);
       if (res.message) {

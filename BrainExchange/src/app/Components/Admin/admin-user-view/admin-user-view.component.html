@@ -1,0 +1,48 @@
+<div class="container mt-3">
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>User No</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Role</th>
+        <!-- <th>Created At</th> -->
+        <th>Phone Number</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of usersArr; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ user.Username }} </td>
+        <td>{{ user.Email }}</td>
+        <td>{{ user.Role }}</td>
+        <!-- <td>{{ user.created_at | date }}</td> -->
+        <td>{{ user.Phone_number }}</td>
+        <td class="actions">
+          <button
+            class="btnEdit"
+            routerLink="/admin/updateUser/{{ user.user_id }}"
+          >
+            <i
+              class="fa-solid fa-pen-to-square"
+              style="color: rgb(255, 187, 0)"
+            ></i>
+          </button>
+          <button class="btnDelete" (click)="openPopup()">
+            <i class="fa-solid fa-trash" style="color: rgb(255, 0, 0)"></i>
+          </button>
+
+           <div class="popup" *ngIf="isPopupOpen">
+            <img src="../../../../assets/Logo.png" />
+            <h3>You are about to delete this item</h3>
+            <p>Are you sure you want to delete  {{user.Name}}?</p>
+            <button type="button" (click)="deleteUser(user.user_id)">
+              DELETE
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

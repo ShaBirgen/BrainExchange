@@ -10,3 +10,38 @@ export interface loginDetails {
   Email: string;
   Password: string;
 }
+
+export interface usersResponse {
+  users: [
+    user_id: string,
+    Username: string,
+    Email: string,
+    created_at: string,
+    Phone_number: string,
+    Password: string
+  ];
+  error: {
+    name: string;
+    message: string;
+  };
+  messageerror: string;
+}
+
+export interface userResponse {
+  user_id: string;
+  Username: string;
+  Email: string;
+  created_at: string;
+  Phone_number: string;
+  Password: string;
+}
+
+
+export interface updateUser {
+  user_id: string;
+  Username: string;
+  Email: string;
+  created_at: string;
+  Phone_number: string;
+  Password: string;
+}

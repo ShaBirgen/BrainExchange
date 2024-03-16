@@ -1,0 +1,22 @@
+<section>
+    <p>We are very happy you are here. Please select one:</p>
+<div class="all">
+  <div class="user" id="users" (click)="user()">
+      <input type="radio" name="userType">
+      <img src="../../../assets/clipboard-user-solid.svg" alt="">
+      <p>I am here looking for Specialist to hire.</p>
+    </div>
+    
+    <div class="specialist" (click)="special()">
+    <input type="radio" name="userType">
+    <img src="../../../assets/user-tie-solid.svg" alt="">
+    <p>I am here to get work done </p>
+  </div>
+  </div>
+
+  <div class="buttons">
+    <button id="userButton">Proceed as a user</button>
+    <button id="specialistButton">Proceed as a Specialist</button>
+  </div>
+</section>
+<!-- <app-footer></app-footer> -->
