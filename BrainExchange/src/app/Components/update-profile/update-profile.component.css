@@ -1,7 +1,40 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f0f3f7;
+  /* padding: 10px; */
+}
+
+.img > img {
+  width: 100px;
+}
+
+.account {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  padding-right: 20px;
+  li {
+    list-style: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+}
+.both {
+  display: flex;
+  align-items: center;
+  img {
+    width: 30px;
+    height: 30px;
+  }
+}
+
 .container {
   width: 50%;
   margin: 0 auto;
-  margin-top: 150px;
+  margin-top: 30px;
+  margin-bottom: 30px;
 }
 input[type="text"],
 input[type="email"],

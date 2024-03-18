@@ -6,6 +6,33 @@ import { sqlConfig } from "../Config/sqlConfig";
 import bcrypt from "bcrypt";
 import { registerUserSchema } from "../Validators/register.validators";
 
+export const setRole = async (req: Request, res: Response) => {
+  try {
+    const user_Id = req.params.id;
+
+    const { Role } = req.body;
+
+    console.log(req.body);
+    const pool = await mssql.connect(sqlConfig);
+
+    const result = (
+      await pool
+        .request()
+        .input("user_Id", mssql.VarChar, user_Id)
+        .input("Role", mssql.VarChar, Role.trim())
+        .query("UPDATE Users SET Role = @Role WHERE user_Id = @user_Id")
+    ).rowsAffected;
+      
+    return res.status(200).json({
+      success: "Role set successfully",
+    });
+  } catch (error) {
+    return res.status(500).json({
+      error,
+    });
+  }
+};
+
 export const registerUser = async (req: Request, res: Response) => {
   try {
     let id = v4();

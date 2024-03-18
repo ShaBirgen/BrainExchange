@@ -1,0 +1,97 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  background-color: #f0f3f7;
+}
+
+.img > img {
+  width: 100px;
+}
+
+.account {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 30px;
+  padding-right: 20px;
+  li {
+    list-style: none;
+    font-size: 20px;
+    cursor: pointer;
+  }
+}
+.both {
+  display: flex;
+  align-items: center;
+  img {
+    width: 30px;
+    height: 30px;
+  }
+}
+section {
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  justify-content: center;
+  gap: 50px;
+  padding-top: 20px;
+  padding-bottom: 50px;
+}
+.profile {
+  background-color: #f0f3f7a9;
+  padding: 20px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+.name {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 20px;
+
+  p {
+    font-family: "Poppins", sans-serif;
+    font-weight: 600;
+  }
+  img {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+  }
+}
+.role {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  p {
+    font-size: 20px;
+  }
+}
+.star {
+  img {
+    width: 30px;
+  }
+}
+
+.profile > button {
+  padding: 10px;
+  width: 10vw;
+  margin-left: 100px;
+  background-color: blue;
+  color: white;
+  font-size: 15px;
+  border: none;
+  border-radius: 5px;
+}
+.about {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 50vw;
+  box-shadow: 10px 10px 10px 0 #d6d6d6;
+  font-family: "Poppins", sans-serif;
+  font-size: 17px;
+  line-height: 35px;
+}

@@ -1,3 +1,13 @@
+##SET ROLE
+PUT http://localhost:3000/users/set-role/ff29515f-598b-4eb0-b49a-cbd07e61b486
+Content-Type: application/json
+
+{
+    "Role": "user"
+}
+
+
+###
 ## Create  User
 POST http://localhost:3000/users/register
 Content-Type: application/json
@@ -16,8 +26,8 @@ POST  http://localhost:3000/users/login
 Content-Type: application/json
 
 {
-    "Email": "sharoncherotich112@gmail.com",
-    "Password": "123456789"
+    "Email": "sharoncherotich@gmail.com",
+    "Password": "sharon12"
 }
 
 # GET ALL USERS
@@ -32,13 +42,13 @@ Content-Type: application/json
 
 ##UPDATE USER
 ###
-POST http://localhost:3000/users/updateUser/43856818-6097-418a-96c3-16a998c7c62d
+POST http://localhost:3000/users/updateUser/4efbb10d-8050-4e70-8061-700d05ecbebe
 Content-Type: application/json
 
 {
     "Username":"Sharon Cherotich",
-    "Email": "sharoncherotich1@gmail.com",
-    "Phone_number": "987654321"
+    "Email": "sharoncherotich@gmail.com",
+    "Phone_number": "0716013980"
    
 }
 

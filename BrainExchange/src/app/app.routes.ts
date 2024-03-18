@@ -14,6 +14,8 @@ import { AdminUserViewComponent } from './Components/Admin/admin-user-view/admin
 import { AdminDashboardComponent } from './Components/Admin/admin-dashboard/admin-dashboard.component';
 import { RolesComponent } from './Components/roles/roles.component';
 import { SpecialistInfoComponent } from './Components/specialist-info/specialist-info.component';
+import { HomeComponent } from './Components/home/home.component';
+import { UserSpecialistViewComponent } from './Components/user-specialist-view/user-specialist-view.component';
 
 export const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -26,6 +28,8 @@ export const routes: Routes = [
   { path: 'update', component: UpdateProfileComponent },
   { path: 'User-role', component: RolesComponent },
   { path: 'More-info', component: SpecialistInfoComponent },
+  { path: 'Categories', component: HomeComponent },
+  { path: 'specialists', component: UserSpecialistViewComponent },
   { path: 'footer', component: FooterComponent },
   {
     path: 'admin',

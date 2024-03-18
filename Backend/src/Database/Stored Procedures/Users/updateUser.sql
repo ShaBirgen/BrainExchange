@@ -14,3 +14,5 @@ BEGIN
         
     WHERE user_id = @user_id
 END
+
+SELECT *FROM Users

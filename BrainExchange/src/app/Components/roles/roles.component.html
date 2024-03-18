@@ -7,7 +7,7 @@
       <p>I am here looking for Specialist to hire.</p>
     </div>
     
-    <div class="specialist" (click)="special()">
+    <div class="user" (click)="special()">
     <input type="radio" name="userType">
     <img src="../../../assets/user-tie-solid.svg" alt="">
     <p>I am here to get work done </p>
@@ -15,8 +15,8 @@
   </div>
 
   <div class="buttons">
-    <button id="userButton">Proceed as a user</button>
-    <button id="specialistButton">Proceed as a Specialist</button>
+    <button id="userButton" (click)="user()">Proceed as a user</button>
+    <button id="specialistButton" (click)="special()">Proceed as a Specialist</button>
   </div>
 </section>
 <!-- <app-footer></app-footer> -->

@@ -4,6 +4,7 @@ export interface registerUser {
   Created_at: string;
   Phone_number: string;
   Password: string;
+
 }
 export interface loginDetails {
   // Username: string;
@@ -18,7 +19,8 @@ export interface usersResponse {
     Email: string,
     created_at: string,
     Phone_number: string,
-    Password: string
+    Password: string,
+    Role: string
   ];
   error: {
     name: string;
@@ -44,4 +46,9 @@ export interface updateUser {
   created_at: string;
   Phone_number: string;
   Password: string;
+}
+
+export interface setRole{
+  user_id: string;
+  Role: string;
 }

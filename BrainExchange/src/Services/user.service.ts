@@ -48,9 +48,9 @@ export class UserService {
     );
   }
 
-  updateUserDetails(id: string, details: updateUser) {
+  updateUserDetails(user_Id: string, details: updateUser) {
     return this.http.put<{ message: string; error: string }>(
-      `http://localhost:3000/users/updateUser/${id}`,
+      `http://localhost:3000/users/updateUser/${user_Id}`,
       details,
       {
         headers: new HttpHeaders({
@@ -61,10 +61,10 @@ export class UserService {
     );
   }
 
-  setRole(userId: string, role: string) {
+  setRole(user_Id: string, Role: string) {
     return this.http.put<{ success: string }>(
-      `http://localhost:3900/users/set-role/${userId}`,
-      role
+      `http://localhost:3000/users/set-role/${user_Id}`,
+      Role
     );
   }
 }
