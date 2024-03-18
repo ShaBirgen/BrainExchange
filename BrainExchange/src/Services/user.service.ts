@@ -21,12 +21,6 @@ export class UserService {
   deleteUser(id: string) {
     return this.http.delete<{ message: string; error: string }>(
       `http://localhost:3000/users/deleteUser/${id}`,
-      {
-        headers: new HttpHeaders({
-          'Content-type': 'application/json',
-          token: this.token,
-        }),
-      }
     );
   }
 
