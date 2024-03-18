@@ -83,6 +83,7 @@ export const registerUser = async (req: Request, res: Response) => {
       console.log(result);
       return res.status(201).json({
         message: "Account was created succesfully.",
+        id
       });
     }
   } catch (err) {

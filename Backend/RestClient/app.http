@@ -13,9 +13,9 @@ POST http://localhost:3000/users/register
 Content-Type: application/json
 
 {
-    "Username":"Sharon Cherotich",
-    "Email": "sharoncherotich112@gmail.com",
-    "Phone_number": "123456789",
+    "Username":"Kenedy Maina",
+    "Email": "kennynet66@yopmail.com",
+    "Phone_number": "0750339662",
     "Password": "123456789"
    
 }
@@ -37,7 +37,7 @@ Content-Type: application/json
 
 #GET ONE USER
 ###
-GET http://localhost:3000/users/getOneUser/020c1160-295c-485b-9170-84c630f97bae
+GET http://localhost:3000/users/getOneUser/3b999ac9-2ebf-43d3-8517-20cd60795678
 Content-Type: application/json
 
 ##UPDATE USER

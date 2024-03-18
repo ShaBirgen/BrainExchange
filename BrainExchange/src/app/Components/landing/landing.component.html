@@ -4,8 +4,8 @@
   <div class="connect">
     <div class="text">
       <p>
-        You need it, <br />we've got it. <br />
-        Brain Exchange
+        Find your perfect match: <br />
+        connecting seekers with specialists!
       </p>
       <button routerLink="/register">Join now</button>
     </div>
@@ -15,12 +15,12 @@
   <div class="services">
     <h1>Services you might be looking for</h1>
     <div class="maincards">
-      <div class="cards">
-        <img src="../../../assets/home-office-4996834_640.jpg" alt="" />
-        <p>Graphic design</p>
+      <div class="cards" *ngFor="let category of categoriesArr; let i = index">
+        <img src="{{category.image}}" alt="" />
+        <p>{{category.categoryname}}</p>
       </div>
 
-      <div class="cards">
+      <!-- <div class="cards">
         <img src="../../../assets/code-1839406_640.jpg" alt="" />
         <p>Programming</p>
       </div>
@@ -38,8 +38,8 @@
       <div class="cards">
         <img src="../../../assets/home-office-4996834_640.jpg" alt="" />
         <p>Graphic design</p>
-      </div>
-    </div>
+      </div> -->
+    </div> 
   </div>
   <div class="project">
     <p>

@@ -77,6 +77,7 @@ const registerUser = (req, res) => __awaiter(void 0, void 0, void 0, function* (
             console.log(result);
             return res.status(201).json({
                 message: "Account was created succesfully.",
+                id
             });
         }
     }

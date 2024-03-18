@@ -4,7 +4,6 @@ export interface registerUser {
   Created_at: string;
   Phone_number: string;
   Password: string;
-
 }
 export interface loginDetails {
   // Username: string;
@@ -14,13 +13,15 @@ export interface loginDetails {
 
 export interface usersResponse {
   users: [
-    user_id: string,
-    Username: string,
-    Email: string,
-    created_at: string,
-    Phone_number: string,
-    Password: string,
-    Role: string
+    {
+      user_id: string;
+      Username: string;
+      Email: string;
+      created_at: string;
+      Phone_number: string;
+      Password: string;
+      Role: string;
+    }
   ];
   error: {
     name: string;
@@ -36,8 +37,8 @@ export interface userResponse {
   created_at: string;
   Phone_number: string;
   Password: string;
+  Role: string;
 }
-
 
 export interface updateUser {
   user_id: string;
@@ -48,7 +49,7 @@ export interface updateUser {
   Password: string;
 }
 
-export interface setRole{
+export interface setRole {
   user_id: string;
   Role: string;
 }

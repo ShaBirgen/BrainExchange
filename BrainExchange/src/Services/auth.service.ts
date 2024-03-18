@@ -31,6 +31,7 @@ export class AuthService {
   registerUser(register_details: registerUser) {
     return this.http.post<{
       message: string;
+      id: string,
       error: string;
       messageerror: string;
     }>('http://localhost:3000/users/register', register_details);

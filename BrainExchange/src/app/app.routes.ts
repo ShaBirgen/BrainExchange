@@ -16,6 +16,9 @@ import { RolesComponent } from './Components/roles/roles.component';
 import { SpecialistInfoComponent } from './Components/specialist-info/specialist-info.component';
 import { HomeComponent } from './Components/home/home.component';
 import { UserSpecialistViewComponent } from './Components/user-specialist-view/user-specialist-view.component';
+import { AdminCategoriesViewComponent } from './Components/Admin/admin-categories-view/admin-categories-view.component';
+import { AdminSpecialistsViewComponent } from './Components/Admin/admin-specialists-view/admin-specialists-view.component';
+import { CreateCategoryComponent } from './Components/Admin/create-category/create-category.component';
 
 export const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -26,7 +29,7 @@ export const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
   { path: 'specialist', component: SpecialistDashboardComponent },
   { path: 'update', component: UpdateProfileComponent },
-  { path: 'User-role', component: RolesComponent },
+  { path: 'role/:id', component: RolesComponent },
   { path: 'More-info', component: SpecialistInfoComponent },
   { path: 'Categories', component: HomeComponent },
   { path: 'specialists', component: UserSpecialistViewComponent },
@@ -34,7 +37,12 @@ export const routes: Routes = [
   {
     path: 'admin',
     component: AdminDashboardComponent,
-    children: [{ path: 'users-view', component: AdminUserViewComponent }],
+    children: [
+      { path: 'users-view', component: AdminUserViewComponent },
+      { path: 'categories-view', component: AdminCategoriesViewComponent },
+      { path: 'specialist-view', component: AdminSpecialistsViewComponent },
+      { path: 'createCategory', component: CreateCategoryComponent },
+    ],
   },
   { path: '**', component: WildcardComponent },
 ];

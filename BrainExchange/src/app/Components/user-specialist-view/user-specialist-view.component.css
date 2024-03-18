@@ -2,10 +2,11 @@ nav {
   display: flex;
   justify-content: space-between;
   background-color: #f0f3f7;
+  padding: 10px;
 }
 
 .img > img {
-  width: 100px;
+  width: 200px;
 }
 
 .account {

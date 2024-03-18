@@ -26,14 +26,14 @@
     align-items: center;
     text-align: center;
     line-height: 60px;
-    font-weight: 600;
+    font-weight: 550;
     font-style: italic;
   }
   button {
     padding: 10px;
     color: white;
     background-color: blue;
-    width: 15vw;
+    width: 13vw;
     font-size: 20px;
     border: none;
     border-radius: 5px;
@@ -50,8 +50,8 @@
   background-color: white;
   cursor: pointer;
   img {
-    width: 200px;
-    height: 120px;
+    width: 250px;
+    height: 150px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
   }

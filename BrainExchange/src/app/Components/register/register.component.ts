@@ -44,7 +44,7 @@ export class RegisterComponent {
         this.successMsg = res.message;
         setTimeout(() => {
           this.success = false;
-          this.router.navigate(['login']);
+          this.router.navigate([`role/${res.id}`]);
         }, 2000);
       } else if (res.messageerror) {
         this.error = true;

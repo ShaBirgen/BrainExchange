@@ -18,7 +18,7 @@
     <div class="engage">
       <h3>You are one step away from finding the best specialists</h3>
 
-      <input type="text" placeholder="Search services here" />
+      <input type="text" placeholder="Search services here"/> <i class="fa-solid fa-magnifying-glass"></i>
 
       <p>
         Brain exchange can help you connect, engage and book services with
@@ -34,29 +34,13 @@
   <div class="services">
     <h1>Categories</h1>
     <div class="maincards">
-      <div class="cards" routerLink="/Categories">
-        <img src="../../../assets/home-office-4996834_640.jpg" alt="" />
-        <p>Graphic design</p>
-      </div>
-
-      <div class="cards">
-        <img src="../../../assets/code-1839406_640.jpg" alt="" />
-        <p>Programming</p>
-      </div>
-
-      <div class="cards">
-        <img src="../../../assets/writer-1421099_640.jpg" alt="" />
-        <p>Writing & Translation</p>
-      </div>
-
-      <div class="cards">
-        <img src="../../../assets/edition-1677458_640.jpg" alt="" />
-        <p>Video & Animation</p>
-      </div>
-
-      <div class="cards">
-        <img src="../../../assets/home-office-4996834_640.jpg" alt="" />
-        <p>Graphic design</p>
+      <div
+        class="cards"
+        routerLink="/Categories"
+        *ngFor="let category of categoriesArr; let i = index"
+      >
+        <img src="{{ category.image }}" alt="" />
+        <p>{{ category.categoryname }}</p>
       </div>
     </div>
   </div>

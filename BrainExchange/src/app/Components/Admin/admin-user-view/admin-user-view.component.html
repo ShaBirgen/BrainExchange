@@ -14,10 +14,10 @@
     <tbody>
       <tr *ngFor="let user of usersArr; let i = index">
         <td>{{ i + 1 }}</td>
-        <td>{{ user.Username }} </td>
+        <td>{{ user.Username }}</td>
         <td>{{ user.Email }}</td>
         <td>{{ user.Role }}</td>
-        <td>{{ user.created_at | date }}</td>
+        <!-- <td>{{ user.created_at | date }}</td> -->
         <td>{{ user.Phone_number }}</td>
         <td class="actions">
           <button
@@ -26,17 +26,20 @@
           >
             <i
               class="fa-solid fa-pen-to-square"
-              style="color: rgb(255, 187, 0)"
+              style="color: #45a049"
             ></i>
           </button>
           <button class="btnDelete" (click)="openPopup()">
-            <i class="fa-solid fa-trash" style="color: rgb(255, 0, 0)"></i>
+            <i
+              class="fa-solid fa-trash"
+              style="color: red"
+            ></i>
           </button>
 
-           <div class="popup" *ngIf="isPopupOpen">
+          <div class="popup" *ngIf="isPopupOpen">
             <img src="../../../../assets/Logo.png" />
             <h3>You are about to delete this item</h3>
-            <p>Are you sure you want to delete  {{user.Name}}?</p>
+            <p>Are you sure you want to delete {{ user.Username }}?</p>
             <button type="button" (click)="deleteUser(user.user_id)">
               DELETE
             </button>

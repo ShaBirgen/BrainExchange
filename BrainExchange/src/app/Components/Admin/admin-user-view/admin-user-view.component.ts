@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { UserService } from '../../../../Services/user.service';
 import { CommonModule } from '@angular/common';
+import { userResponse } from '../../../../Interfaces/Userinterface';
 
 @Component({
   selector: 'app-admin-user-view',
@@ -11,18 +12,21 @@ import { CommonModule } from '@angular/common';
   styleUrl: './admin-user-view.component.css',
 })
 export class AdminUserViewComponent {
-  usersArr: any = [];
+  usersArr: userResponse[] = [];
 
   constructor(private userService: UserService) {
     this.fetchUsers();
   }
   fetchUsers() {
     this.userService.getUsers().subscribe((res) => {
+      console.log(res);
+      
       if (res.error) {
         console.log(res.error);
       } else if (res.users) {
         console.log(res.users);
-        this.usersArr = res.users;
+        res.users.forEach((user)=>{this.usersArr.push(user)})
+        // this.usersArr = res.users;
       }
     });
   }
