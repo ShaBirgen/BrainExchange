@@ -75,8 +75,12 @@ section {
     width: 30px;
   }
 }
-
-.profile > button {
+.buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.buttons > button {
   padding: 10px;
   width: 10vw;
   margin-left: 100px;

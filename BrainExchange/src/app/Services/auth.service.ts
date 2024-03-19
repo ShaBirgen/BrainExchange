@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { loginDetails, registerUser } from '../Interfaces/Userinterface';
-
+import { loginDetails, registerUser } from '../../Interfaces/Userinterface';
 @Injectable({
   providedIn: 'root',
 })
@@ -26,12 +25,10 @@ export class AuthService {
     }>('http://localhost:3110/users/checkdetails', {}, httpOptions);
   }
 
-
-
   registerUser(register_details: registerUser) {
     return this.http.post<{
       message: string;
-      id: string,
+      id: string;
       error: string;
       messageerror: string;
     }>('http://localhost:3000/users/register', register_details);

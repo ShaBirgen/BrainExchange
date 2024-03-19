@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
-import { CategoriesService } from '../../../../Services/categories.service';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { CategoriesService } from '../../../Services/categories.service';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 

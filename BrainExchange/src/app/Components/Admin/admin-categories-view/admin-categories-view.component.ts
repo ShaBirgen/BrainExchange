@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { CategoriesService } from '../../../../Services/categories.service';
+import { CategoriesService } from '../../../Services/categories.service';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-admin-categories-view',
@@ -35,13 +36,27 @@ export class AdminCategoriesViewComponent {
     this.categories.deleteCategory(id).subscribe((res) => {
       console.log(res);
       this.fetchCategories();
-      this.isPopupOpen = false;
     });
   }
 
-  isPopupOpen: boolean = false;
-
-  openPopup() {
-    this.isPopupOpen = true;
+  remove(id: string) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.deleteCategory(id); // Call the deleteUser method if the user confirms
+        Swal.fire({
+          title: 'Deleted!',
+          text: 'Your user has been deleted.',
+          icon: 'success',
+        });
+      }
+    });
   }
 }

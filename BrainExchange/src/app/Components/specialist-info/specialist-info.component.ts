@@ -1,9 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Router } from '@angular/router';
 import { FooterComponent } from '../footer/footer.component';
-import { UserService } from '../../../Services/user.service';
+import { UserService } from '../../Services/user.service';
 
 @Component({
   selector: 'app-specialist-info',
@@ -20,7 +25,6 @@ export class SpecialistInfoComponent {
   errorMsg!: string;
   successMsg!: string;
 
-
   constructor(
     private userservice: UserService,
     private fb: FormBuilder,
@@ -35,8 +39,7 @@ export class SpecialistInfoComponent {
       city: ['', [Validators.required]],
       phoneNumber: ['', [Validators.required]],
       bankAcNo: ['', [Validators.required, Validators.min(0)]],
-      bankAcName: ['', [Validators.required]]
+      bankAcName: ['', [Validators.required]],
     });
   }
-
 }

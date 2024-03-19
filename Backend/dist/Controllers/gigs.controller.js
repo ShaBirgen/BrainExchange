@@ -13,14 +13,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteGig = exports.updateGig = exports.getOneGig = exports.getAllGigs = exports.createGig = void 0;
-const sqlConfig_1 = require("../Config/sqlConfig");
 const mssql_1 = __importDefault(require("mssql"));
 const uuid_1 = require("uuid");
+const sqlConfig_1 = require("../Config/sqlConfig");
 const createGig = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let id = (0, uuid_1.v4)();
-        console.log((id));
-        const { user_id, Specialists_id, Description, Deadline, Salary, Duration } = req.body;
+        console.log(id);
+        const { user_id, Specialists_id, Description, Deadline, Salary, Duration, } = req.body;
         console.log(req.body);
         const pool = yield mssql_1.default.connect(sqlConfig_1.sqlConfig);
         const result = (yield pool
@@ -39,7 +39,7 @@ const createGig = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         });
     }
     catch (err) {
-        console.log((err));
+        console.log(err);
         return res.sendStatus(500).json({ message: err });
     }
 });
@@ -63,9 +63,10 @@ const getOneGig = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const id = req.params.id;
         const pool = yield mssql_1.default.connect(sqlConfig_1.sqlConfig);
-        let Gig = ((yield pool.request().input("Gig_id", id).execute('getOneGig')).recordset);
+        let Gig = (yield pool.request().input("Gig_id", id).execute("getOneGig"))
+            .recordset;
         return res.json({
-            Gig
+            Gig,
         });
     }
     catch (error) {

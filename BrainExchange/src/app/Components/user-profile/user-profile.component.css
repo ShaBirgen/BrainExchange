@@ -109,6 +109,7 @@ nav {
   flex-wrap: wrap;
   padding: 20px;
   border-radius: 10px;
+  box-shadow: 10px 10px 10px 0 #cdd8e7;
 }
 .appoint {
   background-color: #dbdbdb;
@@ -125,7 +126,7 @@ nav {
     text-align: center;
     padding: 5px;
   }
-  button{
+  button {
     padding: 10px;
     border: none;
     background-color: rgb(255, 174, 0);

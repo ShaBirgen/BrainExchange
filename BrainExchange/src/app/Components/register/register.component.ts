@@ -1,10 +1,16 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { AuthService } from '../../../Services/auth.service';
+import { AuthService } from '../../Services/auth.service';
 import { registerUser } from '../../../Interfaces/Userinterface';
 import { DashboardComponent } from '../dashboard/dashboard.component';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register',
@@ -53,6 +59,13 @@ export class RegisterComponent {
           this.error = false;
         }, 2000);
       }
+    });
+  }
+  sucess() {
+    Swal.fire({
+      title: 'Success!',
+      text: 'You are registered successfully!',
+      icon: 'success',
     });
   }
 }

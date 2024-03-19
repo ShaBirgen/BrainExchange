@@ -7,6 +7,7 @@ import userRouter from "./Routes/user.routes";
 import auth_Router from "./Routes/auth.routes";
 import categoryRouter from "./Routes/category.routes";
 import gigRouter from "./Routes/gig.routes";
+import reviewRouter from "./Routes/review.routes";
 const app = express();
 
 dotenv.config();
@@ -19,6 +20,7 @@ app.use("/users", userRouter)
 app.use("/users", auth_Router)
 app.use("/category", categoryRouter)
 app.use("/gigs", gigRouter)
+app.use("/reviews", reviewRouter)
 
 const PORT = process.env.PORT as string;
 

@@ -7,7 +7,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { AuthService } from '../../../Services/auth.service';
+import { AuthService } from '../../Services/auth.service';
 import { loginDetails } from '../../../Interfaces/Userinterface';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 

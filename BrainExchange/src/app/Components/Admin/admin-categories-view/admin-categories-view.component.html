@@ -31,16 +31,16 @@
             <!-- routerLink="/admin/updatecategory/{{ category.category_id }}" -->
             <i
               class="fa-solid fa-pen-to-square"
-              style="color: rgb(255, 187, 0)"
+              style="color: #45a049"
             ></i>
           </button>
-          <button class="btnDelete" (click)="openPopup()">
+          <button class="btnDelete" (click)="remove(category.category_id)">
             <i class="fa-solid fa-trash" style="color: rgb(255, 0, 0)"></i>
           </button>
 
-          <div class="popup" *ngIf="isPopupOpen">
+          <!-- <div class="popup" *ngIf="isPopupOpen">
             <img src="../../../../assets/Logo.png" />
-            <h3>You are about to delete this item</h3>
+            <h3>You are about to delete this category</h3>
             <p>Are you sure you want to delete {{ category.Name }}?</p>
             <button
               class="dlt"
@@ -50,7 +50,7 @@
             >
               DELETE
             </button>
-          </div>
+          </div> -->
         </td>
       </tr>
     </tbody>

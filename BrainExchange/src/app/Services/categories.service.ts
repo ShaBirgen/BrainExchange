@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Category, categoriesResponse } from '../Interfaces/categoryInterface';
+import { Category, categoriesResponse } from '../../Interfaces/categoryInterface';
+
 
 @Injectable({
   providedIn: 'root',
@@ -24,7 +25,7 @@ export class CategoriesService {
 
   deleteCategory(id: string) {
     return this.http.delete<{ message: string; error: string }>(
-      `http://localhost:3000/category/deleteCategory/${id}`,
+      `http://localhost:3000/category/deleteCategory/${id}`
     );
   }
 

@@ -19,6 +19,7 @@ export const createReview = async (req: Request, res: Response) => {
     const result = (
       await pool
         .request()
+        .input("Review_id", mssql.VarChar, id)
         .input("user_id", mssql.VarChar, user_id)
         .input("Specialists_id", mssql.VarChar, Specialists_id)
         .input("review", mssql.VarChar, review)
@@ -56,7 +57,7 @@ export const getOneReview = async (req:Request, res: Response)=>{
 
         const pool= await mssql.connect(sqlConfig);
 
-        let Review = ((await pool.request().input("review_id", id).execute('getOneReview')).recordset)
+        let Review = ((await pool.request().input("Review_id", id).execute('getOneReview')).recordset)
 
         return res.json({ Review})
 
@@ -76,7 +77,7 @@ export const deleteReview = async(req: Request, res:Response) =>{
       let result = (
         await pool
           .request()
-          .input("review_id", mssql.VarChar, id)
+          .input("Review_id", mssql.VarChar, id)
           .execute("deleteReview")
       ).rowsAffected;
 
@@ -88,7 +89,7 @@ export const deleteReview = async(req: Request, res:Response) =>{
         });
       } else {
         return res.status(200).json({
-          message: "Revies deleted successfully",
+          message: "Review deleted successfully",
         });
       }
     } catch (error) {

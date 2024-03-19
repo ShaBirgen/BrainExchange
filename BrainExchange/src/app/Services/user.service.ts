@@ -1,10 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import {
-  updateUser,
-  userResponse,
-  usersResponse,
-} from '../Interfaces/Userinterface';
+import { updateUser, userResponse, usersResponse } from '../../Interfaces/Userinterface';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +16,7 @@ export class UserService {
   }
   deleteUser(id: string) {
     return this.http.delete<{ message: string; error: string }>(
-      `http://localhost:3000/users/deleteUser/${id}`,
+      `http://localhost:3000/users/deleteUser/${id}`
     );
   }
 
@@ -52,7 +48,7 @@ export class UserService {
   setRole(user_Id: string, Role: string) {
     return this.http.put<{ success: string }>(
       `http://localhost:3000/users/set-role/${user_Id}`,
-      {Role}
+      { Role }
     );
   }
 }

@@ -86,3 +86,8 @@
   height: 30px;
   border: 2px solid red;
 } */
+.no-users {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}

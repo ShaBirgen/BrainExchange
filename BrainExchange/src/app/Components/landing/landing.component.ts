@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import { RouterLink } from '@angular/router';
 import { FooterComponent } from '../footer/footer.component';
-import { CategoriesService } from '../../../Services/categories.service';
+import { CategoriesService } from '../../Services/categories.service';
 import {
   Category,
   categoriesResponse,
@@ -26,12 +26,13 @@ export class LandingComponent {
     this.categoriesservice.getAllCategories().subscribe((res) => {
       // console.log(res);
 
-
-      res.Categories.forEach((category) =>{this.categoriesArr.push(category)})
+      res.Categories.forEach((category) => {
+        this.categoriesArr.push(category);
+      });
       if (res.error) {
         console.log(res.error);
       } else if (res.Categories) {
-        console.log( res.Categories);
+        console.log(res.Categories);
       }
     });
   }

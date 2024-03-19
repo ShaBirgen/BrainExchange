@@ -25,6 +25,7 @@ const createReview = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         const pool = yield mssql_1.default.connect(sqlConfig_1.sqlConfig);
         const result = (yield pool
             .request()
+            .input("Review_id", mssql_1.default.VarChar, id)
             .input("user_id", mssql_1.default.VarChar, user_id)
             .input("Specialists_id", mssql_1.default.VarChar, Specialists_id)
             .input("review", mssql_1.default.VarChar, review)
@@ -59,7 +60,7 @@ const getOneReview = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     try {
         const id = req.params.id;
         const pool = yield mssql_1.default.connect(sqlConfig_1.sqlConfig);
-        let Review = ((yield pool.request().input("review_id", id).execute('getOneReview')).recordset);
+        let Review = ((yield pool.request().input("Review_id", id).execute('getOneReview')).recordset);
         return res.json({ Review });
     }
     catch (error) {
@@ -74,7 +75,7 @@ const deleteReview = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         const pool = yield mssql_1.default.connect(sqlConfig_1.sqlConfig);
         let result = (yield pool
             .request()
-            .input("review_id", mssql_1.default.VarChar, id)
+            .input("Review_id", mssql_1.default.VarChar, id)
             .execute("deleteReview")).rowsAffected;
         console.log(result[0]);
         if (result[0] == 0) {
@@ -84,7 +85,7 @@ const deleteReview = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         }
         else {
             return res.status(200).json({
-                message: "Revies deleted successfully",
+                message: "Review deleted successfully",
             });
         }
     }

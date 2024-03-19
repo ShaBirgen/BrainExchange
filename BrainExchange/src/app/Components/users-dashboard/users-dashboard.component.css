@@ -51,6 +51,18 @@ nav {
     font-style: italic;
   }
 }
+.input {
+  background-color: white;
+  padding: 5px;
+  border-radius: 10px;
+  border: none;
+  i {
+    margin-right: 10px;
+  }
+}
+.input :focus {
+  outline: none;
+}
 .both-engage {
   display: flex;
   justify-content: space-around;

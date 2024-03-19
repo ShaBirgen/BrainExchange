@@ -1,10 +1,13 @@
 <nav>
   <div class="img">
-    <img src="../../../assets/brain-exchange-high-resolution-logo-transparent (1).png" alt="" />
+    <img
+      src="../../../assets/brain-exchange-high-resolution-logo-transparent (1).png"
+      alt=""
+    />
   </div>
 
   <div class="account">
-    <li>Categories</li>
+    <!-- <li>Categories</li> -->
     <div class="both">
       <img src="../../../assets/icons8-member-30.png" alt="" />
       <li>My Account</li>
@@ -37,8 +40,12 @@
       <h1>Rate:</h1>
       <p>15$ per hour</p>
     </div>
-
-    <button routerLink="/update">Book Appointment</button>
+    <div class="buttons">
+      <button (click)="leaveReview()">Leave Review</button>
+      <button routerLink="/update" (click)="multipleInputs()">
+        Book Appointment
+      </button>
+    </div>
   </div>
   <div class="about">
     <h1>Description</h1>

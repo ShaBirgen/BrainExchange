@@ -24,28 +24,17 @@
             class="btnEdit"
             routerLink="/admin/updateUser/{{ user.user_id }}"
           >
-            <i
-              class="fa-solid fa-pen-to-square"
-              style="color: #45a049"
-            ></i>
+            <i class="fa-solid fa-pen-to-square" style="color: #45a049"></i>
           </button>
-          <button class="btnDelete" (click)="openPopup()">
-            <i
-              class="fa-solid fa-trash"
-              style="color: red"
-            ></i>
+          <button class="btnDelete" (click)="remove(user.user_id)">
+            <i class="fa-solid fa-trash" style="color: red"></i>
           </button>
-
-          <div class="popup" *ngIf="isPopupOpen">
-            <img src="../../../../assets/Logo.png" />
-            <h3>You are about to delete this item</h3>
-            <p>Are you sure you want to delete {{ user.Username }}?</p>
-            <button type="button" (click)="deleteUser(user.user_id)">
-              DELETE
-            </button>
-          </div>
         </td>
       </tr>
     </tbody>
   </table>
+  <div *ngIf="usersArr.length < 1" class="no-users">
+    <img src="../../../../assets/octocat.png" alt="" />
+    <h1>No users at the moment</h1>
+  </div>
 </div>
