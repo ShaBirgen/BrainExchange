@@ -5,19 +5,28 @@
         <th>User No</th>
         <th>Name</th>
         <th>Email</th>
-        <th>Role</th>
-        <!-- <th>Created At</th> -->
+        <th>
+          <label for="role">Role</label>
+          <select [(ngModel)]="allUsers">
+            <option value="all">All</option>
+            <option *ngFor="let role of users" value="{{ role.id }}">
+              {{ role.name }}
+            </option>
+          </select>
+        </th>
+
+        <th>Created At</th>
         <th>Phone Number</th>
         <th>Actions</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of usersArr; let i = index">
+      <tr *ngFor="let user of filteredUsers; let i = index">
         <td>{{ i + 1 }}</td>
         <td>{{ user.Username }}</td>
         <td>{{ user.Email }}</td>
         <td>{{ user.Role }}</td>
-        <!-- <td>{{ user.created_at | date }}</td> -->
+        <td>{{ user.created_at | date }}</td>
         <td>{{ user.Phone_number }}</td>
         <td class="actions">
           <button

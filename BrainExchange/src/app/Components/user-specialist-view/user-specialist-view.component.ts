@@ -69,11 +69,11 @@ export class UserSpecialistViewComponent {
       html: `
         <div>
           <p>Rate your experience:</p>
-          <span class="star" data-value="1">★</span>
-          <span class="star" data-value="2">★</span>
-          <span class="star" data-value="3">★</span>
-          <span class="star" data-value="4">★</span>
-          <span class="star" data-value="5">★</span>
+          <span class="star" data-value="1" style="font-size: 40px;">★</span>
+          <span class="star" data-value="2" style="font-size: 40px;">★</span>
+          <span class="star" data-value="3" style="font-size: 40px;">★</span>
+          <span class="star" data-value="4" style="font-size: 40px;">★</span>
+          <span class="star" data-value="5" style="font-size: 40px;">★</span>
         </div>
       `,
       focusConfirm: false,
@@ -91,6 +91,7 @@ export class UserSpecialistViewComponent {
           document.querySelector('.swal2-content .star.active') as HTMLElement
         )?.getAttribute('data-value');
       },
+      confirmButtonColor: '#28a745',
     });
 
     // If rating step is completed

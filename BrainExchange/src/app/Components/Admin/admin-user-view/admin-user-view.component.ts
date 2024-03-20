@@ -4,16 +4,31 @@ import { UserService } from '../../../Services/user.service';
 import { CommonModule } from '@angular/common';
 import { userResponse } from '../../../../Interfaces/Userinterface';
 import Swal from 'sweetalert2';
+import { dropdown } from '../../../../Interfaces/dropdown.interface';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-admin-user-view',
   standalone: true,
-  imports: [RouterLink, CommonModule],
+  imports: [RouterLink, CommonModule, FormsModule],
   templateUrl: './admin-user-view.component.html',
   styleUrl: './admin-user-view.component.css',
 })
 export class AdminUserViewComponent {
   usersArr: userResponse[] = [];
+  users: dropdown[] = [
+    { id: 'user', name: 'User' },
+    { id: 'specialist', name: 'Specialist' },
+  ];
+  allUsers: string = 'all';
+
+  get filteredUsers(): userResponse[] {
+    if (this.allUsers === 'all') {
+      return this.usersArr;
+    } else {
+      return this.usersArr.filter((user) => user.Role === this.allUsers);
+    }
+  }
 
   constructor(private userService: UserService) {
     this.fetchUsers();
