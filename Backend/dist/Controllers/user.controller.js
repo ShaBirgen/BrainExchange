@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteUser = exports.updateUser = exports.getOneUser = exports.getAllUsers = exports.registerUser = exports.setRole = void 0;
+exports.deleteUser = exports.updateUser = exports.getOneUser = exports.getAllUsers = exports.registerUser = exports.setSpecialist = exports.setRole = void 0;
 const uuid_1 = require("uuid");
 const mssql_1 = __importDefault(require("mssql"));
 const sqlConfig_1 = require("../Config/sqlConfig");
@@ -40,6 +40,37 @@ const setRole = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.setRole = setRole;
+const setSpecialist = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const user_id = req.params.id;
+        const { First_Name, Last_Name, Speciality, Rate, Description } = req.body;
+        console.log(req.body);
+        let { error } = register_validators_1.specialistInfoSchema.validate(req.body);
+        if (error) {
+            return res.status(404).json({
+                error: error.details[0].message,
+            });
+        }
+        const pool = yield mssql_1.default.connect(sqlConfig_1.sqlConfig);
+        const result = (yield pool
+            .request()
+            .input("user_id", mssql_1.default.VarChar, user_id)
+            .input("First_Name", mssql_1.default.VarChar, First_Name)
+            .input("Last_Name", mssql_1.default.VarChar, Last_Name)
+            .input("Speciality", mssql_1.default.VarChar, Speciality)
+            .input("Rate", mssql_1.default.Int, Rate)
+            .input("Description", mssql_1.default.VarChar, Description)
+            .execute("SpecialistInfo")).rowsAffected;
+        console.log(result);
+        return res.status(201).json({
+            message: "Your information has been saved successfully.",
+        });
+    }
+    catch (err) {
+        console.log(err);
+    }
+});
+exports.setSpecialist = setSpecialist;
 const registerUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let id = (0, uuid_1.v4)();
@@ -77,7 +108,7 @@ const registerUser = (req, res) => __awaiter(void 0, void 0, void 0, function* (
             console.log(result);
             return res.status(201).json({
                 message: "Account was created succesfully.",
-                id
+                id,
             });
         }
     }
@@ -105,9 +136,10 @@ const getOneUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     try {
         const id = req.params.id;
         const pool = yield mssql_1.default.connect(sqlConfig_1.sqlConfig);
-        let user = (yield pool.request().input("user_id", id).execute('getOneUser')).recordset;
+        let user = (yield pool.request().input("user_id", id).execute("getOneUser"))
+            .recordset;
         return res.json({
-            user
+            user,
         });
     }
     catch (error) {

@@ -1,10 +1,10 @@
 import { Request, Response } from "express";
 import { v4 } from "uuid";
 import mssql, { pool } from "mssql";
-import { User } from "../Interfaces/UserInterface";
+import { Specialist, User } from "../Interfaces/UserInterface";
 import { sqlConfig } from "../Config/sqlConfig";
 import bcrypt from "bcrypt";
-import { registerUserSchema } from "../Validators/register.validators";
+import { registerUserSchema, specialistInfoSchema } from "../Validators/register.validators";
 
 export const setRole = async (req: Request, res: Response) => {
   try {
@@ -22,7 +22,7 @@ export const setRole = async (req: Request, res: Response) => {
         .input("Role", mssql.VarChar, Role.trim())
         .query("UPDATE Users SET Role = @Role WHERE user_Id = @user_Id")
     ).rowsAffected;
-      
+
     return res.status(200).json({
       success: "Role set successfully",
     });
@@ -30,6 +30,45 @@ export const setRole = async (req: Request, res: Response) => {
     return res.status(500).json({
       error,
     });
+  }
+};
+
+export const setSpecialist = async (req: Request, res: Response) => {
+  try {
+    const user_id = req.params.id;
+    const { First_Name, Last_Name, Speciality, Rate, Description}: Specialist= req.body;
+
+    console.log(req.body);
+
+    let{error}= specialistInfoSchema.validate(req.body);
+    if(error){
+      return res.status(404).json({
+        error: error.details[0].message,
+      });
+    }
+
+    const pool= await mssql.connect(sqlConfig)
+
+    const result = (
+      await pool
+        .request()
+        .input("user_id", mssql.VarChar, user_id)
+        .input("First_Name", mssql.VarChar, First_Name)
+        .input("Last_Name", mssql.VarChar, Last_Name)
+        .input("Speciality", mssql.VarChar, Speciality)
+        .input("Rate", mssql.Int, Rate)
+        .input("Description", mssql.VarChar, Description)
+        .execute("SpecialistInfo")
+    ).rowsAffected;
+
+      console.log(result);
+      return res.status(201).json({
+        message: "Your information has been saved successfully.",
+      })
+      
+    
+  } catch (err) {
+    console.log(err);
   }
 };
 
@@ -83,7 +122,7 @@ export const registerUser = async (req: Request, res: Response) => {
       console.log(result);
       return res.status(201).json({
         message: "Account was created succesfully.",
-        id
+        id,
       });
     }
   } catch (err) {
@@ -104,34 +143,31 @@ export const getAllUsers = async (req: Request, res: Response) => {
     return res.json({ error });
   }
 };
-        
-    
 
+export const getOneUser = async (req: Request, res: Response) => {
+  try {
+    const id = req.params.id;
 
-export const getOneUser = async(req: Request, res:Response)=>{
-    try {
-        const id = req.params.id
+    const pool = await mssql.connect(sqlConfig);
 
-        const pool = await mssql.connect(sqlConfig)
+    let user = (await pool.request().input("user_id", id).execute("getOneUser"))
+      .recordset;
 
-        let user = (await pool.request().input("user_id", id).execute('getOneUser')).recordset
-
-        return res.json({
-            user
-        })
-    } catch (error) {
-        return res.json({error})
-    }
+    return res.json({
+      user,
+    });
+  } catch (error) {
+    return res.json({ error });
   }
+};
 
 export const updateUser = async (req: Request, res: Response) => {
   try {
     const id = req.params.id;
 
-    const { Username, Email, Phone_number} = req.body;
+    const { Username, Email, Phone_number } = req.body;
 
     console.log(req.body);
-    
 
     const pool = await mssql.connect(sqlConfig);
 

@@ -53,3 +53,11 @@ export interface setRole {
   user_id: string;
   Role: string;
 }
+
+export interface specialist {
+  First_Name: string;
+  Last_Name: string;
+  Speciality: string;
+  Rate: number;
+  Description: string;
+}

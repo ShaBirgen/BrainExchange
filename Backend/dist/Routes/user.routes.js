@@ -9,4 +9,5 @@ userRouter.get("/getOneUser/:id", user_controller_1.getOneUser);
 userRouter.post("/updateUser/:id", user_controller_1.updateUser);
 userRouter.delete("/deleteUser/:id", user_controller_1.deleteUser);
 userRouter.put("/set-role/:id", user_controller_1.setRole);
+userRouter.post("/specialist/:id", user_controller_1.setSpecialist);
 exports.default = userRouter;

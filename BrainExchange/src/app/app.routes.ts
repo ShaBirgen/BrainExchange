@@ -30,7 +30,7 @@ export const routes: Routes = [
   { path: 'specialist', component: SpecialistDashboardComponent },
   { path: 'update', component: UpdateProfileComponent },
   { path: 'role/:id', component: RolesComponent },
-  { path: 'More-info', component: SpecialistInfoComponent },
+  { path: 'More-info/:id', component: SpecialistInfoComponent },
   { path: 'Categories', component: HomeComponent },
   { path: 'specialists', component: UserSpecialistViewComponent },
   { path: 'footer', component: FooterComponent },

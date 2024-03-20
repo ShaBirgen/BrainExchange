@@ -40,7 +40,7 @@ export class RolesComponent {
 
   special() {
     this.userservice.setRole(this.userId, 'specialist').subscribe((res) => {});
-    this.router.navigate(['/More-info']);
+    this.router.navigate([`/More-info/${this.userId}`]);
     console.log('This is a specialist');
   }
 }

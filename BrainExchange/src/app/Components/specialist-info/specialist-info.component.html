@@ -1,10 +1,10 @@
 <div class="container">
-  <form action="/update_profile" method="post">
+  <form class="form" [formGroup]="detailsForm">
     <label for="fname">First Name</label>
     <input
       type="text"
       id="fname"
-      name="firstname"
+      formControlName="First_Name"
       placeholder="Your first name.."
     />
 
@@ -12,12 +12,12 @@
     <input
       type="text"
       id="lname"
-      name="lastname"
+      formControlName="Last_Name"
       placeholder="Your last name.."
     />
 
-    <label for="email">Email</label>
-    <input type="email" id="email" name="email" placeholder="Your email.." />
+    <!-- <label for="speciality">Speciality</label>
+    <input type="text" id="text" name="speciality" placeholder="Please select one" />
 
     <label for="country">Country</label>
     <select id="country" name="country">
@@ -34,24 +34,32 @@
       id="city"
       name="city"
       placeholder="Your city of residence.."
+    /> -->
+
+    <label for="speciality">Speciality</label>
+    <input
+      type="text"
+      id="Speciality"
+      formControlName="Speciality"
+      placeholder="Select a field"
     />
 
     <label for="description">Description</label>
     <input
       type="text"
       id="description"
-      name="description"
-      placeholder="Describe yourself.."
+      formControlName="Description"
+      placeholder="Describe yourself in about 50 words.."
     />
 
-    <label for="phone_number">Phone Number</label>
+    <label for="rate">Rate</label>
     <input
       type="text"
-      id="phone_number"
-      name="phone_number"
-      placeholder="Your phone number.."
+      id="rate"
+      formControlName="Rate"
+      placeholder="Please provide your rate.."
     />
 
-    <input type="submit" value="Update" />
+    <button type="submit" class="submit" >Submit</button>
   </form>
 </div>

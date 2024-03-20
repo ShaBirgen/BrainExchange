@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { updateUser, userResponse, usersResponse } from '../../Interfaces/Userinterface';
+import { specialist, updateUser, userResponse, usersResponse } from '../../Interfaces/Userinterface';
 
 @Injectable({
   providedIn: 'root',
@@ -51,4 +51,17 @@ export class UserService {
       { Role }
     );
   }
+
+  setSpecialist(user_Id:string, set_specialist: specialist){
+    return this.http.put<{ message: string; error: string }>(
+      `http://localhost:3000/users/specialist/${user_Id}`,
+      set_specialist,
+      {
+        headers: new HttpHeaders({
+          'Content-type': 'application/json',
+          token: this.token,
+        }),
+      }
+    );
+}
 }

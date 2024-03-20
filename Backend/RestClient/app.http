@@ -6,6 +6,19 @@ Content-Type: application/json
     "Role": "user"
 }
 
+##SAVE SPECIALIST INFO
+###
+POST http://localhost:3000/users/specialist/74df7224-d2bc-468d-a31e-fb16bf6653b74df7224-d2bc-468d-a31e-fb16bf6653b
+Content-Type: application/json
+
+{
+    "First_Name": "Sharon",
+    "Last_Name": "Cherotich",
+    "Speciality": "Designer",
+    "Rate": 1500,
+    "Description": "This is a description"
+}
+
 
 ###
 ## Create  User

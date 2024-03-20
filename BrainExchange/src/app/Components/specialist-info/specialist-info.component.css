@@ -3,6 +3,10 @@
   margin: 0 auto;
   margin-top: 60px;
 }
+form {
+  display: flex;
+  flex-direction: column;
+}
 input[type="text"],
 input[type="email"],
 input[type="number"],
@@ -16,7 +20,8 @@ select {
   box-sizing: border-box;
 }
 input[type="submit"] {
-  width: 100%;
+  width: 50%;
+  align-self: center;
   background-color: Blue;
   color: white;
   padding: 14px 20px;

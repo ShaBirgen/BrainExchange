@@ -15,3 +15,11 @@ export interface loginUserDetails {
   Email: string;
   Role: string;
 }
+
+export interface Specialist{
+  First_Name: string;
+  Last_Name: string;
+  Speciality: string;
+  Rate: number;
+  Description: string;
+}
