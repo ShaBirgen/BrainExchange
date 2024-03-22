@@ -109,3 +109,29 @@ export const deleteReview = async(req: Request, res:Response) =>{
       return res.json({ error });
     }
 }
+
+export const bySpecialistId = async(req: Request, res: Response) =>{
+  try{
+    const Specialists_id= req.params.id;
+    const pool= await mssql.connect(sqlConfig);
+
+    let Reviews = (await pool.request().input("Specialists_id", Specialists_id).execute("getBySpecialistId"))
+    .recordset
+
+    if( Reviews.length>0){
+      return res.json({
+        Reviews
+      });
+    }else{
+      return res.status(404).json({
+        message: "No reviews found for this specialist",
+      });
+    }
+  } catch(error){
+    console.log("Error in getting date fron the database", error);
+    return res.status(500).json({
+      message: "There was an issue retrieving reviews"
+    })
+    
+  }
+};

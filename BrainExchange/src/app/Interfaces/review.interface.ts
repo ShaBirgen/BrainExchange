@@ -2,7 +2,8 @@ export interface Review {
   Review_id: string;
   user_id: string;
   Specialists_id: string;
-  review: string;
+  Stars: number;
+  Review: string;
 }
 
 export interface reviewResponse {
@@ -11,7 +12,8 @@ export interface reviewResponse {
       Review_id: string;
       user_id: string;
       Specialists_id: string;
-      review: string;
+      Stars: number;
+      Review: string;
     }
   ];
   error:{

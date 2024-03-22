@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteReview = exports.getOneReview = exports.getAllReviews = exports.createReview = void 0;
+exports.bySpecialistId = exports.deleteReview = exports.getOneReview = exports.getAllReviews = exports.createReview = void 0;
 const uuid_1 = require("uuid");
 const mssql_1 = __importDefault(require("mssql"));
 const sqlConfig_1 = require("../Config/sqlConfig");
@@ -110,3 +110,28 @@ const deleteReview = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     }
 });
 exports.deleteReview = deleteReview;
+const bySpecialistId = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const Specialists_id = req.params.id;
+        const pool = yield mssql_1.default.connect(sqlConfig_1.sqlConfig);
+        let Reviews = (yield pool.request().input("Specialists_id", Specialists_id).execute("getBySpecialistId"))
+            .recordset;
+        if (Reviews.length > 0) {
+            return res.json({
+                Reviews
+            });
+        }
+        else {
+            return res.status(404).json({
+                message: "No reviews found for this specialist",
+            });
+        }
+    }
+    catch (error) {
+        console.log("Error in getting date fron the database", error);
+        return res.status(500).json({
+            message: "There was an issue retrieving reviews"
+        });
+    }
+});
+exports.bySpecialistId = bySpecialistId;
