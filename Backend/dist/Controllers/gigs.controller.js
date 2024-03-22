@@ -19,8 +19,10 @@ const sqlConfig_1 = require("../Config/sqlConfig");
 const createGig = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let id = (0, uuid_1.v4)();
+        const user_id = req.params.id;
+        const Specialists_id = req.params.id;
         console.log(id);
-        const { user_id, Specialists_id, Description, Deadline, Salary, Duration, } = req.body;
+        const { Description, Deadline, Salary, Duration, } = req.body;
         console.log(req.body);
         const pool = yield mssql_1.default.connect(sqlConfig_1.sqlConfig);
         const result = (yield pool
@@ -44,7 +46,7 @@ const createGig = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.createGig = createGig;
-//GET ALL CATEGORIES
+//GET ALL BOOKINGS
 const getAllGigs = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const pool = yield mssql_1.default.connect(sqlConfig_1.sqlConfig);
@@ -58,7 +60,7 @@ const getAllGigs = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.getAllGigs = getAllGigs;
-//GET ONE CATEGORY
+//GET ONE BOOKING
 const getOneGig = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const id = req.params.id;
@@ -74,7 +76,7 @@ const getOneGig = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.getOneGig = getOneGig;
-//UPDATE CATEGORY
+//UPDATE BOOKING
 const updateGig = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const id = req.params.id;
@@ -101,7 +103,7 @@ const updateGig = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.updateGig = updateGig;
-// deleteGig
+// DELETE BOOKING
 const deleteGig = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const id = req.params.id;

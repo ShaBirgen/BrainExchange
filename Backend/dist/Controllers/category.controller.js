@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteCategory = exports.updateCategory = exports.getOneCategory = exports.getallCategories = exports.createCategory = void 0;
+exports.deleteCategory = exports.updateCategory = exports.getOneCategory = exports.getbyCategoryId = exports.getallCategories = exports.createCategory = void 0;
 const uuid_1 = require("uuid");
 const mssql_1 = __importDefault(require("mssql"));
 const sqlConfig_1 = require("../Config/sqlConfig");
@@ -66,6 +66,32 @@ const getallCategories = (req, res) => __awaiter(void 0, void 0, void 0, functio
     }
 });
 exports.getallCategories = getallCategories;
+// GET CATEGORY BY CATEGORY ID
+const getbyCategoryId = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const category_id = req.params.id;
+        const pool = yield mssql_1.default.connect(sqlConfig_1.sqlConfig);
+        let Specialists = (yield pool.request().input("category_id", category_id).execute("getbyCategoryId"))
+            .recordset;
+        if (Specialists.length > 0) {
+            return res.json({
+                Specialists
+            });
+        }
+        else {
+            return res.status(404).json({
+                messageerror: "No specialists found for the given category",
+            });
+        }
+    }
+    catch (error) {
+        console.log("Error in getting data from database", error);
+        return res.status(500).json({
+            messageerror: "There was an issue retrieving products",
+        });
+    }
+});
+exports.getbyCategoryId = getbyCategoryId;
 //get a Category
 const getOneCategory = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {

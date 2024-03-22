@@ -9,30 +9,43 @@ export const createReview = async (req: Request, res: Response) => {
     let id = v4();
 
     console.log(id);
+    const user_id = req.params.id;
+    const Specialists_id = req.params.id;
 
-    const { user_id, Specialists_id, review }: Review = req.body;
+    const { Stars, Review }: Review = req.body;
 
     console.log(req.body);
 
     const pool = await mssql.connect(sqlConfig);
 
-    const result = (
-      await pool
+    if (Stars >= 1 && Stars <= 5) {
+
+      const result = await pool
         .request()
         .input("Review_id", mssql.VarChar, id)
         .input("user_id", mssql.VarChar, user_id)
         .input("Specialists_id", mssql.VarChar, Specialists_id)
-        .input("review", mssql.VarChar, review)
-        .execute("createReview")
-    ).rowsAffected;
+        .input("Stars", mssql.Int, Stars)
+        .input("Review", mssql.VarChar, Review)
+        .execute("createReview");
 
-    console.log(result);
-    return res.status(201).json({
-      message: "Review submitted successfully",
-    });
+      if (result.rowsAffected[0] > 0) {
+        return res.status(201).json({
+          message: "Review submitted successfully",
+        });
+      } else {
+        return res.status(500).json({
+          message: "Failed to submit review",
+        });
+      }
+    } else {
+      return res.status(400).json({
+        message: "Stars must be between 1 and 5.",
+      });
+    }
   } catch (err) {
-    console.log(err);
-    return res.sendStatus(500).json({ message: err });
+    console.error(err);
+    return res.status(500).json({ message: "Internal server error" });
   }
 };
 

@@ -38,8 +38,9 @@
     <div class="maincards">
       <div
         class="cards"
-        routerLink="/Categories"
-        *ngFor="let category of categoriesArr; let i = index"
+        *ngFor="let category of categoriesArr; let i = index" 
+        (click)="navigateToCategory(category.category_id)"
+        
       >
         <img src="{{ category.image }}" alt="" />
         <p>{{ category.categoryname }}</p>

@@ -6,7 +6,7 @@ import { CategoriesService } from '../../Services/categories.service';
 import {
   Category,
   categoriesResponse,
-} from '../../../Interfaces/categoryInterface';
+} from '../../Interfaces/categoryInterface';
 import { CommonModule } from '@angular/common';
 
 @Component({

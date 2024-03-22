@@ -1,7 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Category, categoriesResponse } from '../../Interfaces/categoryInterface';
-
+import { Category, Specialists, categoriesResponse } from '../Interfaces/categoryInterface';
 
 @Injectable({
   providedIn: 'root',
@@ -51,5 +50,13 @@ export class CategoriesService {
         }),
       }
     );
+  }
+
+  specialistByCategoryId(id:string){
+    return this.http.get<{
+      error: any; Specialists: Specialists[] 
+}>(
+      `http://localhost:3000/category/categorySpecialists/${id}`,
+    )
   }
 }

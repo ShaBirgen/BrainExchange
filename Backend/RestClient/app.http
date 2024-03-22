@@ -8,15 +8,15 @@ Content-Type: application/json
 
 ##SAVE SPECIALIST INFO
 ###
-POST http://localhost:3000/users/specialist/74df7224-d2bc-468d-a31e-fb16bf6653b74df7224-d2bc-468d-a31e-fb16bf6653b
+POST http://localhost:3000/users/specialist/7203a94c-1c97-4c91-a74c-51b41e8d942a
 Content-Type: application/json
 
 {
-    "First_Name": "Sharon",
+    "First_Name": "Amanda",
     "Last_Name": "Cherotich",
     "Speciality": "Designer",
-    "Rate": 1500,
-    "Description": "This is a description"
+    "Rate": 4500,
+    "Description": "This is another too description"
 }
 
 
@@ -50,7 +50,7 @@ Content-Type: application/json
 
 #GET ONE USER
 ###
-GET http://localhost:3000/users/getOneUser/3b999ac9-2ebf-43d3-8517-20cd60795678
+GET http://localhost:3000/users/getOneUser/fcdb7ee2-3f9f-4777-b5c6-e90dae528f8a
 Content-Type: application/json
 
 ##UPDATE USER
@@ -67,5 +67,5 @@ Content-Type: application/json
 
 ##DELETE USER
 ###
-DELETE http://localhost:3000/users/deleteUser/43856818-6097-418a-96c3-16a998c7c62d
+DELETE http://localhost:3000/users/deleteUser/a13f4585-e2da-4018-a716-f1b5c4517baa
 Content-Type: application/json

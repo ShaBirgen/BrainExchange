@@ -7,7 +7,7 @@
     <li>Categories</li>
     <div class="both">
       <img src="../../../assets/icons8-member-30.png" alt="" />
-      <li>My Account</li>
+      <li>{{user.Username}}</li>
     </div>
     <li>Logout</li>
   </div>
@@ -17,12 +17,12 @@
   <div class="profile">
     <div class="name">
       <img src="../../../assets/smiling-888532_1280.jpg" alt="" />
-      <p>Melvin Sirma</p>
+      <p>{{user.First_Name}} {{user.Last_Name}}</p>
     </div>
 
     <div class="role">
       <h1>Role:</h1>
-      <p>Graphic Designer</p>
+      <p>{{user.Speciality}}</p>
     </div>
     <hr />
     <div class="role">
@@ -36,7 +36,7 @@
     <hr />
     <div class="role">
       <h1>Rate:</h1>
-      <p>15$ per hour</p>
+      <p>${{user.Rate}} per hour</p>
     </div>
     <button routerLink="/update">Update Profile</button>
   </div>

@@ -1,0 +1,25 @@
+##CREATE A REVIEW
+POST http://localhost:3000/reviews/createReview
+Content-Type: application/json
+
+{
+    "user_id": "trdytfuyihiopjopuy",
+    "Specialists_id":"djjiuhytfdrtyuy",
+    "Stars": 5,
+    "Review": "This is the first review"
+}
+
+##GET ALL REVIEWS
+###
+GET http://localhost:3000/reviews/getAllReviews
+Content-Type: application/json
+
+##GET ONE REVIEW
+###
+GET http://localhost:3000/reviews/getOneReview/a962e67e-ce37-42f8-8aa8-812f2a7333d9
+Content-Type: application/json
+
+###DELETE REVIEW
+###
+DELETE http://localhost:3000/reviews/deleteReview/28322f12-fbc9-4053-867d-97e0dd4bef35
+Content-Type: application/json

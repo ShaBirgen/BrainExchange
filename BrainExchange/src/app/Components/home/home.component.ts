@@ -1,12 +1,15 @@
 import { Component } from '@angular/core';
 import { FooterComponent } from '../footer/footer.component';
-import { RouterLink } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
+import { Specialists } from '../../Interfaces/categoryInterface';
+import { CategoriesService } from '../../Services/categories.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [FooterComponent, RouterLink],
+  imports: [FooterComponent, RouterLink, CommonModule],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
@@ -61,4 +64,33 @@ export class HomeComponent {
     }
     console.log('This is', formValues);
   }
+
+  specialistsArr: Specialists[]= [];
+  id!: string;
+  error= false;
+
+  getId(){
+    this.route.params.subscribe(params => {
+      this.id = params['id']
+    })
+    this.fetchSpecialists();
+  }
+
+  constructor(private categoriesservice: CategoriesService, private route: ActivatedRoute){
+    this.getId()
+  }
+
+  fetchSpecialists(){
+    this.categoriesservice.specialistByCategoryId(this.id).subscribe((res)=> {
+      console.log(res);
+      if(res.error){
+        
+        console.log(res.error);
+      } else if (res.Specialists){
+        console.log(res.Specialists);
+        this.specialistsArr= res.Specialists
+      }
+    })
+  }
+  
 }

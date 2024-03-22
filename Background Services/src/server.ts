@@ -1,15 +1,13 @@
 import express from "express";
 import cron from "node-cron";
-import { welcomeuser } from "./mailServices.ts/welcomeUser";
-import { informProject } from "./mailServices.ts/projectInformer";
+import { newsLetter } from "./mailServices/newsletter";
 const app = express();
 
 const run = async () => {
   cron.schedule("*/5 * * * * *", async () => {
     console.log("checking for a new user");
 
-    await welcomeuser();
-    await informProject();
+    await newsLetter();
   });
 };
 

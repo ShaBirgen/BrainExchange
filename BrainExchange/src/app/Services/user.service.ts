@@ -1,6 +1,12 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { specialist, updateUser, userResponse, usersResponse } from '../../Interfaces/Userinterface';
+import {
+  oneUserResponse,
+  specialist,
+  updateUser,
+  userResponse,
+  usersResponse,
+} from '../Interfaces/Userinterface';
 
 @Injectable({
   providedIn: 'root',
@@ -21,14 +27,8 @@ export class UserService {
   }
 
   getOneUserDetails(id: string) {
-    return this.http.get<{ user: userResponse[]; error: { error: string } }>(
+    return this.http.get<oneUserResponse>(
       `http://localhost:3000/users/getOneUser/${id}`,
-      {
-        headers: new HttpHeaders({
-          'Content-type': 'application/json',
-          token: this.token,
-        }),
-      }
     );
   }
 
@@ -36,12 +36,6 @@ export class UserService {
     return this.http.put<{ message: string; error: string }>(
       `http://localhost:3000/users/updateUser/${user_Id}`,
       details,
-      {
-        headers: new HttpHeaders({
-          'Content-type': 'application/json',
-          token: this.token,
-        }),
-      }
     );
   }
 
@@ -52,16 +46,11 @@ export class UserService {
     );
   }
 
-  setSpecialist(user_Id:string, set_specialist: specialist){
-    return this.http.put<{ message: string; error: string }>(
-      `http://localhost:3000/users/specialist/${user_Id}`,
-      set_specialist,
-      {
-        headers: new HttpHeaders({
-          'Content-type': 'application/json',
-          token: this.token,
-        }),
-      }
-    );
-}
+  setSpecialist(user_Id: string, set_specialist: specialist) {
+    return this.http.post<{
+      messageerror: any;
+      message: string;
+      error: string;
+    }>(`http://localhost:3000/users/specialist/${user_Id}`, set_specialist )
+  }
 }

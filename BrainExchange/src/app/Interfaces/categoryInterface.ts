@@ -17,3 +17,13 @@ export interface categoriesResponse {
     message: string;
   };
 }
+
+export interface Specialists{
+  user_id:  string;
+  First_Name: string;
+  Last_Name: string;
+  Speciality: string;
+  Rate: number;
+  Description: string;
+  categoryname: string;
+}

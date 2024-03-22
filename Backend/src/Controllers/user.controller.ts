@@ -36,41 +36,54 @@ export const setRole = async (req: Request, res: Response) => {
 export const setSpecialist = async (req: Request, res: Response) => {
   try {
     const user_id = req.params.id;
-    const { First_Name, Last_Name, Speciality, Rate, Description}: Specialist= req.body;
+    const { First_Name, Last_Name, Speciality, Rate, Description }: Specialist =
+      req.body;
 
     console.log(req.body);
 
-    let{error}= specialistInfoSchema.validate(req.body);
-    if(error){
-      return res.status(404).json({
+    // Validate incoming data
+    const { error } = specialistInfoSchema.validate(req.body);
+    if (error) {
+      return res.status(400).json({
         error: error.details[0].message,
       });
     }
 
-    const pool= await mssql.connect(sqlConfig)
+    // Connect to the database
+    const pool = await mssql.connect(sqlConfig);
 
-    const result = (
-      await pool
-        .request()
-        .input("user_id", mssql.VarChar, user_id)
-        .input("First_Name", mssql.VarChar, First_Name)
-        .input("Last_Name", mssql.VarChar, Last_Name)
-        .input("Speciality", mssql.VarChar, Speciality)
-        .input("Rate", mssql.Int, Rate)
-        .input("Description", mssql.VarChar, Description)
-        .execute("SpecialistInfo")
-    ).rowsAffected;
+    // Execute stored procedure
+    const result = await pool
+      .request()
+      .input("user_id", mssql.VarChar, user_id)
+      .input("First_Name", mssql.VarChar, First_Name)
+      .input("Last_Name", mssql.VarChar, Last_Name)
+      .input("Speciality", mssql.VarChar, Speciality)
+      .input("Rate", mssql.Int, Rate)
+      .input("Description", mssql.VarChar, Description)
+      .execute("SpecialistInfo");
 
-      console.log(result);
+    // Check if any rows were affected
+    if (result.rowsAffected[0] > 0) {
+      console.log("Specialist information saved successfully.");
       return res.status(201).json({
         message: "Your information has been saved successfully.",
-      })
-      
-    
+      });
+    } else {
+      // If no rows were affected, handle accordingly
+      console.log("No rows were affected. Specialist information not saved.");
+      return res.status(400).json({
+        error: "Failed to save specialist information.",
+      });
+    }
   } catch (err) {
-    console.log(err);
+    console.error("Error:", err);
+    return res.status(500).json({
+      error: "Internal server error.",
+    });
   }
 };
+
 
 export const registerUser = async (req: Request, res: Response) => {
   try {
@@ -150,7 +163,7 @@ export const getOneUser = async (req: Request, res: Response) => {
 
     const pool = await mssql.connect(sqlConfig);
 
-    let user = (await pool.request().input("user_id", id).execute("getOneUser"))
+    let user = (await pool.request().input("user_id", id).execute("JoinSpecialist"))
       .recordset;
 
     return res.json({

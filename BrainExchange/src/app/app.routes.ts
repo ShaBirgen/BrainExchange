@@ -27,12 +27,15 @@ export const routes: Routes = [
   { path: 'user', component: UsersDashboardComponent },
   { path: 'user-profile', component: UserProfileComponent },
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'specialist', component: SpecialistDashboardComponent },
+  { path: 'specialist/:id', component: SpecialistDashboardComponent },
   { path: 'update', component: UpdateProfileComponent },
   { path: 'role/:id', component: RolesComponent },
   { path: 'More-info/:id', component: SpecialistInfoComponent },
-  { path: 'Categories', component: HomeComponent },
-  { path: 'specialists', component: UserSpecialistViewComponent },
+  { path: 'Categories/:id', component: HomeComponent },
+  {
+    path: 'specialists/:user_id',
+    component: UserSpecialistViewComponent,
+  },
   { path: 'footer', component: FooterComponent },
   {
     path: 'admin',
@@ -46,4 +49,3 @@ export const routes: Routes = [
   },
   { path: '**', component: WildcardComponent },
 ];
-    ;

@@ -7,12 +7,12 @@ import { Gig } from "../Interfaces/GigInterface";
 export const createGig = async (req: Request, res: Response) => {
   try {
     let id = v4();
+    const user_id= req.params.id;
+    const Specialists_id= req.params.id;
 
     console.log(id);
 
     const {
-      user_id,
-      Specialists_id,
       Description,
       Deadline,
       Salary,
@@ -45,7 +45,7 @@ export const createGig = async (req: Request, res: Response) => {
   }
 };
 
-//GET ALL CATEGORIES
+//GET ALL BOOKINGS
 
 export const getAllGigs = async (req: Request, res: Response) => {
   try {
@@ -59,7 +59,7 @@ export const getAllGigs = async (req: Request, res: Response) => {
   }
 };
 
-//GET ONE CATEGORY
+//GET ONE BOOKING
 
 export const getOneGig = async (req: Request, res: Response) => {
   try {
@@ -78,7 +78,7 @@ export const getOneGig = async (req: Request, res: Response) => {
   }
 };
 
-//UPDATE CATEGORY
+//UPDATE BOOKING
 
 export const updateGig = async (req: Request, res: Response) => {
   try {
@@ -114,7 +114,7 @@ export const updateGig = async (req: Request, res: Response) => {
   }
 };
 
-// deleteGig
+// DELETE BOOKING
 export const deleteGig = async (req: Request, res: Response) => {
   try {
     const id = req.params.id;

@@ -23,19 +23,19 @@
       Programming
     </h1>
     <div class="maincards">
-      <div class="cards">
-        <h2>Amanda Chepkoech</h2>
+      <div class="cards" *ngFor="let Specialists of specialistsArr">
+        <h2>{{Specialists.First_Name}} {{Specialists.Last_Name}}</h2>
         <img src="../../../assets/smile-2072907_1280.jpg" alt="" />
         <div class="s-card">
           <img src="../../../assets/icons8-star-50.png" alt="" />
           <img src="../../../assets/icons8-star-50.png" alt="" />
           <img src="../../../assets/icons8-star-50.png" alt="" />
           <img src="../../../assets/icons8-star-50.png" alt="" />
-          <p>Experience:3 Years</p>
+          <p>Role:{{Specialists.categoryname}}</p>
           <p>Rate: 15$ per hour</p>
         </div>
         <div class="buttons">
-          <button class="profile" routerLink="/specialists">
+          <button class="profile" routerLink="/specialists/{{Specialists.user_id}}">
             View Profile
           </button>
           <button class="book" (click)="multipleInputs()">
@@ -43,7 +43,7 @@
           </button>
         </div>
       </div>
-      <div class="cards">
+      <!-- <div class="cards">
         <h2>Amanda Chepkoech</h2>
         <img src="../../../assets/smile-2072907_1280.jpg" alt="" />
         <div class="s-card">
@@ -83,7 +83,7 @@
             Book Appointment
           </button>
         </div>
-      </div>
+      </div> -->
     </div>
   </div>
 </section>

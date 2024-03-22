@@ -7,5 +7,6 @@ categoryRouter.post("/createCategory", category_controller_1.createCategory);
 categoryRouter.get("/getAllCategories", category_controller_1.getallCategories);
 categoryRouter.get("/getOneCategory/:id", category_controller_1.getOneCategory);
 categoryRouter.put("/updateCategory/:id", category_controller_1.updateCategory);
+categoryRouter.get("/categorySpecialists/:id", category_controller_1.getbyCategoryId);
 categoryRouter.delete("/deleteCategory/:id", category_controller_1.deleteCategory);
 exports.default = categoryRouter;

@@ -5,11 +5,7 @@
       <h2>Create an account</h2>
       <p>Connect with specialists and users today.</p>
     </div>
-      <div class="errors">
-    <div class="success" *ngIf="success">{{ successMsg }}</div>
-    <div class="error" *ngIf="error">{{ errorMsg }}</div>
-  </div>
-    <form class="form" [formGroup]="registerForm" (ngSubmit)="register(registerForm.value)">
+        <form class="form" [formGroup]="registerForm" (ngSubmit)="register(registerForm.value)">
       <!-- USERNAME -->
       <div class="input-div">
         <input

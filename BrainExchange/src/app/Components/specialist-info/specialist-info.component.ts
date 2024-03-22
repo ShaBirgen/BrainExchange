@@ -9,8 +9,9 @@ import {
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FooterComponent } from '../footer/footer.component';
 import { UserService } from '../../Services/user.service';
-import { specialist } from '../../../Interfaces/Userinterface';
-
+import Swal from 'sweetalert2';
+import { CategoriesService } from '../../Services/categories.service';
+import { Category } from '../../Interfaces/categoryInterface';
 @Component({
   selector: 'app-specialist-info',
   standalone: true,
@@ -20,28 +21,28 @@ import { specialist } from '../../../Interfaces/Userinterface';
 })
 export class SpecialistInfoComponent {
   detailsForm!: FormGroup;
-  user_Id!: string;
-  errorDiv = false;
-  successDiv = false;
+  user_id!: string;
+  categoriesArr: Category[] = [];
   errorMsg!: string;
   successMsg!: string;
   success = false;
   error = false;
-  // userId!: string;
 
   getUserId() {
     this.route.params.subscribe((params) => {
-      this.user_Id = params['id'];
+      this.user_id = params['id'];
     });
   }
 
   constructor(
     private userservice: UserService,
+    private categoryservice: CategoriesService,
     private fb: FormBuilder,
     private router: Router,
     private route: ActivatedRoute
   ) {
     this.getUserId();
+    this.fetchCategories();
 
     this.detailsForm = this.fb.group({
       First_Name: ['', [Validators.required]],
@@ -53,38 +54,50 @@ export class SpecialistInfoComponent {
   }
 
   submitSpecialist() {
+    console.log(this.detailsForm.value);
+    
     if (this.detailsForm.valid) {
       this.userservice
-        .setSpecialist(this.user_Id, this.detailsForm.value)
+        .setSpecialist(this.user_id, this.detailsForm.value)
         .subscribe((res) => {
           console.log(res);
+
 
           if (res.message) {
             this.success = true;
             this.successMsg = res.message;
+            setTimeout(() => {
+              this.success = false;
+              this.sucess();
+              this.router.navigate([`/specialist/${this.user_id}`]);
+            }, 2000);
+          } else if (res.messageerror) {
+            this.error = true;
+            this.errorMsg = res.messageerror;
+            setTimeout(() => {
+              this.error = false;
+            }, 2000);
           }
         });
     }
   }
 
-  // onSubmit() {
-  //   if (this.detailsForm.valid) {
-  //     const user_id = 'userserv'; // Get the user_id from wherever you store it
-  //     const specialistData: specialist = this.detailsForm.value;
-  //     this.userservice.setSpecialist(user_id, specialistData).subscribe(
-  //       (response) => {
-  //         // Handle success response
-  //         this.successMsg = response.message;
-  //         this.successDiv = true;
-  //         // Optionally, reset the form after successful submission
-  //         this.detailsForm.reset();
-  //       },
-  //       (error) => {
-  //         // Handle error response
-  //         this.errorMsg = error.error;
-  //         this.errorDiv = true;
-  //       }
-  //     );
-  //   }
-  // }
+  fetchCategories() {
+    this.categoryservice.getAllCategories().subscribe((res) => {
+      if (res.error) {
+        console.log(res.error);
+      } else if (res.Categories) {
+        console.log(res.Categories);
+        this.categoriesArr = res.Categories;
+      }
+    });
+  }
+
+  sucess() {
+    Swal.fire({
+      title: 'Success!',
+      text: 'You details have been submitted successfully.',
+      icon: 'success',
+    });
+  }
 }

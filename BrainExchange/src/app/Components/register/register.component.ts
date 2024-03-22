@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../Services/auth.service';
-import { registerUser } from '../../../Interfaces/Userinterface';
+import { registerUser } from '../../Interfaces/Userinterface';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 import Swal from 'sweetalert2';
 
@@ -23,9 +23,6 @@ export class RegisterComponent {
   registerForm!: FormGroup;
   error = false;
   success = false;
-
-  successMsg!: String;
-  errorMsg!: String;
 
   constructor(
     private authservice: AuthService,
@@ -45,16 +42,15 @@ export class RegisterComponent {
 
     this.authservice.registerUser(this.registerForm.value).subscribe((res) => {
       console.log(res);
-      if (res.message) {
+      if (res) {
         this.success = true;
-        this.successMsg = res.message;
+        this.sucess();
         setTimeout(() => {
           this.success = false;
           this.router.navigate([`role/${res.id}`]);
         }, 2000);
-      } else if (res.messageerror) {
+      } else if (res) {
         this.error = true;
-        this.errorMsg = res.messageerror;
         setTimeout(() => {
           this.error = false;
         }, 2000);

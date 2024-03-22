@@ -30,7 +30,7 @@ export interface usersResponse {
   messageerror: string;
 }
 
-export interface userResponse {
+export interface User {
   user_id: string;
   Username: string;
   Email: string;
@@ -38,6 +38,43 @@ export interface userResponse {
   Phone_number: string;
   Password: string;
   Role: string;
+}
+
+export interface oneUserResponse {
+  user: [
+    {
+      user_id: string;
+      Username: string;
+      Email: string;
+      Role: string;
+      Phone_number: string;
+      created_at: string;
+      First_Name: string;
+      Last_Name: string;
+      Speciality: string
+      Rate: number;
+      Description: string
+    }
+  ];
+  error: {
+    name: string;
+    message: string;
+  };
+  messageerror: string;
+}
+
+export interface userResponse {
+      user_id: string;
+      Username: string;
+      Email: string;
+      Role: string;
+      Phone_number: string;
+      created_at: string;
+      First_Name: string;
+      Last_Name: string;
+      Speciality: string
+      Rate: number;
+      Description: string;
 }
 
 export interface updateUser {

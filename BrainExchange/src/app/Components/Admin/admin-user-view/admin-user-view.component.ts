@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { UserService } from '../../../Services/user.service';
 import { CommonModule } from '@angular/common';
-import { userResponse } from '../../../../Interfaces/Userinterface';
+import { User, userResponse, usersResponse } from '../../../Interfaces/Userinterface';
 import Swal from 'sweetalert2';
-import { dropdown } from '../../../../Interfaces/dropdown.interface';
+import { dropdown } from '../../../Interfaces/dropdown.interface';
 import { FormsModule } from '@angular/forms';
 
 @Component({
@@ -15,14 +15,14 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './admin-user-view.component.css',
 })
 export class AdminUserViewComponent {
-  usersArr: userResponse[] = [];
+  usersArr: User[] = [];
   users: dropdown[] = [
     { id: 'user', name: 'User' },
     { id: 'specialist', name: 'Specialist' },
   ];
   allUsers: string = 'all';
 
-  get filteredUsers(): userResponse[] {
+  get filteredUsers(): User[] {
     if (this.allUsers === 'all') {
       return this.usersArr;
     } else {

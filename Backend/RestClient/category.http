@@ -13,7 +13,7 @@ Content-Type: application/json
 
 #GET ONE CATEGORY
 ###
-GET http://localhost:3000/category/getOnecategory/a018ce97-f4cf-425c-b0f1-60301c73b33e
+GET http://localhost:3000/category/getOnecategory/1e755b75-8eed-4dae-839b-f46df6512cd0
 Content-Type: application/json
 
 #UPDATE CATEGORY
@@ -25,6 +25,11 @@ Content-Type: application/json
     "categoryname": "Programming",
     "image": "https://images.pexels.com/photos/270366/pexels-photo-270366.jpeg?auto=compress&cs=tinysrgb&w=600"
 }
+
+#GETSPECIALISTBYCATEGORYID
+###
+GET http://localhost:3000/category/categorySpecialists/1e755b75-8eed-4dae-839b-f46df6512cd0
+Content-Type: application/json
 
 #DELETE CATEGORY
 ###

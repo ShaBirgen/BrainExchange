@@ -1,5 +1,5 @@
 <div class="container">
-  <form class="form" [formGroup]="detailsForm">
+  <form class="form" [formGroup]="detailsForm" (ngSubmit)="submitSpecialist()">
     <label for="fname">First Name</label>
     <input
       type="text"
@@ -37,12 +37,10 @@
     /> -->
 
     <label for="speciality">Speciality</label>
-    <input
-      type="text"
-      id="Speciality"
-      formControlName="Speciality"
-      placeholder="Select a field"
-    />
+   <select formControlName="Speciality" id="speciality">
+    <option value="">--Select category--</option>
+    <option value="speciality" *ngFor="let category of categoriesArr" value="{{category.category_id}}">{{category.categoryname}}</option>
+   </select>
 
     <label for="description">Description</label>
     <input

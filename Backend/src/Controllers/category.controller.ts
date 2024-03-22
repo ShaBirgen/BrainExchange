@@ -61,6 +61,35 @@ return res.status(200).json({
     return res.json({error});
   }
 };
+
+// GET CATEGORY BY CATEGORY ID
+
+export const getbyCategoryId = async (req: Request, res: Response) => {
+  try {
+    const category_id = req.params.id;
+     const pool= await mssql.connect(sqlConfig);
+
+    let Specialists = (await pool.request().input("category_id", category_id).execute("getbyCategoryId"))
+      .recordset;
+
+      
+      if (Specialists.length > 0) {
+        return res.json({
+          Specialists
+        });
+    } else {
+      return res.status(404).json({
+        messageerror: "No specialists found for the given category",
+      });
+    }
+  } catch (error) {
+    console.log("Error in getting data from database", error);
+    return res.status(500).json({
+      messageerror: "There was an issue retrieving products",
+    });
+  }
+};
+
 //get a Category
 
 export const getOneCategory = async (req: Request, res: Response) => {
