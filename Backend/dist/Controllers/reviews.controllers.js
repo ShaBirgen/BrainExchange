@@ -20,8 +20,8 @@ const createReview = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     try {
         let id = (0, uuid_1.v4)();
         console.log(id);
-        const user_id = req.params.id;
-        const Specialists_id = req.params.id;
+        const user_id = req.params.user_id;
+        const Specialists_id = req.params.Specialists_id;
         const { Stars, Review } = req.body;
         console.log(req.body);
         const pool = yield mssql_1.default.connect(sqlConfig_1.sqlConfig);
@@ -128,7 +128,7 @@ const bySpecialistId = (req, res) => __awaiter(void 0, void 0, void 0, function*
         }
     }
     catch (error) {
-        console.log("Error in getting date fron the database", error);
+        console.log("Error in getting data from the database", error);
         return res.status(500).json({
             message: "There was an issue retrieving reviews"
         });

@@ -22,7 +22,10 @@ export const verifyToken = (
         messageeror: "You do not have access",
       });
     }
-    const data = jwt.verify(token, "IUTR87GMHXLYNR") as loginUserDetails;
+    const data = jwt.verify(
+      token,
+      process.env.SECRET as string
+    ) as loginUserDetails;
 
     req.info = data;
   } catch (error) {

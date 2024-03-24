@@ -1,14 +1,20 @@
 <nav>
   <div class="img">
-    <img src="../../../assets/brain-exchange-high-resolution-logo-transparent (1).png" alt="" />
+    <img
+      src="../../../assets/brain-exchange-high-resolution-logo-transparent (1).png"
+      alt=""
+    />
   </div>
 
   <div class="account">
     <!-- <li>Categories</li>   -->
-    <div class="both">
-      <img src="../../../assets/icons8-member-30.png" alt="" />
-      <li routerLink="/user-profile">My Account</li>
-    </div>
+   <div class="both">
+  <img src="../../../assets/icons8-member-30.png" alt="" />
+  <a [routerLink]="['/user-profile', user_id]">
+    <li>My Account</li>
+  </a>
+</div>
+
     <li>Logout</li>
   </div>
 </nav>
@@ -19,7 +25,22 @@
       <h3>You are one step away from finding the best specialists</h3>
 
       <div class="input">
-      <input type="text" placeholder="Search services here"/> <i class="fa-solid fa-magnifying-glass"></i>
+        <!-- Bind the input value to searchQuery using ngModel -->
+        <input
+          type="text"
+          [(ngModel)]="searchQuery"
+          (input)="searchCategories(searchQuery)"
+          placeholder="Search category here"
+        />
+        <ul *ngIf="searchQuery">
+          <!-- Iterate over the filtered categories -->
+          <li
+            *ngFor="let category of filteredCategories"
+            (click)="navigateToCategory(category.category_id)"
+          >
+            {{ category.categoryname }}
+          </li>
+        </ul>
       </div>
 
       <p>
@@ -38,9 +59,8 @@
     <div class="maincards">
       <div
         class="cards"
-        *ngFor="let category of categoriesArr; let i = index" 
+        *ngFor="let category of categoriesArr; let i = index"
         (click)="navigateToCategory(category.category_id)"
-        
       >
         <img src="{{ category.image }}" alt="" />
         <p>{{ category.categoryname }}</p>

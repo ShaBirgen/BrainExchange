@@ -15,7 +15,7 @@ const verifyToken = (req, res, next) => {
                 messageeror: "You do not have access",
             });
         }
-        const data = jsonwebtoken_1.default.verify(token, "IUTR87GMHXLYNR");
+        const data = jsonwebtoken_1.default.verify(token, process.env.SECRET);
         req.info = data;
     }
     catch (error) {

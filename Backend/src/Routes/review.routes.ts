@@ -4,7 +4,7 @@ import { bySpecialistId, createReview, deleteReview, getAllReviews, getOneReview
 
 const reviewRouter= Router();
 
-reviewRouter.post("/createReview", createReview);
+reviewRouter.post("/createReview/:user_id/:Specialists_id", createReview);
 reviewRouter.get("/getAllReviews", getAllReviews);
 reviewRouter.get("/getOneReview/:id", getOneReview);
 reviewRouter.delete("/deleteReview/:id", deleteReview);

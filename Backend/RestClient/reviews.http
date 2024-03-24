@@ -1,5 +1,5 @@
 ##CREATE A REVIEW
-POST http://localhost:3000/reviews/createReview
+POST http://localhost:3000/reviews/createReview/cdftvgybunhjimkfg/drtfgyuhnjimkfgh
 Content-Type: application/json
 
 {
@@ -24,5 +24,5 @@ Content-Type: application/json
 
 ###SPECIALIST REVIEW
 ###
-GET http://localhost:3000/reviews/specialistReviews
+GET http://localhost:3000/reviews/specialistReview/c030bd85-d78f-4606-8b8d-d1a47f5e715d
 Content-Type: application/json

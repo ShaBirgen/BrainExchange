@@ -10,7 +10,7 @@
     <!-- <li>Categories</li> -->
     <div class="both">
       <img src="../../../assets/icons8-member-30.png" alt="" />
-      <li>My Account</li>
+      <li>{{user.Username}}</li>
     </div>
     <li>Logout</li>
   </div>
@@ -19,12 +19,12 @@
   <div class="profile">
     <div class="name">
       <img src="../../../assets/smile-2072907_1280.jpg" alt="" />
-      <p>Amanda Chepkoech</p>
+      <p>{{user.First_Name}} {{user.Last_Name}}</p>
     </div>
 
     <div class="role">
       <h1>Role:</h1>
-      <p>Graphic Designer</p>
+      <p>{{user.Speciality}}</p>
     </div>
     <hr />
     <div class="role">
@@ -38,7 +38,7 @@
     <hr />
     <div class="role">
       <h1>Rate:</h1>
-      <p>15$ per hour</p>
+      <p>{{user.Rate}}</p>
     </div>
     <div class="buttons">
       <button (click)="leaveReview()">Leave Review</button>
@@ -50,12 +50,7 @@
   <div class="about">
     <h1>Description</h1>
     <p>
-      🚀 Welcome! Need expert programming solutions? <br />I specialize in
-      web/mobile development, database management, debugging, and optimization.
-      With a commitment to clean, efficient code and timely delivery, I
-      prioritize clear communication and personalized service. Let's collaborate
-      to bring your project to life with software that exceeds expectations.
-      Order now for standout solutions that drive success!
+      {{user.Description}}
     </p>
   </div>
 </section>

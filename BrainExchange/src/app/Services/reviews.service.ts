@@ -20,4 +20,24 @@ export class ReviewsService {
         'http://localhost:3000/reviews/getAllReviews'
       );
     }
+   getOneReview(id:string){
+    return this.http.get<{ Review: Review[] }>(
+      ` http://localhost:3000/reviews/getOneReview/${id}`,
+    );
   }
+
+  deleteReview(id:string){
+    return this.http.delete<{ message: string; error: string }>(
+      `http://localhost:3000/reviews/deleteReview/${id}`
+    );
+  }
+
+  specialistReviews(id:string){
+    return this.http.get<{}>
+  }
+
+
+
+}
+
+ 

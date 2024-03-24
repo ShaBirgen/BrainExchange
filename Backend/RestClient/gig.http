@@ -1,9 +1,7 @@
-POST http://localhost:3000/gigs/createGig
+POST http://localhost:3000/gigs/createGig/dgagychxbnopacifyvhbjx/876edftcyghjoisvug
 Content-Type: application/json
 
 {
-    "user_id": "dgagychxbnopacifyvhbjx",
-    "Specialists_id": "876edftcyghjoisvug",
     "Description": "This is the second gig",
     "Deadline": "2/3/2024",
     "Salary": 20000,
@@ -37,4 +35,9 @@ Content-Type: application/json
 ##DELETE GIG
 ###
 DELETE http://localhost:3000/gigs/deleteGig/ca16dcdf-4fd2-4b87-b848-98f70dc7f4d3
+Content-Type: application/json
+
+##GETSPECIALISTSGIG
+###
+GET http://localhost:3000/gigs/gigSpecialists/c030bd85-d78f-4606-8b8d-d1a47f5e715d
 Content-Type: application/json

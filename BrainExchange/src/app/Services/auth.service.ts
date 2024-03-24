@@ -22,7 +22,7 @@ export class AuthService {
     };
     return this.http.post<{
       info: { user_id: string; Fname: string; email: string; role: string };
-    }>('http://localhost:3110/users/checkdetails', {}, httpOptions);
+    }>('http://localhost:3000/users/checkdetails', {}, httpOptions);
   }
 
   registerUser(register_details: registerUser) {

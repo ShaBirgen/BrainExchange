@@ -7,8 +7,8 @@ import { Gig } from "../Interfaces/GigInterface";
 export const createGig = async (req: Request, res: Response) => {
   try {
     let id = v4();
-    const user_id= req.params.id;
-    const Specialists_id= req.params.id;
+    const user_id= req.params.user_id;
+    const Specialists_id= req.params.Specialists_id;
 
     console.log(id);
 
@@ -143,3 +143,29 @@ export const deleteGig = async (req: Request, res: Response) => {
     return res.json({ error });
   }
 };
+
+export const getBySpecialists = async (req: Request, res: Response) => {
+  try{
+    const Specialists_id = req.params.Specialists_id;
+    const pool= await mssql.connect(sqlConfig);
+
+    let gigs= (await pool.request().input("Specialists_id", Specialists_id).execute("getBySpecialists"))
+    .recordset;
+
+    if(gigs.length==0){
+      return res.status(201).json({
+        error: "No orders found",
+      });
+    }else{
+      return res.status(200).json({
+        gigs
+      })
+    } 
+  } catch(error){
+    console.log("Error getting data from the database", error);
+    return res.status(500).json({
+      messageerror: "There was an issue retrieving orders",
+    })
+    
+  }
+}

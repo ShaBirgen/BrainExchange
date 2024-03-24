@@ -12,15 +12,15 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteGig = exports.updateGig = exports.getOneGig = exports.getAllGigs = exports.createGig = void 0;
+exports.getBySpecialists = exports.deleteGig = exports.updateGig = exports.getOneGig = exports.getAllGigs = exports.createGig = void 0;
 const mssql_1 = __importDefault(require("mssql"));
 const uuid_1 = require("uuid");
 const sqlConfig_1 = require("../Config/sqlConfig");
 const createGig = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         let id = (0, uuid_1.v4)();
-        const user_id = req.params.id;
-        const Specialists_id = req.params.id;
+        const user_id = req.params.user_id;
+        const Specialists_id = req.params.Specialists_id;
         console.log(id);
         const { Description, Deadline, Salary, Duration, } = req.body;
         console.log(req.body);
@@ -129,3 +129,28 @@ const deleteGig = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     }
 });
 exports.deleteGig = deleteGig;
+const getBySpecialists = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const Specialists_id = req.params.Specialists_id;
+        const pool = yield mssql_1.default.connect(sqlConfig_1.sqlConfig);
+        let gigs = (yield pool.request().input("Specialists_id", Specialists_id).execute("getBySpecialists"))
+            .recordset;
+        if (gigs.length == 0) {
+            return res.status(201).json({
+                error: "No orders found",
+            });
+        }
+        else {
+            return res.status(200).json({
+                gigs
+            });
+        }
+    }
+    catch (error) {
+        console.log("Error getting data from the database", error);
+        return res.status(500).json({
+            messageerror: "There was an issue retrieving orders",
+        });
+    }
+});
+exports.getBySpecialists = getBySpecialists;

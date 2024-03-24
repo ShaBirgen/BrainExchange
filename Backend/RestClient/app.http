@@ -50,7 +50,7 @@ Content-Type: application/json
 
 #GET ONE USER
 ###
-GET http://localhost:3000/users/getOneUser/fcdb7ee2-3f9f-4777-b5c6-e90dae528f8a
+GET http://localhost:3000/users/getOneUser/c030bd85-d78f-4606-8b8d-d1a47f5e715d
 Content-Type: application/json
 
 ##UPDATE USER

@@ -9,8 +9,8 @@ export const createReview = async (req: Request, res: Response) => {
     let id = v4();
 
     console.log(id);
-    const user_id = req.params.id;
-    const Specialists_id = req.params.id;
+    const user_id = req.params.user_id;
+    const Specialists_id = req.params.Specialists_id;
 
     const { Stars, Review }: Review = req.body;
 
@@ -128,7 +128,7 @@ export const bySpecialistId = async(req: Request, res: Response) =>{
       });
     }
   } catch(error){
-    console.log("Error in getting date fron the database", error);
+    console.log("Error in getting data from the database", error);
     return res.status(500).json({
       message: "There was an issue retrieving reviews"
     })

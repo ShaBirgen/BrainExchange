@@ -40,6 +40,7 @@ export class LoginComponent {
   login() {
     this.authservice.loginUser(this.loginForm.value).subscribe((res) => {
       console.log(res);
+      this.saveToken(res.token)
       if (res.message) {
         this.success = true;
         this.successMsg = res.message;
@@ -55,5 +56,8 @@ export class LoginComponent {
         }, 2000);
       }
     });
+  }
+  saveToken(token: string){
+    localStorage.setItem('token', token)
   }
 }

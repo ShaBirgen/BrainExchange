@@ -17,25 +17,23 @@ import { SpecialistInfoComponent } from './Components/specialist-info/specialist
 import { HomeComponent } from './Components/home/home.component';
 import { UserSpecialistViewComponent } from './Components/user-specialist-view/user-specialist-view.component';
 import { AdminCategoriesViewComponent } from './Components/Admin/admin-categories-view/admin-categories-view.component';
-import { AdminSpecialistsViewComponent } from './Components/Admin/admin-specialists-view/admin-specialists-view.component';
 import { CreateCategoryComponent } from './Components/Admin/create-category/create-category.component';
+import { MessagesComponent } from './Components/messages/messages.component';
 
 export const routes: Routes = [
   { path: '', component: LandingComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'user', component: UsersDashboardComponent },
-  { path: 'user-profile', component: UserProfileComponent },
+  { path: 'user-profile/:id', component: UserProfileComponent },
   { path: 'dashboard', component: DashboardComponent },
   { path: 'specialist/:id', component: SpecialistDashboardComponent },
   { path: 'update', component: UpdateProfileComponent },
   { path: 'role/:id', component: RolesComponent },
   { path: 'More-info/:id', component: SpecialistInfoComponent },
   { path: 'Categories/:id', component: HomeComponent },
-  {
-    path: 'specialists/:user_id',
-    component: UserSpecialistViewComponent,
-  },
+  { path: 'specialists/:user_id', component: UserSpecialistViewComponent },
+  { path: 'messages', component: MessagesComponent },
   { path: 'footer', component: FooterComponent },
   {
     path: 'admin',
@@ -43,7 +41,6 @@ export const routes: Routes = [
     children: [
       { path: 'users-view', component: AdminUserViewComponent },
       { path: 'categories-view', component: AdminCategoriesViewComponent },
-      { path: 'specialist-view', component: AdminSpecialistsViewComponent },
       { path: 'createCategory', component: CreateCategoryComponent },
     ],
   },

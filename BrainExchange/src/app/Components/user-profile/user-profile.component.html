@@ -17,7 +17,7 @@
   <div class="specialist">
     <div class="profile">
       <img src="../../../assets/portrait-657116_1280.jpg" alt="" />
-      <p class="username">ShaBirgen</p>
+      <p class="username">{{user.Username}}</p>
       <button routerLink="/update">Update Profile</button>
       <hr />
       <div class="location">
@@ -37,7 +37,7 @@
         </div>
 
         <div class="other">
-          <p>Jan 2024</p>
+          <p>{{user.created_at}}</p>
         </div>
       </div>
     </div>
