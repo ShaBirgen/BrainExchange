@@ -3,28 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
+    <title>Your Newsletter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .content p {
+            margin-bottom: 10px;
+        }
+        .content img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #888;
+        }
+    </style>
 </head>
 <body>
-    <table>
-        <tr>
-            <th>Hello there, <%=asignee%></th>
-        </tr>
-        <tr>
-            <td>
-                <p>Hi, <%=asignee%></p>
-                <p><img src="https://www.istockphoto.com/photo/hand-of-businesswoman-using-laptop-with-icon-social-media-and-social-network-online-gm1166843563-321580639?utm_source=pixabay&utm_medium=affiliate&utm_campaign=SRP_image_sponsored&utm_content=https%3A%2F%2Fpixabay.com%2Fimages%2Fsearch%2Fproject%2520banner%2F&utm_term=project+banner" alt=""></p>
-                <p>
-                    We have exciting news to share. <br>
-                </p>
-                <!-- <h3>Project details</h3> -->
-                <ul>
-                    <li>Title: <%=Title%></li>
-                    <li>NewsBody: <%=NewsBody%></li>
-                    <!-- <li style="color: red;">Deadline <%=endDate%></li> -->
-                </ul>
-            </td>
-        </tr>
-    </table>
+    <div class="container">
+        <div class="header">
+            <h2>Hello, <%= asignee %>!</h2>
+        </div>
+        <div class="content">
+            <p>We have some exciting news to share with you:</p>
+            <img src="https://www.istockphoto.com/photo/hand-of-businesswoman-using-laptop-with-icon-social-media-and-social-network-online-gm1166843563-321580639?utm_source=pixabay&utm_medium=affiliate&utm_campaign=SRP_image_sponsored&utm_content=https%3A%2F%2Fpixabay.com%2Fimages%2Fsearch%2Fproject%2520banner%2F&utm_term=project+banner" alt="">
+            <h3><%= Title %></h3>
+            <p><%= NewsBody %></p>
+        </div>
+        <div class="footer">
+            <p>Thank you for your attention!</p>
+        </div>
+    </div>
 </body>
 </html>

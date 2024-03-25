@@ -4,10 +4,14 @@ nav {
   background-color: #f0f3f7;
   padding: 10px;
   cursor: pointer;
+  a {
+    text-decoration: none;
+    color: black;
+  }
 }
 
 .img > img {
-  width: 200px;
+  width: 150px;
 }
 
 .account {
@@ -96,6 +100,7 @@ nav {
     height: 150px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+    object-fit: cover;
   }
   p {
     padding-bottom: 20px;

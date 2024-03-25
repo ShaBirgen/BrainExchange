@@ -146,14 +146,14 @@ export const deleteGig = async (req: Request, res: Response) => {
 
 export const getBySpecialists = async (req: Request, res: Response) => {
   try{
-    const Specialists_id = req.params.Specialists_id;
+    const Specialists_id = req.params.id;
     const pool= await mssql.connect(sqlConfig);
 
     let gigs= (await pool.request().input("Specialists_id", Specialists_id).execute("getBySpecialists"))
     .recordset;
 
-    if(gigs.length==0){
-      return res.status(201).json({
+    if(gigs.length <= 0){
+      return res.status(401).json({
         error: "No orders found",
       });
     }else{
@@ -167,5 +167,30 @@ export const getBySpecialists = async (req: Request, res: Response) => {
       messageerror: "There was an issue retrieving orders",
     })
     
+  }
+}
+
+export const getByUser = async (req: Request, res: Response) => {
+  try{
+    const user_id = req.params.id;
+    const pool= await mssql.connect(sqlConfig);
+
+    let gigs= (await pool.request().input("user_id", user_id).execute("getByUser"))
+    .recordset
+
+    if (gigs.length==0) {
+      return res.status(401).json({
+        error: "No orders found",
+      });
+    } else{
+      return res.status(200).json({
+        gigs
+      })
+    }
+  }catch(error){
+    console.log("Error getting data from the database", error);
+    return res.status(500).json({
+      messageerror: "There was an issue retrieving orders",
+    })
   }
 }

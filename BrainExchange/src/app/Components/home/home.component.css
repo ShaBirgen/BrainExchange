@@ -7,7 +7,7 @@ nav {
 }
 
 .img > img {
-  width: 200px;
+  width: 150px;
 }
 
 .account {
@@ -92,4 +92,12 @@ nav {
   background-color: blue;
   color: white;
   font-size: 15x;
+}
+.no-specialist {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  img {
+    width: 150px;
+  }
 }

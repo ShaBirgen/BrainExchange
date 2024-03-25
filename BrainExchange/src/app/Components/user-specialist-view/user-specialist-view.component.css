@@ -6,7 +6,7 @@ nav {
 }
 
 .img > img {
-  width: 200px;
+  width: 150px;
 }
 
 .account {
@@ -100,12 +100,14 @@ section {
   font-size: 17px;
   line-height: 35px;
 }
-/* CSS */
-.swal2-content >span {
-  font-size: 50px; /* Larger size */
-  cursor: pointer; /* Add pointer on hover */
+.star {
+  font-size: 40px;
+  color: grey;
+  cursor: pointer; /* Add cursor pointer */
 }
 
-.swal2-content .star.active {
-  color: gold; /* Change color for selected stars */
+/* Style for active star */
+.star.active {
+  color: gold;
+  font-size: 50px;
 }

@@ -8,6 +8,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SearchPipe } from '../../Pipe/search.pipe';
 import { UserService } from '../../Services/user.service';
+import { AuthService } from '../../Services/auth.service';
 
 @Component({
   selector: 'app-users-dashboard',
@@ -33,11 +34,21 @@ export class UsersDashboardComponent {
 
   constructor(
     private userservice: UserService,
+    private authservice: AuthService,
     private categoriesservice: CategoriesService,
     private router: Router
   ) {
     this.fetchcategories();
     this.fetchUsers();
+
+
+       const token: string = localStorage.getItem('token') as string;
+       this.authservice.readToken(token).subscribe((res) => {
+         console.log(res);
+
+         this.user_id = res.info.user_id;
+         localStorage.setItem('user_id', this.user_id);
+       });
   }
   fetchcategories() {
     this.categoriesservice.getAllCategories().subscribe((res) => {
@@ -60,7 +71,7 @@ export class UsersDashboardComponent {
     });
   }
 
-
+  
 
 navigateToUser() {
   if (this.user_id) {

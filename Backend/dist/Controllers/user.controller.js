@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteUser = exports.updateUser = exports.getOneUser = exports.getAllUsers = exports.registerUser = exports.setSpecialist = exports.setRole = void 0;
+exports.getSpecialist = exports.deleteUser = exports.updateUser = exports.getOneUser = exports.getAllUsers = exports.registerUser = exports.setSpecialist = exports.setRole = void 0;
 const uuid_1 = require("uuid");
 const mssql_1 = __importDefault(require("mssql"));
 const sqlConfig_1 = require("../Config/sqlConfig");
@@ -152,7 +152,7 @@ const getOneUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     try {
         const id = req.params.id;
         const pool = yield mssql_1.default.connect(sqlConfig_1.sqlConfig);
-        let user = (yield pool.request().input("user_id", id).execute("JoinSpecialist"))
+        let user = (yield pool.request().input("user_id", id).execute("getOneUser"))
             .recordset;
         return res.json({
             user,
@@ -211,3 +211,19 @@ const deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 exports.deleteUser = deleteUser;
+// GET SPECIALIST BY ID
+const getSpecialist = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const id = req.params.id;
+        const pool = yield mssql_1.default.connect(sqlConfig_1.sqlConfig);
+        let user = (yield pool.request().input("user_id", id).execute("getSpecialistById"))
+            .recordset;
+        return res.json({
+            user,
+        });
+    }
+    catch (error) {
+        return res.json({ error });
+    }
+});
+exports.getSpecialist = getSpecialist;

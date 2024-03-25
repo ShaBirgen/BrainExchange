@@ -10,21 +10,21 @@
     <!-- <li>Categories</li> -->
     <div class="both">
       <img src="../../../assets/icons8-member-30.png" alt="" />
-      <li>{{user.Username}}</li>
+      <li>{{ user.Username }}</li>
     </div>
-    <li>Logout</li>
+    <li (click)="logout()">Logout</li>
   </div>
 </nav>
 <section>
   <div class="profile">
     <div class="name">
-      <img src="../../../assets/smile-2072907_1280.jpg" alt="" />
-      <p>{{user.First_Name}} {{user.Last_Name}}</p>
+      <img src="{{user.Profile_Image}}" alt="" />
+      <p>{{ user.First_Name }} {{ user.Last_Name }}</p>
     </div>
 
     <div class="role">
       <h1>Role:</h1>
-      <p>{{user.Speciality}}</p>
+      <p>{{ user.categoryname }}</p>
     </div>
     <hr />
     <div class="role">
@@ -38,7 +38,7 @@
     <hr />
     <div class="role">
       <h1>Rate:</h1>
-      <p>{{user.Rate}}</p>
+      <p>${{ user.Rate }} per hour</p>
     </div>
     <div class="buttons">
       <button (click)="leaveReview()">Leave Review</button>
@@ -50,7 +50,7 @@
   <div class="about">
     <h1>Description</h1>
     <p>
-      {{user.Description}}
+      {{ user.Description }}
     </p>
   </div>
 </section>

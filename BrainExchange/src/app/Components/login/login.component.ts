@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../Services/auth.service';
-import { loginDetails } from '../../Interfaces/Userinterface';
+import Swal from 'sweetalert2';
 import { DashboardComponent } from '../dashboard/dashboard.component';
 
 @Component({
@@ -40,14 +40,27 @@ export class LoginComponent {
   login() {
     this.authservice.loginUser(this.loginForm.value).subscribe((res) => {
       console.log(res);
-      this.saveToken(res.token)
+      this.saveToken(res.token);
       if (res.message) {
-        this.success = true;
-        this.successMsg = res.message;
-        setTimeout(() => {
-          this.success = true;
-          this.router.navigate(['user']);
-        }, 2000);
+        this.authservice.readToken(res.token).subscribe((response) => {
+          console.log(response);
+
+          if (response.info.Role === 'specialist') {
+            this.success = true;
+            setTimeout(() => {
+              this.success = true;
+              this.sucess();
+              this.router.navigate([`specialist/${response.info.user_id}`]);
+            }, 2000);
+          } else if (response.info.Role) {
+            this.success = true;
+            this.sucess();
+            setTimeout(() => {
+              this.success = true;
+              this.router.navigate(['user']);
+            }, 2000);
+          }
+        });
       } else if (res.error) {
         this.error = true;
         this.errorMsg = res.error;
@@ -57,7 +70,15 @@ export class LoginComponent {
       }
     });
   }
-  saveToken(token: string){
-    localStorage.setItem('token', token)
+  saveToken(token: string) {
+    localStorage.setItem('token', token);
+  }
+
+  sucess() {
+    Swal.fire({
+      title: 'Success!',
+      text: 'Login successful',
+      icon: 'success',
+    });
   }
 }

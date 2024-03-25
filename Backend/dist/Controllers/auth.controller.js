@@ -45,11 +45,12 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         }
         const loginCredentials = {
             user_id: user.user_id,
-            Email: user.email,
-            Usernname: user.Fname,
-            Role: user.role,
+            Email: user.Email,
+            Usernname: user.Username,
+            Role: user.Role,
             isdeleted: user.isdeleted,
         };
+        console.log(user);
         let tokenage = 60 * 60 * 24 * 4;
         const token = jsonwebtoken_1.default.sign(loginCredentials, process.env.SECRET, {
             expiresIn: tokenage,

@@ -163,7 +163,7 @@ export const getOneUser = async (req: Request, res: Response) => {
 
     const pool = await mssql.connect(sqlConfig);
 
-    let user = (await pool.request().input("user_id", id).execute("JoinSpecialist"))
+    let user = (await pool.request().input("user_id", id).execute("getOneUser"))
       .recordset;
 
     return res.json({
@@ -228,6 +228,26 @@ export const deleteUser = async (req: Request, res: Response) => {
         message: "Account deleted successfully",
       });
     }
+  } catch (error) {
+    return res.json({ error });
+  }
+};
+
+
+// GET SPECIALIST BY ID
+
+export const getSpecialist = async (req: Request, res: Response) => {
+  try {
+    const id = req.params.id;
+
+    const pool = await mssql.connect(sqlConfig);
+
+    let user = (await pool.request().input("user_id", id).execute("getSpecialistById"))
+      .recordset;
+
+    return res.json({
+      user,
+    });
   } catch (error) {
     return res.json({ error });
   }

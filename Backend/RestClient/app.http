@@ -69,3 +69,8 @@ Content-Type: application/json
 ###
 DELETE http://localhost:3000/users/deleteUser/a13f4585-e2da-4018-a716-f1b5c4517baa
 Content-Type: application/json
+
+##GET SPECIALIST INFO
+###
+GET http://localhost:3000/users/specialistInfo/ebedff33-11d3-4633-98ee-abba9f54484d
+Content-Type: application/json

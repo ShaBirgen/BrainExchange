@@ -40,11 +40,14 @@ export const loginUser = async (req: Request, res: Response) => {
 
     const loginCredentials = {
       user_id: user.user_id,
-      Email: user.email,
-      Usernname: user.Fname,
-      Role: user.role,
+      Email: user.Email,
+      Usernname: user.Username,
+      Role: user.Role,
       isdeleted: user.isdeleted,
     };
+
+    console.log(user);
+    
 
     let tokenage = 60 * 60 * 24 * 4;
 

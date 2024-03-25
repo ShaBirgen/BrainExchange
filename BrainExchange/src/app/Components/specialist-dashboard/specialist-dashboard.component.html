@@ -1,28 +1,31 @@
 <nav>
   <div class="img">
-    <img src="../../../assets/brain-exchange-high-resolution-logo-transparent (1).png" alt="" />
+    <img
+      src="../../../assets/brain-exchange-high-resolution-logo-transparent (1).png"
+      alt=""
+    />
   </div>
 
   <div class="account">
     <li>Categories</li>
     <div class="both">
       <img src="../../../assets/icons8-member-30.png" alt="" />
-      <li>{{user.Username}}</li>
+      <li>{{ user.Username }}</li>
     </div>
-    <li>Logout</li>
+    <li (click)="logout()">Logout</li>
   </div>
 </nav>
 
 <section>
   <div class="profile">
     <div class="name">
-      <img src="../../../assets/smiling-888532_1280.jpg" alt="" />
-      <p>{{user.First_Name}} {{user.Last_Name}}</p>
+      <img src="{{ user.Profile_Image }}" alt="" />
+      <p>{{ user.First_Name }} {{ user.Last_Name }}</p>
     </div>
 
     <div class="role">
       <h1>Role:</h1>
-      <p>{{user.Speciality}}</p>
+      <p>{{ user.categoryname }}</p>
     </div>
     <hr />
     <div class="role">
@@ -34,9 +37,14 @@
       </div>
     </div>
     <hr />
+    <div class="join">
+      <h1>Joined:</h1>
+      <p>{{ user.created_at }}</p>
+    </div>
+    <hr />
     <div class="role">
       <h1>Rate:</h1>
-      <p>${{user.Rate}} per hour</p>
+      <p>${{ user.Rate }} per hour</p>
     </div>
     <button routerLink="/update">Update Profile</button>
   </div>
@@ -67,7 +75,7 @@
             <!-- <th>Cancelled:</th> -->
           </tr>
 
-          <tbody>
+          <tbody *ngFor="let order of ordersArr">
             <tr>
               <td>1</td>
               <td>Sharon Cherotich</td>
@@ -75,7 +83,7 @@
               <td>3/03/2024</td>
               <td>Nairobi</td>
             </tr>
-            <tr>
+            <!-- <tr>
               <td>2</td>
               <td>Sharon Cherotich</td>
               <td>35$</td>
@@ -88,7 +96,7 @@
               <td>35$</td>
               <td>3/03/2024</td>
               <td>Nairobi</td>
-            </tr>
+            </tr> -->
           </tbody>
         </table>
       </div>

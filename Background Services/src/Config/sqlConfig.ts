@@ -1,11 +1,9 @@
-import dotenv from "dotenv";
-dotenv.config();
-
 export const sqlConfig = {
-  user: process.env.DB_USER as string,
-  database: process.env.DB_NAME as string,
-  password: process.env.DB_PASSWORD as string,
-  server: process.env.DB_SERVER as string,
+  user: "sa",
+  password: "37853801",
+  database: "BrainExchange",
+  server: "DESKTOP-QO3AGRF",
+  // SECRET= "20a73a417c074a01b906b792f06c5a12a90493f3ffbe3e7be85fc7a8dc221ffb"
   pool: {
     max: 10,
     min: 0,

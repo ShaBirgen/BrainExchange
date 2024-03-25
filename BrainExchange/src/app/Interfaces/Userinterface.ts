@@ -52,8 +52,10 @@ export interface oneUserResponse {
       First_Name: string;
       Last_Name: string;
       Speciality: string
+      categoryname: string;
       Rate: number;
       Description: string
+      Profile_Image: string;
     }
   ];
   error: {
@@ -73,8 +75,10 @@ export interface userResponse {
       First_Name: string;
       Last_Name: string;
       Speciality: string
+      categoryname: string;
       Rate: number;
       Description: string;
+      Profile_Image: string;
 }
 
 export interface updateUser {

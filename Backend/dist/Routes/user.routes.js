@@ -6,6 +6,7 @@ const userRouter = (0, express_1.Router)();
 userRouter.post("/register", user_controller_1.registerUser);
 userRouter.get("/getAllUsers", user_controller_1.getAllUsers);
 userRouter.get("/getOneUser/:id", user_controller_1.getOneUser);
+userRouter.get("/specialistInfo/:id", user_controller_1.getSpecialist);
 userRouter.post("/updateUser/:id", user_controller_1.updateUser);
 userRouter.delete("/deleteUser/:id", user_controller_1.deleteUser);
 userRouter.put("/set-role/:id", user_controller_1.setRole);

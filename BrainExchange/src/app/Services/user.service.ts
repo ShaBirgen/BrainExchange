@@ -32,6 +32,11 @@ export class UserService {
     );
   }
 
+  getSpecialistDetails(id: string) {
+    return this.http.get<oneUserResponse>(
+      `http://localhost:3000/users/specialistInfo/${id}`
+    );
+  }
   updateUserDetails(user_Id: string, details: updateUser) {
     return this.http.put<{ message: string; error: string }>(
       `http://localhost:3000/users/updateUser/${user_Id}`,

@@ -5,11 +5,12 @@ import { UserService } from '../../Services/user.service';
 import { userResponse } from '../../Interfaces/Userinterface';
 import { GigService } from '../../Services/gig.services';
 import { ordersResponse } from '../../Interfaces/gig.interface';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-specialist-dashboard',
   standalone: true,
-  imports: [RouterLink, FooterComponent],
+  imports: [RouterLink, FooterComponent, CommonModule],
   templateUrl: './specialist-dashboard.component.html',
   styleUrl: './specialist-dashboard.component.css',
 })
@@ -37,8 +38,7 @@ export class SpecialistDashboardComponent {
   }
 
   getOneUserDetails() {
-    this.userservice.getOneUserDetails(this.user_id).subscribe((res) => {
-      console.log(res);
+    this.userservice.getSpecialistDetails(this.user_id).subscribe((res) => {
       this.user.Email = res.user[0].Email;
       this.user.Phone_number = res.user[0].Phone_number;
       this.user.Username = res.user[0].Username;
@@ -47,14 +47,42 @@ export class SpecialistDashboardComponent {
       this.user.Description = res.user[0].Description;
       this.user.First_Name = res.user[0].First_Name;
       this.user.Last_Name = res.user[0].Last_Name;
-      this.user.created_at = res.user[0].created_at;
       this.user.Phone_number = res.user[0].Phone_number;
+      this.user.Profile_Image = res.user[0].Profile_Image;
+      this.user.categoryname = res.user[0].categoryname;
       this.user.Rate = res.user[0].Rate;
-    });
+       const createdDate = new Date(res.user[0].created_at);
+
+       // Define an array to store month names
+       const months = [
+         'January',
+         'February',
+         'March',
+         'April',
+         'May',
+         'June',
+         'July',
+         'August',
+         'September',
+         'October',
+         'November',
+         'December',
+       ];
+
+       // Get day, month, and year
+       const day = createdDate.getDate();
+       const monthIndex = createdDate.getMonth();
+       const year = createdDate.getFullYear();
+
+       // Format the date
+       const formattedDate = `${day} ${months[monthIndex]} ${year}`;
+       this.user.created_at = formattedDate;
+      });
+      console.log(this.user);
   }
 
   fetchOrders() {
-    this.gigservice.specialistGigs(this.Specialists_id).subscribe(
+    this.gigservice.specialistGigs(this.user_id).subscribe(
       (res) => {
         console.log(res);
         if (res.error) {
@@ -70,5 +98,10 @@ export class SpecialistDashboardComponent {
         console.error('Error fetching orders:', error);
       }
     );
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/']);
   }
 }

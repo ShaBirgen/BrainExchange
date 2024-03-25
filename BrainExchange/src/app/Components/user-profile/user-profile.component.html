@@ -1,23 +1,26 @@
 <nav>
   <div class="img">
-    <img src="../../../assets/brain-exchange-high-resolution-logo-transparent (1).png" alt="" />
+    <img
+      src="../../../assets/brain-exchange-high-resolution-logo-transparent (1).png"
+      alt=""
+    />
   </div>
 
   <div class="account">
     <li routerLink="/user">Home</li>
-    <li>Categories</li>
+    <a href="/user#categories">Categories</a>
     <div class="both">
       <img src="../../../assets/icons8-member-30.png" alt="" />
-      <li>My Account</li>
+      <li>{{ user.Username }}</li>
     </div>
-    <li>Logout</li>
+    <li (click)="logout()">Logout</li>
   </div>
 </nav>
 <section>
   <div class="specialist">
     <div class="profile">
-      <img src="../../../assets/portrait-657116_1280.jpg" alt="" />
-      <p class="username">{{user.Username}}</p>
+      <img src="{{user.Profile_Image}}" alt="" />
+      <p class="username">{{ user.Username }}</p>
       <button routerLink="/update">Update Profile</button>
       <hr />
       <div class="location">
@@ -37,7 +40,7 @@
         </div>
 
         <div class="other">
-          <p>{{user.created_at}}</p>
+          <p>{{ user.created_at }}</p>
         </div>
       </div>
     </div>
@@ -52,31 +55,29 @@
         <div class="appoint">
           <img src="../../../assets/man-3672010_1280.jpg" alt="" />
           <p>Photoshoot</p>
-          <p>Nyeri </p>
+          <p>Nyeri</p>
           <p>11.00 Am</p>
           <p>22/03/2024</p>
           <button>Cancel</button>
         </div>
 
-         <div class="appoint">
+        <div class="appoint">
           <img src="../../../assets/man-3672010_1280.jpg" alt="" />
           <p>Photoshoot</p>
-          <p>Nyeri </p>
+          <p>Nyeri</p>
           <p>11.00 Am</p>
           <p>22/03/2024</p>
           <button>Cancel</button>
         </div>
 
-         <div class="appoint">
+        <div class="appoint">
           <img src="../../../assets/man-3672010_1280.jpg" alt="" />
           <p>Photoshoot</p>
-          <p>Nyeri </p>
+          <p>Nyeri</p>
           <p>11.00 Am</p>
           <p>22/03/2024</p>
           <button>Cancel</button>
         </div>
-
-        
       </div>
     </div>
   </div>

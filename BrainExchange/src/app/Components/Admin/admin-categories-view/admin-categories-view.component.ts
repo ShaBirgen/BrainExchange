@@ -53,7 +53,7 @@ export class AdminCategoriesViewComponent {
         this.deleteCategory(id); // Call the deleteUser method if the user confirms
         Swal.fire({
           title: 'Deleted!',
-          text: 'Your user has been deleted.',
+          text: 'Category has been deleted.',
           icon: 'success',
         });
       }

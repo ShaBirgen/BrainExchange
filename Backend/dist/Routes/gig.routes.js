@@ -7,6 +7,7 @@ gigRouter.post("/createGig/:user_id/:Specialists_id", gigs_controller_1.createGi
 gigRouter.get("/getAllGigs", gigs_controller_1.getAllGigs);
 gigRouter.get("/getOneGig/:id", gigs_controller_1.getOneGig);
 gigRouter.get("/gigSpecialists/:id", gigs_controller_1.getBySpecialists);
+gigRouter.get("/userGigs/:id", gigs_controller_1.getByUser);
 gigRouter.put("/updateGig/:id", gigs_controller_1.updateGig);
 gigRouter.delete("/deleteGig/:id", gigs_controller_1.deleteGig);
 exports.default = gigRouter;

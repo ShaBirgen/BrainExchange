@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getBySpecialists = exports.deleteGig = exports.updateGig = exports.getOneGig = exports.getAllGigs = exports.createGig = void 0;
+exports.getByUser = exports.getBySpecialists = exports.deleteGig = exports.updateGig = exports.getOneGig = exports.getAllGigs = exports.createGig = void 0;
 const mssql_1 = __importDefault(require("mssql"));
 const uuid_1 = require("uuid");
 const sqlConfig_1 = require("../Config/sqlConfig");
@@ -131,12 +131,12 @@ const deleteGig = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 exports.deleteGig = deleteGig;
 const getBySpecialists = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const Specialists_id = req.params.Specialists_id;
+        const Specialists_id = req.params.id;
         const pool = yield mssql_1.default.connect(sqlConfig_1.sqlConfig);
         let gigs = (yield pool.request().input("Specialists_id", Specialists_id).execute("getBySpecialists"))
             .recordset;
-        if (gigs.length == 0) {
-            return res.status(201).json({
+        if (gigs.length <= 0) {
+            return res.status(401).json({
                 error: "No orders found",
             });
         }
@@ -154,3 +154,28 @@ const getBySpecialists = (req, res) => __awaiter(void 0, void 0, void 0, functio
     }
 });
 exports.getBySpecialists = getBySpecialists;
+const getByUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    try {
+        const user_id = req.params.id;
+        const pool = yield mssql_1.default.connect(sqlConfig_1.sqlConfig);
+        let gigs = (yield pool.request().input("user_id", user_id).execute("getByUser"))
+            .recordset;
+        if (gigs.length == 0) {
+            return res.status(401).json({
+                error: "No orders found",
+            });
+        }
+        else {
+            return res.status(200).json({
+                gigs
+            });
+        }
+    }
+    catch (error) {
+        console.log("Error getting data from the database", error);
+        return res.status(500).json({
+            messageerror: "There was an issue retrieving orders",
+        });
+    }
+});
+exports.getByUser = getByUser;

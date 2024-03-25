@@ -7,7 +7,6 @@
   </div>
 
   <div class="account">
-    <!-- <li>Categories</li>   -->
    <div class="both">
   <img src="../../../assets/icons8-member-30.png" alt="" />
   <a [routerLink]="['/user-profile', user_id]">
@@ -25,7 +24,6 @@
       <h3>You are one step away from finding the best specialists</h3>
 
       <div class="input">
-        <!-- Bind the input value to searchQuery using ngModel -->
         <input
           type="text"
           [(ngModel)]="searchQuery"
@@ -56,7 +54,7 @@
 
   <div class="services">
     <h1>Categories</h1>
-    <div class="maincards">
+    <div class="maincards" id="categories">
       <div
         class="cards"
         *ngFor="let category of categoriesArr; let i = index"
