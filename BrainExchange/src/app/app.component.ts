@@ -6,9 +6,9 @@ import { RegisterComponent } from './Components/register/register.component';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [CommonModule, RouterOutlet,RegisterComponent],
+  imports: [CommonModule, RouterOutlet, RegisterComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'BrainExchange';

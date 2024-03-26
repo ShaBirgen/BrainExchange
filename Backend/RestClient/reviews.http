@@ -14,7 +14,7 @@ Content-Type: application/json
 
 ##GET ONE REVIEW
 ###
-GET http://localhost:3000/reviews/getOneReview/a962e67e-ce37-42f8-8aa8-812f2a7333d9
+GET http://localhost:3000/reviews/getOneReview/2acea1cd-53c0-4dda-abee-197c79b641a2
 Content-Type: application/json
 
 ###DELETE REVIEW

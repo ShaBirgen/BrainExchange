@@ -15,7 +15,7 @@ Content-Type: application/json
 
 ##GET ONE GIG
 ###
-GET http://localhost:3000/gigs/getOneGig/05b2cc88-c77c-45da-a790-ac1bd4cd6495
+GET http://localhost:3000/gigs/getOneGig/a946d33d-c50b-43e2-beba-20d0cffdac03
 Content-Type: application/json
 
 ##UPDATE GIG
@@ -39,7 +39,7 @@ Content-Type: application/json
 
 ##GETSPECIALISTSGIG
 ###
-GET http://localhost:3000/gigs/gigSpecialists/ebedff33-11d3-4633-98ee-abba9f54484d
+GET http://localhost:3000/gigs/gigSpecialists/c030bd85-d78f-4606-8b8d-d1a47f5e715d
 Content-Type: application/json
 
 ##GETUSERSGIG

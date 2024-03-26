@@ -7,7 +7,6 @@
   </div>
 
   <div class="account">
-    <li>Categories</li>
     <div class="both">
       <img src="../../../assets/icons8-member-30.png" alt="" />
       <li>{{ user.Username }}</li>
@@ -19,7 +18,8 @@
 <section>
   <div class="profile">
     <div class="name">
-      <img src="{{ user.Profile_Image }}" alt="" />
+     <p> <img src="{{ user.Profile_Image }}" alt="" />
+      <i class="fa-solid fa-camera"></i> 
       <p>{{ user.First_Name }} {{ user.Last_Name }}</p>
     </div>
 
@@ -63,43 +63,36 @@
         </label>
       </div>
 
-      <div class="display">
+      <div
+        class="display"
+        *ngIf="ordersArr && ordersArr.length > 0; else noOrders"
+      >
         <table>
           <tr>
             <th>No:</th>
             <th>Client Name:</th>
             <th>Total Price</th>
             <th>Deadline:</th>
-            <th>Location:</th>
+            <th>Description:</th>
             <!-- <th>Status</th> -->
             <!-- <th>Cancelled:</th> -->
           </tr>
 
-          <tbody *ngFor="let order of ordersArr">
-            <tr>
+          <tbody>
+            <tr *ngFor="let order of ordersArr; let i = index">
               <td>1</td>
               <td>Sharon Cherotich</td>
-              <td>35$</td>
-              <td>3/03/2024</td>
-              <td>Nairobi</td>
+              <td>{{order.Salary}}</td>
+              <td>{{ order.Deadline }}</td>
+              <td>{{ order.Description }}</td>
             </tr>
-            <!-- <tr>
-              <td>2</td>
-              <td>Sharon Cherotich</td>
-              <td>35$</td>
-              <td>3/03/2024</td>
-              <td>Nairobi</td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Sharon Cherotich</td>
-              <td>35$</td>
-              <td>3/03/2024</td>
-              <td>Nairobi</td>
-            </tr> -->
           </tbody>
         </table>
       </div>
+
+      <ng-template #noOrders>
+        <p>No orders found for the specialist.</p>
+      </ng-template>
     </div>
     <h1>Upgrade your business</h1>
     <div class="all">

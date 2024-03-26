@@ -7,5 +7,5 @@ reviewRouter.post("/createReview/:user_id/:Specialists_id", reviews_controllers_
 reviewRouter.get("/getAllReviews", reviews_controllers_1.getAllReviews);
 reviewRouter.get("/getOneReview/:id", reviews_controllers_1.getOneReview);
 reviewRouter.delete("/deleteReview/:id", reviews_controllers_1.deleteReview);
-reviewRouter.get("/specialistReview/:id", reviews_controllers_1.bySpecialistId);
+reviewRouter.get("/specialistReview/:id", reviews_controllers_1.bySpecialistsId);
 exports.default = reviewRouter;

@@ -8,12 +8,12 @@
 
   <div class="account">
     <li routerLink="/user">Home</li>
-    <li>Categories</li>
+    <a href="user#categories"> Categories</a>
     <div class="both">
       <img src="../../../assets/icons8-member-30.png" alt="" />
       <li>My Account</li>
     </div>
-    <li>Logout</li>
+    <li (click)="logout()">Logout</li>
   </div>
 </nav>
 <section>
@@ -24,18 +24,21 @@
     </h1>
     <div class="maincards">
       <div class="cards" *ngFor="let Specialists of specialistsArr">
-        <h2>{{Specialists.First_Name}} {{Specialists.Last_Name}}</h2>
+        <h2>{{ Specialists.First_Name }} {{ Specialists.Last_Name }}</h2>
         <img src="../../../assets/smile-2072907_1280.jpg" alt="" />
         <div class="s-card">
           <img src="../../../assets/icons8-star-50.png" alt="" />
           <img src="../../../assets/icons8-star-50.png" alt="" />
           <img src="../../../assets/icons8-star-50.png" alt="" />
           <img src="../../../assets/icons8-star-50.png" alt="" />
-          <p>Role:{{Specialists.categoryname}}</p>
-          <p>Rate: 15$ per hour</p>
+          <p>Role:{{ Specialists.categoryname }}</p>
+          <p>Rate: ${{ Specialists.Rate }} per hour</p>
         </div>
         <div class="buttons">
-          <button class="profile" routerLink="/specialists/{{Specialists.user_id}}">
+          <button
+            class="profile"
+            routerLink="/specialists/{{ Specialists.user_id }}"
+          >
             View Profile
           </button>
           <button class="book" (click)="multipleInputs()">
@@ -44,9 +47,9 @@
         </div>
       </div>
       <div *ngIf="specialistsArr.length < 1" class="no-specialist">
-    <img src="../../../../assets/octocat.png" alt="" />
-    <h1>No specialists at the moment</h1>
-  </div>
+        <img src="../../../../assets/octocat.png" alt="" />
+        <h1>No specialists at the moment</h1>
+      </div>
     </div>
   </div>
 </section>

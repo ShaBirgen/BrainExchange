@@ -1,17 +1,21 @@
-import { Component, Renderer2 } from '@angular/core';
+import { Component, Input, Renderer2 } from '@angular/core';
 import { FooterComponent } from '../footer/footer.component';
 import Swal from 'sweetalert2/dist/sweetalert2.js';
 import 'sweetalert2/src/sweetalert2.scss';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../Services/auth.service';
 import { userResponse } from '../../Interfaces/Userinterface';
 import { UserService } from '../../Services/user.service';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+import { StarRatingComponent } from '../star-rating/star-rating.component';
+import { ReviewsService } from '../../Services/reviews.service';
+import { reviewResponse } from '../../Interfaces/review.interface';
 
 @Component({
   selector: 'app-user-specialist-view',
   standalone: true,
-  imports: [FooterComponent, CommonModule],
+  imports: [FooterComponent, CommonModule, FormsModule, StarRatingComponent, RouterLink ],
   templateUrl: './user-specialist-view.component.html',
   styleUrl: './user-specialist-view.component.css',
 })
@@ -23,11 +27,15 @@ export class UserSpecialistViewComponent {
   Specialists_id!: string;
   user_id!: string;
   user: userResponse = {} as userResponse;
+  reviewArr: reviewResponse[]= []
+  @Input() rating: number = 0;
+  @Input() readonly: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private authservice: AuthService,
+    private reviewservice: ReviewsService,
     private userservice: UserService
   ) {
     this.getId();
@@ -128,57 +136,29 @@ export class UserSpecialistViewComponent {
     }
   }
   async leaveReview() {
-    // First step: Rating input
     const { value: Stars } = await Swal.fire({
       title: 'Leave a Review',
       html: `
-    <div>
-      <p>Rate your experience:</p>
-      <span class="star" data-value="1" style="font-size: 40px; color: grey; cursor: pointer;">★</span>
-      <span class="star" data-value="2" style="font-size: 40px; color: grey; cursor: pointer;">★</span>
-      <span class="star" data-value="3" style="font-size: 40px; color: grey; cursor: pointer;">★</span>
-      <span class="star" data-value="4" style="font-size: 40px; color: grey; cursor: pointer;">★</span>
-      <span class="star" data-value="5" style="font-size: 40px; color: grey; cursor: pointer;">★</span>
-    </div>
-  `,
+        <div>
+          <p>Rating: ${this.rating}/5</p>
+        </div>`,
       focusConfirm: false,
-      didOpen: () => {
-        const stars = document.querySelectorAll('.swal2-content .star');
-        stars.forEach((star) => {
-          star.addEventListener('click', () => {
-            stars.forEach((s) => {
-              s.classList.remove('active');
-              (s as HTMLElement).style.color = 'grey'; // Cast s to HTMLElement
-            });
-            star.classList.add('active');
-            (star as HTMLElement).style.color = 'gold'; // Cast star to HTMLElement
-          });
-        });
-      },
       preConfirm: () => {
-        const activeStar = document.querySelector(
-          '.swal2-content .star.active'
-        ) as HTMLElement | null;
-        if (activeStar) {
-          return {
-            value: activeStar.getAttribute('data-value'),
-            color: activeStar.style.color,
-          };
-        } else {
+        if (this.rating === 0) {
           Swal.fire({
             title: 'Error',
             text: 'Please select a star.',
             icon: 'error',
           });
           return null;
+        } else {
+          return { value: this.rating };
         }
       },
       confirmButtonColor: '#28a745',
     });
 
-    // If rating step is completed and a star is selected
     if (Stars && Stars.value) {
-      // Second step: Review input
       const { value: Review } = await Swal.fire({
         title: 'Write your review here',
         input: 'textarea',
@@ -188,7 +168,6 @@ export class UserSpecialistViewComponent {
         },
       });
 
-      // If review step is completed
       if (Review) {
         // Submit review to backend server
         const response = await fetch(
@@ -198,7 +177,7 @@ export class UserSpecialistViewComponent {
             headers: {
               'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ Stars: Stars.value, Review }), // Send Stars.value instead of Stars
+            body: JSON.stringify({ Stars: Stars.value, Review }),
           }
         );
 
@@ -221,23 +200,34 @@ export class UserSpecialistViewComponent {
     }
   }
 
+  setRating(value: number) {
+    if (!this.readonly) {
+      this.rating = value;
+      console.log(this.rating);
+    }
+  }
   getOneUserDetails() {
-    this.userservice.getSpecialistDetails(this.Specialists_id).subscribe((res) => {
-      console.log(res, this.Specialists_id);
-      this.user.Description = res.user[0].Description;
-      this.user.First_Name = res.user[0].First_Name;
-      this.user.Last_Name = res.user[0].Last_Name;
-      this.user.categoryname = res.user[0].categoryname;
-      this.user.Profile_Image = res.user[0].Profile_Image;
-      this.user.Speciality = res.user[0].Speciality;
-      this.user.Rate = res.user[0].Rate;
-      this.user.created_at = res.user[0].created_at;
-      this.user.Username = res.user[0].Username;
-    });
+    this.userservice
+      .getSpecialistDetails(this.Specialists_id)
+      .subscribe((res) => {
+        console.log(res, this.Specialists_id);
+        this.user.Description = res.user[0].Description;
+        this.user.First_Name = res.user[0].First_Name;
+        this.user.Last_Name = res.user[0].Last_Name;
+        this.user.categoryname = res.user[0].categoryname;
+        this.user.Profile_Image = res.user[0].Profile_Image;
+        this.user.Speciality = res.user[0].Speciality;
+        this.user.Rate = res.user[0].Rate;
+        this.user.created_at = res.user[0].created_at;
+        this.user.Username = res.user[0].Username;
+      });
   }
 
   logout() {
     localStorage.removeItem('token');
     this.router.navigate(['/']);
   }
-}
+
+
+  }
+

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FooterComponent } from '../footer/footer.component';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import Swal from 'sweetalert2';
 import { Specialists } from '../../Interfaces/categoryInterface';
 import { CategoriesService } from '../../Services/categories.service';
@@ -26,6 +26,7 @@ export class HomeComponent {
   error = false;
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private categoriesservice: CategoriesService,
     private authservice: AuthService
   ) {
@@ -138,5 +139,8 @@ export class HomeComponent {
     });
   }
 
-  
+  logout() {
+    localStorage.removeItem('token');
+    this.router.navigate(['/']);
+  }
 }

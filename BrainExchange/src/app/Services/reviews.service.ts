@@ -33,11 +33,10 @@ export class ReviewsService {
   }
 
   specialistReviews(id:string){
-    return this.http.get<{}>
+    return this.http.get<{ error: any; Reviews: Review[] }>(
+      `http://localhost:3000/reviews/specialistReview/${id}`
+    );
   }
-
-
-
 }
 
  

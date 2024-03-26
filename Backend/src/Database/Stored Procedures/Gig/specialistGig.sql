@@ -1,12 +1,11 @@
-CREATE OR ALTER PROCEDURE getBySpecialists
-    @Specialists_id VARCHAR(255)
+CREATE OR ALTER PROCEDURE getOneGig (@Gig_id VARCHAR(250))
 AS
-BEGIN
-
-    SELECT *
+BEGIN 
+    SELECT Gigs.*, Users.Username
     FROM Gigs
-    WHERE Specialists_id = @Specialists_id;
-END;
+    JOIN Users ON Gigs.user_id = Users.user_id
+    WHERE Gigs.Gig_id = @Gig_id;
+END
 
 
     SELECT *

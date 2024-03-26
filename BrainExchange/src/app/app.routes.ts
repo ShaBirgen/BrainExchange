@@ -33,7 +33,7 @@ export const routes: Routes = [
   { path: 'More-info/:id', component: SpecialistInfoComponent },
   { path: 'Categories/:id', component: HomeComponent },
   { path: 'specialists/:user_id', component: UserSpecialistViewComponent },
-  { path: 'messages', component: MessagesComponent },
+  { path: 'messages/:id', component: MessagesComponent },
   { path: 'footer', component: FooterComponent },
   {
     path: 'admin',

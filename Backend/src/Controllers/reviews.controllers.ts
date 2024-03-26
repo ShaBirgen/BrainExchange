@@ -110,12 +110,12 @@ export const deleteReview = async(req: Request, res:Response) =>{
     }
 }
 
-export const bySpecialistId = async(req: Request, res: Response) =>{
+export const bySpecialistsId = async(req: Request, res: Response) =>{
   try{
     const Specialists_id= req.params.id;
     const pool= await mssql.connect(sqlConfig);
 
-    let Reviews = (await pool.request().input("Specialists_id", Specialists_id).execute("getBySpecialistId"))
+    let Reviews = (await pool.request().input("Specialists_id", Specialists_id).execute("getBySpecialistsId"))
     .recordset
 
     if( Reviews.length>0){

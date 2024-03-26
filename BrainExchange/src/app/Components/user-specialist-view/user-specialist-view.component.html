@@ -10,7 +10,7 @@
     <!-- <li>Categories</li> -->
     <div class="both">
       <img src="../../../assets/icons8-member-30.png" alt="" />
-      <li>{{ user.Username }}</li>
+      <li>My Account</li>
     </div>
     <li (click)="logout()">Logout</li>
   </div>
@@ -18,7 +18,7 @@
 <section>
   <div class="profile">
     <div class="name">
-      <img src="{{user.Profile_Image}}" alt="" />
+      <img src="{{ user.Profile_Image }}" alt="" />
       <p>{{ user.First_Name }} {{ user.Last_Name }}</p>
     </div>
 
@@ -39,12 +39,20 @@
     <div class="role">
       <h1>Rate:</h1>
       <p>${{ user.Rate }} per hour</p>
-    </div>
+    </div> <hr>
     <div class="buttons">
-      <button (click)="leaveReview()">Leave Review</button>
-      <button routerLink="/update" (click)="multipleInputs()">
-        Book Appointment
-      </button>
+      <div class="stars">
+        <h3>Please select a star to review</h3>
+        <app-star-rating (ratingChange)="setRating($event)"></app-star-rating>
+        <button (click)="leaveReview()">Leave Review</button>
+        <button
+          routerLink="/update"
+          (click)="multipleInputs()"
+          style="margin-top: 10px"
+        >
+          Book Appointment
+        </button>
+      </div>
     </div>
   </div>
   <div class="about">
@@ -54,4 +62,6 @@
     </p>
   </div>
 </section>
+
+<a class="message-button" routerLink="/messages/{{ Specialists_id }}"><i class="fa-regular fa-comment"></i></a>
 <app-footer></app-footer>

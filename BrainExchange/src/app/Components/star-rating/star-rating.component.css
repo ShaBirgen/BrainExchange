@@ -1,0 +1,23 @@
+i {
+  color: grey;
+  font-size: 24px;
+  cursor: pointer;
+
+  &.rated,
+  &:hover,
+  &:hover ~ i {
+    color: orange;
+  }
+
+  transition: color 0.3s ease-in-out;
+}
+
+.readOnly {
+  i {
+    cursor: default;
+    &:hover:not(.rated),
+    &:hover ~ i:not(.rated) {
+      color: grey;
+    }
+  }
+}
