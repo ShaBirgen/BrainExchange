@@ -7,7 +7,6 @@
   </div>
 
   <div class="account">
-    <!-- <li>Categories</li> -->
     <div class="both">
       <img src="../../../assets/icons8-member-30.png" alt="" />
       <li>My Account</li>
@@ -39,7 +38,8 @@
     <div class="role">
       <h1>Rate:</h1>
       <p>${{ user.Rate }} per hour</p>
-    </div> <hr>
+    </div>
+    <hr />
     <div class="buttons">
       <div class="stars">
         <h3>Please select a star to review</h3>
@@ -63,5 +63,23 @@
   </div>
 </section>
 
-<a class="message-button" routerLink="/messages/{{ Specialists_id }}"><i class="fa-regular fa-comment"></i></a>
+<div class="title2">
+  <h1>Reviews for {{ user.First_Name }} {{ user.Last_Name }}</h1>
+</div>
+
+<main>
+  <div class="reviews" id="reviews" *ngFor="let Review of reviewArr">
+    <div class="review-star">
+      <img [src]="user.Profile_Image" alt="" />
+      <p class="userTitle">{{ Review.Username }}</p>
+      <p>{{ Review.Review }}</p>
+
+      <div
+        [innerHTML]="generateStarsHTML(Review.Stars)"
+        style="color: #eca809; font-size: 30px"
+      ></div>
+    </div>
+  </div>
+</main>
+
 <app-footer></app-footer>

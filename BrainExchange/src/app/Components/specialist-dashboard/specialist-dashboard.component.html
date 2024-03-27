@@ -52,7 +52,7 @@
   <div class="upgrade">
     <div class="display-orders">
       <div class="orders">
-        <h1>Active Orders (3)</h1>
+        <h1>Active Orders ({{ordersArr.length}})</h1>
 
         <label for="orders">
           <select name="" id="">
@@ -80,9 +80,9 @@
 
           <tbody>
             <tr *ngFor="let order of ordersArr; let i = index">
-              <td>1</td>
-              <td>Sharon Cherotich</td>
-              <td>{{order.Salary}}</td>
+              <td>{{i+1}}.</td>
+              <td>{{order.Username}}</td>
+              <td>$ {{order.Salary}} per hour</td>
               <td>{{ order.Deadline }}</td>
               <td>{{ order.Description }}</td>
             </tr>

@@ -19,6 +19,7 @@ import { UserSpecialistViewComponent } from './Components/user-specialist-view/u
 import { AdminCategoriesViewComponent } from './Components/Admin/admin-categories-view/admin-categories-view.component';
 import { CreateCategoryComponent } from './Components/Admin/create-category/create-category.component';
 import { MessagesComponent } from './Components/messages/messages.component';
+import { UpdateUserComponent } from './Components/Admin/update-user/update-user.component';
 
 export const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -42,6 +43,7 @@ export const routes: Routes = [
       { path: 'users-view', component: AdminUserViewComponent },
       { path: 'categories-view', component: AdminCategoriesViewComponent },
       { path: 'createCategory', component: CreateCategoryComponent },
+      { path: 'updateUser/:user_id', component: UpdateUserComponent },
     ],
   },
   { path: '**', component: WildcardComponent },

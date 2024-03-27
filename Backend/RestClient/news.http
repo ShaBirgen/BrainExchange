@@ -1,0 +1,10 @@
+###
+POST http://localhost:3000/news/sendEmail
+
+{
+    "Email": "sharon12@yopmail.com"
+}
+
+
+###
+post http://localhost:3000/chats/conversations

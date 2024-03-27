@@ -1,0 +1,14 @@
+### Get all user chats
+GET http://localhost:3000/chats/user-chats/22c7af21-be93-47f9-b190-6c5514b512dc
+
+### Get all messages in a chat
+GET http://localhost:3000/chats/chat-messages/1a64bcb0-7660-4af1-b502-96c6fd22a686
+
+###CREATE CONVERSATION
+POST http://localhost:3000/chats/conversations
+
+{
+    "senderId": "dgvcwefguvyhjfydgcjn",
+    "receiverId": "cfdwgvbiolkfhqdhosik",
+    "message": "Hi Bro"
+}

@@ -48,7 +48,7 @@ nav {
   gap: 10px;
   padding: 20px;
   border-radius: 20px;
-  height: 40vh;
+  height: max-content;
 
   img {
     width: 100px;
@@ -115,6 +115,8 @@ nav {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 10px 10px 10px 0 #cdd8e7;
+  border: 1px solid #d6d6d6;
+  justify-content: center;
 }
 .appoint {
   background-color: #dbdbdb;
@@ -123,7 +125,6 @@ nav {
   flex-direction: column;
 
   img {
-    width: 200px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
   }

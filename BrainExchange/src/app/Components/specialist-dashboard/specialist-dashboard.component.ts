@@ -106,18 +106,8 @@ export class SpecialistDashboardComponent {
         res.gigs.forEach((gig) =>{
           this.ordersArr.push(gig)
         })
-        // if (res.error) {
-          // console.error(res.error);
-        // } else if (res.gigs.length > 0) {
-          // this.ordersArr = res.gigs;
           console.log(this.ordersArr);
-        // } else {
-          // console.warn('No gigs found for the specialist');
-        // }
       },
-      // (error) => {
-      //   console.error('Error fetching orders:', error);
-      // }
     );
   }
 

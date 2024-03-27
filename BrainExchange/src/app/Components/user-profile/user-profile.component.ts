@@ -4,17 +4,21 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { userResponse } from '../../Interfaces/Userinterface';
 import { UserService } from '../../Services/user.service';
 import { AuthService } from '../../Services/auth.service';
+import { GigService } from '../../Services/gig.services';
+import { Order } from '../../Interfaces/gig.interface';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-user-profile',
   standalone: true,
-  imports: [FooterComponent, RouterLink],
+  imports: [FooterComponent, RouterLink, CommonModule],
   templateUrl: './user-profile.component.html',
   styleUrl: './user-profile.component.css',
 })
 export class UserProfileComponent {
   user_id!: string;
   user: userResponse = {} as userResponse;
+  ordersArr: Order[] = [];
 
   getId() {
     this.route.params.subscribe((params) => {
@@ -22,7 +26,6 @@ export class UserProfileComponent {
 
       this.user_id = params['id'];
       console.log(this.user_id);
-      // this.fetchUsers()
     });
 
     const token: string = localStorage.getItem('token') as string;
@@ -30,6 +33,7 @@ export class UserProfileComponent {
       console.log(res);
 
       this.user_id = res.info.user_id;
+    this.fetchOrders();
     });
   }
 
@@ -37,14 +41,13 @@ export class UserProfileComponent {
     private router: Router,
     private userservice: UserService,
     private authservice: AuthService,
+    private gigservice: GigService,
     private route: ActivatedRoute
   ) {
     // this.getUserId();
     this.getId();
     this.getOneUserDetails();
   }
-
-
 
   getOneUserDetails() {
     this.userservice.getOneUserDetails(this.user_id).subscribe((res) => {
@@ -58,8 +61,7 @@ export class UserProfileComponent {
         this.user.First_Name = res.user[0].First_Name;
         this.user.Last_Name = res.user[0].Last_Name;
         this.user.Profile_Image = res.user[0].Profile_Image;
-        
-        
+
         //POPULATING DATE AS 31 MARCH 2024
         const createdDate = new Date(res.user[0].created_at);
 
@@ -95,6 +97,15 @@ export class UserProfileComponent {
     });
   }
 
+  fetchOrders() {
+    this.gigservice.getByUser(this.user_id).subscribe((res) => {
+      console.log(res);
+      res.gigs.forEach((gig) => {
+        this.ordersArr.push(gig);
+      });
+      console.log(this.ordersArr);
+    });
+  }
   logout() {
     localStorage.removeItem('token');
     this.router.navigate(['/']);

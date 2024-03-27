@@ -4,6 +4,7 @@ export interface Review {
   Specialists_id: string;
   Stars: number;
   Review: string;
+  Username: string;
 }
 
 export interface reviewResponse {
@@ -14,10 +15,11 @@ export interface reviewResponse {
       Specialists_id: string;
       Stars: number;
       Review: string;
+      Username: string;
     }
   ];
-  error:{
+  error: {
     name: string;
-    message:string;
-  }
+    message: string;
+  };
 }

@@ -115,7 +115,7 @@ export const bySpecialistsId = async(req: Request, res: Response) =>{
     const Specialists_id= req.params.id;
     const pool= await mssql.connect(sqlConfig);
 
-    let Reviews = (await pool.request().input("Specialists_id", Specialists_id).execute("getBySpecialistsId"))
+    let Reviews = (await pool.request().input("Specialists_id", Specialists_id).execute("specialistReview"))
     .recordset
 
     if( Reviews.length>0){

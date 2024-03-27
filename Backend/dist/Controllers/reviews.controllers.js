@@ -114,7 +114,7 @@ const bySpecialistsId = (req, res) => __awaiter(void 0, void 0, void 0, function
     try {
         const Specialists_id = req.params.id;
         const pool = yield mssql_1.default.connect(sqlConfig_1.sqlConfig);
-        let Reviews = (yield pool.request().input("Specialists_id", Specialists_id).execute("getBySpecialistsId"))
+        let Reviews = (yield pool.request().input("Specialists_id", Specialists_id).execute("specialistReview"))
             .recordset;
         if (Reviews.length > 0) {
             return res.json({

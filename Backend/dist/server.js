@@ -34,6 +34,8 @@ const auth_routes_1 = __importDefault(require("./Routes/auth.routes"));
 const category_routes_1 = __importDefault(require("./Routes/category.routes"));
 const gig_routes_1 = __importDefault(require("./Routes/gig.routes"));
 const review_routes_1 = __importDefault(require("./Routes/review.routes"));
+const chat_routes_1 = __importDefault(require("./Routes/chat.routes"));
+const newsletter_routes_1 = __importDefault(require("./Routes/newsletter.routes"));
 const app = (0, express_1.default)();
 dotenv_1.default.config();
 app.use((0, express_1.json)());
@@ -44,6 +46,8 @@ app.use("/users", auth_routes_1.default);
 app.use("/category", category_routes_1.default);
 app.use("/gigs", gig_routes_1.default);
 app.use("/reviews", review_routes_1.default);
+app.use("/chats", chat_routes_1.default);
+app.use("/news", newsletter_routes_1.default);
 const PORT = process.env.PORT;
 app.use((error, req, res, next) => {
     res.status(500).json({

@@ -87,7 +87,7 @@ export interface updateUser {
   Email: string;
   created_at: string;
   Phone_number: string;
-  Password: string;
+  // Password: string;
 }
 
 export interface setRole {
@@ -101,4 +101,5 @@ export interface specialist {
   Speciality: string;
   Rate: number;
   Description: string;
+  Email: string;
 }

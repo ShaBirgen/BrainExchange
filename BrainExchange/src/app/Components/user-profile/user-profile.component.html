@@ -19,7 +19,7 @@
 <section>
   <div class="specialist">
     <div class="profile">
-      <img src="{{user.Profile_Image}}" alt="" />
+      <img src="{{ user.Profile_Image }}" alt="" />
       <p class="username">{{ user.Username }}</p>
       <button routerLink="/update">Update Profile</button>
       <hr />
@@ -47,35 +47,17 @@
 
     <div class="gigs">
       <div class="header">
-        <button>Upcoming</button>
+        <!-- <button>Upcoming</button> -->
         <button>All Gigs</button>
       </div>
 
       <div class="gig-cards">
-        <div class="appoint">
-          <img src="../../../assets/man-3672010_1280.jpg" alt="" />
-          <p>Photoshoot</p>
-          <p>Nyeri</p>
-          <p>11.00 Am</p>
-          <p>22/03/2024</p>
-          <button>Cancel</button>
-        </div>
-
-        <div class="appoint">
-          <img src="../../../assets/man-3672010_1280.jpg" alt="" />
-          <p>Photoshoot</p>
-          <p>Nyeri</p>
-          <p>11.00 Am</p>
-          <p>22/03/2024</p>
-          <button>Cancel</button>
-        </div>
-
-        <div class="appoint">
-          <img src="../../../assets/man-3672010_1280.jpg" alt="" />
-          <p>Photoshoot</p>
-          <p>Nyeri</p>
-          <p>11.00 Am</p>
-          <p>22/03/2024</p>
+        <div class="appoint" *ngFor="let order of ordersArr; let i = index">
+          <img src="https://picsum.photos/200/150" alt="" />
+          <p>Title: {{ order.Description }}</p>
+          <p>Location: {{ order.Duration }}</p>
+          <p>Salary: {{ order.Salary }}</p>
+          <p>Deadline: {{ order.Deadline }}</p>
           <button>Cancel</button>
         </div>
       </div>

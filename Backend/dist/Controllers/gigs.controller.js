@@ -133,8 +133,10 @@ const getBySpecialists = (req, res) => __awaiter(void 0, void 0, void 0, functio
     try {
         const Specialists_id = req.params.id;
         const pool = yield mssql_1.default.connect(sqlConfig_1.sqlConfig);
-        let gigs = (yield pool.request().input("Specialists_id", Specialists_id).execute("getBySpecialists"))
-            .recordset;
+        let gigs = (yield pool
+            .request()
+            .input("Specialists_id", Specialists_id)
+            .execute("getBySpecialistsId")).recordset;
         if (gigs.length <= 0) {
             return res.status(401).json({
                 error: "No orders found",
@@ -142,7 +144,7 @@ const getBySpecialists = (req, res) => __awaiter(void 0, void 0, void 0, functio
         }
         else {
             return res.status(200).json({
-                gigs
+                gigs,
             });
         }
     }

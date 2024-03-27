@@ -13,4 +13,10 @@ export class GigService {
       `http://localhost:3000/gigs/gigSpecialists/${Specialists_id}`
     );
   }
+
+  getByUser(user_id: string) {
+    return this.http.get<ordersResponse>(
+      `http://localhost:3000/gigs/userGigs/${user_id}`
+    );
+  }
 }

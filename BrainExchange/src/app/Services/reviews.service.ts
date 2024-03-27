@@ -32,9 +32,9 @@ export class ReviewsService {
     );
   }
 
-  specialistReviews(id:string){
+  specialistReviews(Specialists_id:string){
     return this.http.get<{ error: any; Reviews: Review[] }>(
-      `http://localhost:3000/reviews/specialistReview/${id}`
+      `http://localhost:3000/reviews/specialistReview/${Specialists_id}`
     );
   }
 }

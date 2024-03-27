@@ -1,11 +1,14 @@
-CREATE OR ALTER PROCEDURE getOneGig (@Gig_id VARCHAR(250))
+CREATE OR ALTER PROCEDURE getBySpecialistsId
+    @Specialists_id VARCHAR(250)
 AS
 BEGIN 
-    SELECT Gigs.*, Users.Username
-    FROM Gigs
-    JOIN Users ON Gigs.user_id = Users.user_id
-    WHERE Gigs.Gig_id = @Gig_id;
+    SELECT G.Gig_id, G.Description, G.Specialists_id, G.Deadline, G.Duration, G.Salary, U.Username
+    FROM Gigs G
+    INNER JOIN Users U ON G.user_id = U.user_id
+    WHERE G.Specialists_id = @Specialists_id
 END
+
+
 
 
     SELECT *

@@ -24,5 +24,5 @@ Content-Type: application/json
 
 ###SPECIALIST REVIEW
 ###
-GET http://localhost:3000/reviews/specialistReview/c030bd85-d78f-4606-8b8d-d1a47f5e715d
+GET http://localhost:3000/reviews/specialistReview/ebedff33-11d3-4633-98ee-abba9f54484d
 Content-Type: application/json

@@ -10,12 +10,18 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { StarRatingComponent } from '../star-rating/star-rating.component';
 import { ReviewsService } from '../../Services/reviews.service';
-import { reviewResponse } from '../../Interfaces/review.interface';
+import { Review, reviewResponse } from '../../Interfaces/review.interface';
 
 @Component({
   selector: 'app-user-specialist-view',
   standalone: true,
-  imports: [FooterComponent, CommonModule, FormsModule, StarRatingComponent, RouterLink ],
+  imports: [
+    FooterComponent,
+    CommonModule,
+    FormsModule,
+    StarRatingComponent,
+    RouterLink,
+  ],
   templateUrl: './user-specialist-view.component.html',
   styleUrl: './user-specialist-view.component.css',
 })
@@ -27,7 +33,7 @@ export class UserSpecialistViewComponent {
   Specialists_id!: string;
   user_id!: string;
   user: userResponse = {} as userResponse;
-  reviewArr: reviewResponse[]= []
+  reviewArr: Review[] = [];
   @Input() rating: number = 0;
   @Input() readonly: boolean = false;
 
@@ -40,6 +46,7 @@ export class UserSpecialistViewComponent {
   ) {
     this.getId();
     this.getUserId();
+    this.getReviews();
   }
   getId() {
     this.route.params.subscribe((params) => {
@@ -228,6 +235,32 @@ export class UserSpecialistViewComponent {
     this.router.navigate(['/']);
   }
 
-
+  getReviews() {
+    this.reviewservice
+      .specialistReviews(this.Specialists_id)
+      .subscribe((res) => {
+        if (res.error) {
+          console.log(res.error);
+        } else if (res.Reviews) {
+          this.reviewArr = res.Reviews;
+          console.log(this.reviewArr);
+        }
+      });
   }
 
+  Reviews: any[] = [];
+
+  generateStarsHTML(stars: number): string {
+    let starsHTML = '';
+    for (let i = 1; i <= 5; i++) {
+      if (i <= stars) {
+        // Add Font Awesome solid star icon with gold color
+        starsHTML += `<i class="fas fa-star star-gold" style="font-size: 40px; color: gold;"></i>`;
+      } else {
+        // Add Font Awesome regular star icon with grey color
+        starsHTML += `<i class="far fa-star star-grey" style="font-size: 40px; color: grey;"></i>`;
+      }
+    }
+    return starsHTML;
+  }
+}
