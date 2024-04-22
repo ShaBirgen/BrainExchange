@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import  {Request, Response} from "express";
 import { v4 } from "uuid";
 import mssql, { pool } from "mssql";
 import { Specialist, User } from "../Interfaces/UserInterface";
