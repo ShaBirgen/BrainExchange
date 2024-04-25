@@ -1,13 +1,13 @@
 import mssql from "mssql";
-import bcrypt from "bcrypt";
-// import Connection from "../../DBHelper/dbhelper";
-import { getallCategories } from "../category.controller";
+import { getallCategories, getOneCategory } from "../category.controller";
 import { sqlConfig } from "../../Config/sqlConfig";
+
+jest.mock("mssql");
 jest.mock("../../Config/sqlConfig");
 
-//GETALLPRODUCTS
+// GETALLCATEGORIES
 
-describe("Get all products", () => {
+describe("Get all categories", () => {
   let res: any;
 
   beforeEach(() => {
@@ -17,76 +17,66 @@ describe("Get all products", () => {
     };
   });
 
-  it("Gets all category", async () => {
-    let expectedCategory = {
-      category: [
-        {
-          category_id: "1908f955-f392-48ac-99eb-e6d6fc44a61c",
-          categoryname: "Designer",
-          image:
-            "https://istore.ke/wp-content/uploads/2021/09/iphone-13-pro-max-blue-select.png",
-        },
-      ],
-    };
+  it("Gets all categories", async () => {
+    const expectedCategories = [
+      {
+        category_id: "1908f955-f392-48ac-99eb-e6d6fc44a61c",
+        categoryname: "Designer",
+        image: "https://istore.ke/wp-content/uploads/2021/09/iphone-13-pro-max-blue-select.png",
+      },
+    ];
+
+    (mssql.connect as jest.Mock).mockResolvedValueOnce({
+      request: jest.fn().mockReturnThis(),
+      input: jest.fn().mockReturnThis(),
+      execute: jest.fn().mockResolvedValueOnce({ recordset: expectedCategories }),
+    } as never);
 
     const req = {};
 
-    jest.spyOn(mssql, "connect").mockResolvedValueOnce({
+    await getallCategories(req as any, res);
+
+    expect(res.json).toHaveBeenCalledWith({ Categories: expectedCategories });
+  });
+});
+
+// GETONECATEGORY
+
+describe("Get one category", () => {
+  let res: any;
+
+  beforeEach(() => {
+    res = {
+      status: jest.fn().mockReturnThis(),
+      json: jest.fn().mockReturnThis(),
+    };
+  });
+
+  it("Gets a single category", async () => {
+    const expectedCategory = {
+      category_id: "1908f955-f392-48ac-99eb-e6d6fc44a61c",
+      categoryname: "Designer",
+      image: "https://istore.ke/wp-content/uploads/2021/09/iphone-13-pro-max-blue-select.png",
+    };
+
+    const req = {
+      params: {
+        id: "1908f955-f392-48ac-99eb-e6d6fc44a61c",
+      },
+    };
+
+    (mssql.connect as jest.Mock).mockResolvedValueOnce({
       request: jest.fn().mockReturnThis(),
       input: jest.fn().mockReturnThis(),
       execute: jest.fn().mockResolvedValueOnce({ recordset: [expectedCategory] }),
     } as never);
 
-    await getallCategories(req as any, res);
+    await getOneCategory(req as any, res);
 
-    expect(res.json).toHaveBeenCalledWith(expectedCategory);
+    expect(res.json).toHaveBeenCalledWith({ category: expectedCategory });
   });
 });
 
-//GET ONE PRODUCT
-
-// describe("Gets a single product", () => {
-//   let res: any;
-//   let product: any;
-
-//   beforeEach(() => {
-//     res = {
-//       status: jest.fn().mockReturnThis(),
-//       json: jest.fn().mockReturnThis(),
-//     };
-
-//     product = {
-//       product: [
-//         {
-//           product_id: "4200c8e9-a428-4429-944f-9152119e9f15",
-//           productname: "Iphone",
-//           category_id: "1908f955-f392-48ac-99eb-e6d6fc44a61c",
-//           quantity: "2000",
-//           description: "This is a phone",
-//           price: "300000",
-//           image:
-//             "https://istore.ke/wp-content/uploads/2021/09/iphone-13-pro-max-blue-select.png",
-//           isdeleted: false,
-//         },
-//       ],
-//     };
-//   });
-
-//   it("gets a single product", async () => {
-//     const req = {
-//       params: {
-//         id: "353545-43495835-458347575",
-//       },
-//     };
-//     (Connection.execute as jest.Mock).mockResolvedValueOnce({
-//       recordset: product.product,
-//     });
-
-//     await getOneProduct(req as any, res);
-
-//     expect(res.json).toHaveBeenCalledWith({ product: product.product });
-//   });
-// });
 
 // //GET PRODUCTS BY CATEGORY ID
 
