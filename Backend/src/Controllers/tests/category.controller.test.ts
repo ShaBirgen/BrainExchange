@@ -5,6 +5,10 @@ import { sqlConfig } from "../../Config/sqlConfig";
 jest.mock("mssql");
 jest.mock("../../Config/sqlConfig");
 
+  describe("create a category", async ()=>{
+    let app: any;
+  })
+
 // GETALLCATEGORIES
 
 describe("Get all categories", () => {
