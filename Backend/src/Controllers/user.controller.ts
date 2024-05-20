@@ -95,6 +95,7 @@ export const registerUser = async (req: Request, res: Response) => {
 
     console.log(req.body);
 
+    const hashed_pwd = await bcrypt.hash(Password, 5);
     let { error } = registerUserSchema.validate(req.body);
     if (error) {
       return res.status(404).json({
@@ -102,7 +103,6 @@ export const registerUser = async (req: Request, res: Response) => {
       });
     }
 
-    const hashed_pwd = await bcrypt.hash(Password, 5);
 
     const pool = await mssql.connect(sqlConfig);
 
